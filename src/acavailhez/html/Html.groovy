@@ -1,9 +1,10 @@
 package acavailhez.html
 
 import acavailhez.html.builder.RawHtmlBuilder
+import acavailhez.html.traits.Html5Trait
 
 // Render a piece of html
-abstract class Html implements Html5Trait{
+abstract class Html implements Html5Trait {
 
     protected RawHtmlBuilder html;
     protected RawHtmlBuilder escape;
@@ -24,8 +25,13 @@ abstract class Html implements Html5Trait{
         return html.toString()
     }
 
+    public Html withStyle(HtmlStyle style) {
+        this.style = style
+        return this
+    }
+
     // generate a <tag attr="value">CONTENT</tag>
-    public void tag(String tag, Map attrs, Closure body) {
+    void tag(String tag, Map attrs, Closure body) {
 
         if (!firstLine) {
             html << endLine()
@@ -39,7 +45,7 @@ abstract class Html implements Html5Trait{
             k = k?.toString()
             if (!v) return
             if (v instanceof Closure) {
-                out.appendWithoutStyling(" $k=\"")
+                html << " $k=\""
                 (v as Closure)()
                 html << '"'
             } else {
