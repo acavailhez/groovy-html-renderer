@@ -36,42 +36,34 @@ abstract class HtmlPage extends Html implements HeadTrait {
     @Override
     public String render() {
         prepare()
-        StringBuilder rendered = new StringBuilder()
-        rendered << '<!DOCTYPE html>' << endLine()
-        rendered << '<html>' << endLine()
-        scopePlus()
-        rendered << tabulate() << '<head>' << endLine()
-        scopePlus()
-        rendered << tabulate() << '<meta charset="utf-8" />' << endLine()
-        rendered << tabulate() << '<title>' << title() << '</title>' << endLine()
-        String description = description()
-        if (description != null && !description.isEmpty()) {
-            rendered << tabulate() << '<meta name="description" content="' << HtmlUtils.escapeTextToHtml(description) << '" />' << endLine()
-        }
-        String viewport = viewport()
-        if (viewport != null && !viewport.isEmpty()) {
-            rendered << tabulate() << viewport << endLine()
-        }
-        String favicon = favicon()
-        if (favicon != null && !favicon.isEmpty()) {
-            String type = "image/x-icon"
-            if (favicon.endsWith('.png')) {
-                type = "image/png"
+        html << '<!DOCTYPE html>' << endLine()
+        tag('html', [:]) {
+            tag('head', [:]) {
+                html << tabulate() << '<meta charset="utf-8" />' << endLine()
+                html << tabulate() << '<title>' << title() << '</title>' << endLine()
+                String description = description()
+                if (description != null && !description.isEmpty()) {
+                    html << tabulate() << '<meta name="description" content="' << HtmlUtils.escapeTextToHtml(description) << '" />' << endLine()
+                }
+                String viewport = viewport()
+                if (viewport != null && !viewport.isEmpty()) {
+                    html << tabulate() << viewport << endLine()
+                }
+                String favicon = favicon()
+                if (favicon != null && !favicon.isEmpty()) {
+                    String type = "image/x-icon"
+                    if (favicon.endsWith('.png')) {
+                        type = "image/png"
+                    }
+                    html << tabulate() << '<link rel="icon" href="' << favicon << '" type="' << type << '" />'
+                }
+                head()
             }
-            rendered << tabulate() << '<link rel="icon" href="' << favicon << '" type="' << type << '" />' << endLine()
+            tag('body', [:]) {
+                body()
+                renderJavascript()
+            }
         }
-        head()
-        scopeMinus()
-        rendered << tabulate() << '</head>' << endLine()
-        html << tabulate() << '<body>'
-        scopePlus()
-        body()
-        rendered << html.toString()
-        rendered << endLine()
-        renderJavascript(rendered)
-        rendered << ' </body>' << endLine()
-        scopeMinus()
-        rendered << '</html>'
-        return rendered.toString()
+        return html.toString()
     }
 }

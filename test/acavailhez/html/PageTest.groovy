@@ -59,6 +59,8 @@ public class PageTest extends AbstractTest {
 
             protected void head() {
                 meta(property: "og:type", content: "website")
+                css('https://cdn.com/min.css')
+                javascript('https://cdn.com/min.js')
             }
 
             protected void body() {
@@ -72,14 +74,15 @@ public class PageTest extends AbstractTest {
         assert renderEquals(html, '''
 <!DOCTYPE html>
 <html>
- <head>
-  <meta charset="utf-8" />
+ <head>  <meta charset="utf-8" />
   <title>Page</title>
   <meta name="description" content="Page about &quot;interesting&quot; things" />
   <link rel="icon" href="/favicon.png" type="image/png" />
+  <meta property="og:type" content="website" />
+  <link href="https://cdn.com/min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.com/min.js"> </script>
  </head>
  <body>
-  <meta property="og:type" content="website"/>
   <div>text</div>
  </body>
 </html>

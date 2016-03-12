@@ -17,6 +17,14 @@ abstract class Html implements Html5Trait {
 
     protected abstract void build();
 
+     void html(Object input){
+        html << input
+    }
+
+     void escape(Object input){
+        escape << input
+    }
+
     protected void prepare() {
         StringBuilder stringBuilder = new StringBuilder()
         html = new RawHtmlBuilder(stringBuilder)
@@ -27,28 +35,28 @@ abstract class Html implements Html5Trait {
     public String render() {
         prepare()
         build()
+        renderJavascript()
         StringBuilder rendered = new StringBuilder()
         rendered << html.toString()
-        renderJavascript(rendered)
         return rendered.toString()
     }
 
-    protected void renderJavascript(StringBuilder rendered) {
+    protected void renderJavascript() {
         if (js.scoped.size() > 0) {
-            rendered << tabulate() << '<script>function _$defer(f){if(typeof $ !== \'undefined\'){$(document).ready(f)}else{f()}}</script>' << endLine()
+            html << tabulate() << '<script>function _$defer(f){if(typeof $ !== \'undefined\'){$(document).ready(f)}else{f()}}</script>' << endLine()
             for (List<String> statements : js.scoped) {
-                rendered << tabulate() << '<script>' << endLine()
+                html << tabulate() << '<script>' << endLine()
                 scopePlus()
-                rendered << tabulate() << '_$defer(function(){' << endLine()
+                html << tabulate() << '_$defer(function(){' << endLine()
                 scopePlus()
                 for (String statement : statements) {
-                    rendered << tabulate() << statement << endLine()
+                    html << tabulate() << statement << endLine()
                 }
                 scopeMinus()
-                rendered << tabulate() << '});' << endLine()
+                html << tabulate() << '});' << endLine()
 
                 scopeMinus()
-                rendered << tabulate() << '</script>' << endLine()
+                html << tabulate() << '</script>' << endLine()
             }
         }
     }
@@ -82,7 +90,7 @@ abstract class Html implements Html5Trait {
         if (body) {
             html << '>'
         } else {
-            html << '/>'
+            html << ' />'
         }
 
         scopePlus()
