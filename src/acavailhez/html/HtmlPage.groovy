@@ -55,6 +55,7 @@ abstract class HtmlPage extends HtmlFragment implements HeadTrait {
             }
             tag('body', [:]) {
                 body()
+                html << deferHtmlBuilder.toRawHtml()
                 js.renderForHtml(html)
             }
         }

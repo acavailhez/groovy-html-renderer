@@ -14,11 +14,11 @@ class HtmlBuilder implements HtmlScopable {
         // Nothing to do
     }
 
-    public RawHtmlBuilder getRawHtmlBuilder() {
+    public RawHtmlBuilder getHtml() {
         return html
     }
 
-    public EscapedHtmlBuilder getEscapedHtmlBuilder() {
+    public EscapedHtmlBuilder getEscape() {
         return escape
     }
 

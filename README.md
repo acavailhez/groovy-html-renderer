@@ -59,17 +59,20 @@ div{
 }
 ```
 
-Will render:
+## Defer html
+
+Some content like modals is better deferred at the end of the document, to isolate it from the current css nesting,
+but this content is better rendered in place when you need it, so it's possible to invoke some html to be deferred to the end of the document:
 
 ```
-<div attribute="value" attribute-two="value">
- <div>
-  text to print
- </div>
-</div>
-<script>
- execute();
-</script>
+div {
+    escape << "text"
+    defer {
+        div(class: 'modal') {
+            escape << 'deferred'
+        }
+    }
+}
 ```
 
 

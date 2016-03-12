@@ -13,7 +13,7 @@ abstract class Html implements Html5Trait, AttemptTrait {
     // State local to the current DOM element
     protected final HtmlScope scope
 
-    private HtmlBuilder htmlBuilder
+    protected HtmlBuilder rootHtmlBuilder
     protected RawHtmlBuilder html
     protected EscapedHtmlBuilder escape
 
@@ -25,10 +25,10 @@ abstract class Html implements Html5Trait, AttemptTrait {
 
     public Html() {
         scope = new HtmlScope()
-        htmlBuilder = new HtmlBuilder()
-        scope.addScopable(htmlBuilder)
-        html = htmlBuilder.getRawHtmlBuilder()
-        escape = htmlBuilder.getEscapedHtmlBuilder()
+        rootHtmlBuilder = new HtmlBuilder()
+        scope.addScopable(rootHtmlBuilder)
+        html = rootHtmlBuilder.getHtml()
+        escape = rootHtmlBuilder.getEscape()
     }
 
     RawHtmlBuilder html(Object input = null) {
@@ -68,7 +68,7 @@ abstract class Html implements Html5Trait, AttemptTrait {
 
     protected String getRawHtml() {
         render()
-        String result = htmlBuilder.toRawHtml()
+        String result = rootHtmlBuilder.toRawHtml()
         if (style == HtmlStyle.PRETTY) {
             result = HtmlUtils.tidy(result)
         }

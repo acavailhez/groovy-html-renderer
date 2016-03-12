@@ -21,7 +21,31 @@ public class FragmentTest extends AbstractTest {
         assert renderEquals(fragment.getRawHtml(), '''
   <div>text</div>
 ''')
-        assert renderEquals(fragment.getRawJavascript(),'''
+        assert renderEquals(fragment.getRawJavascript(), '''
 try{var i=0;}catch(e){console.log(e)}''')
+    }
+
+    @Test
+    public void testDeferHtml() throws Exception {
+        HtmlFragment fragment = (new HtmlFragment() {
+
+            protected void build() {
+                div {
+                    escape << "text"
+                    defer {
+                        div(class: 'modal') {
+                            escape << 'deferred'
+                        }
+                    }
+                }
+            }
+
+        }).withStyle(HtmlStyle.PRETTY)
+
+        assert renderEquals(fragment.getRawHtml(), '''
+  <div>text</div>
+''')
+        assert renderEquals(fragment.getRawDeferredHtml(), '''
+<div class="modal">deferred</div>''')
     }
 }
