@@ -22,10 +22,10 @@ public class PageTest extends AbstractTest {
         }).withStyle(HtmlStyle.PRETTY).render()
 
         assert renderEquals(html, '''
-<!DOCTYPE html>
+<!doctype html>
 <html>
  <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   <title>Page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
  </head>
@@ -72,15 +72,15 @@ public class PageTest extends AbstractTest {
         }).withStyle(HtmlStyle.PRETTY).render()
 
         assert renderEquals(html, '''
-<!DOCTYPE html>
+<!doctype html>
 <html>
- <head>  <meta charset="utf-8" />
+ <head>  <meta charset="utf-8">
   <title>Page</title>
-  <meta name="description" content="Page about &quot;interesting&quot; things" />
-  <link rel="icon" href="/favicon.png" type="image/png" />
-  <meta property="og:type" content="website" />
-  <link href="https://cdn.com/min.css" rel="stylesheet" type="text/css" />
-  <script src="https://cdn.com/min.js"> </script>
+  <meta name="description" content="Page about &quot;interesting&quot; things">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <meta property="og:type" content="website">
+  <link href="https://cdn.com/min.css" rel="stylesheet" type="text/css">
+  <script src="https://cdn.com/min.js"></script>
  </head>
  <body>
   <div>text</div>
@@ -107,10 +107,10 @@ public class PageTest extends AbstractTest {
         }).withStyle(HtmlStyle.PRETTY).render()
 
         assert renderEquals(html, '''
-<!DOCTYPE html>
+<!doctype html>
 <html>
  <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   <title>Page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
  </head>

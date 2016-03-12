@@ -14,6 +14,7 @@ dependencies {
 
     compile 'org.codehaus.groovy:groovy-all:2.4.4'
     compile 'org.apache.commons:commons-lang3:3.0'
+    compile 'org.jsoup:jsoup:1.8.3' // for html prettyfier
 
     testCompile 'junit:junit:4.11'
 }

@@ -17,11 +17,11 @@ abstract class Html implements Html5Trait {
 
     protected abstract void build();
 
-     void html(Object input){
+    void html(Object input) {
         html << input
     }
 
-     void escape(Object input){
+    void escape(Object input) {
         escape << input
     }
 
@@ -36,9 +36,15 @@ abstract class Html implements Html5Trait {
         prepare()
         build()
         renderJavascript()
-        StringBuilder rendered = new StringBuilder()
-        rendered << html.toString()
-        return rendered.toString()
+        return format()
+    }
+
+    protected String format(){
+        String result = html.toString()
+        if (style == HtmlStyle.PRETTY) {
+            result = HtmlUtils.tidy(result)
+        }
+        return result
     }
 
     protected void renderJavascript() {

@@ -2,7 +2,7 @@ package acavailhez.html
 
 import org.junit.Test
 
-public class HtmlUtilsTest {
+public class HtmlUtilsTest extends AbstractTest{
 
     @Test
     public void simple() throws Exception {
@@ -11,5 +11,9 @@ public class HtmlUtilsTest {
         assert HtmlUtils.escapeHtmlAttribute('ab"c') == 'ab&quot;c'
     }
 
-
+    @Test
+    public void tidy() throws Exception {
+        assert renderEquals( HtmlUtils.tidy('<div> test</div >'),'<div>test</div>')
+        assert renderEquals(HtmlUtils.tidy('<img src="test">'),'<img src="test">')
+    }
 }

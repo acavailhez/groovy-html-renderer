@@ -1,7 +1,12 @@
 package acavailhez.html
 
 import org.apache.commons.lang3.StringEscapeUtils
+import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
+import org.jsoup.nodes.Entities
+import org.jsoup.parser.Parser
 
+import java.nio.charset.Charset
 
 class HtmlUtils {
 
@@ -22,5 +27,22 @@ class HtmlUtils {
             return ''
         }
         return StringEscapeUtils.escapeHtml4(text.toString())
+    }
+
+    // beautify html
+    public static String tidy(String html) {
+        Document doc = null
+        if (html.contains('<html')) {
+             doc = Jsoup.parse(html);
+        } else {
+             doc = Jsoup.parse(html, '', Parser.xmlParser());
+        }
+        doc.outputSettings().prettyPrint(true);
+        doc.outputSettings().syntax(Document.OutputSettings.Syntax.html);
+        doc.outputSettings().escapeMode(Entities.EscapeMode.xhtml);
+        doc.outputSettings().charset(Charset.forName('utf-8'));
+        doc.outputSettings().indentAmount(1)
+
+        return doc.html();
     }
 }
