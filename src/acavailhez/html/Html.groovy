@@ -13,12 +13,11 @@ abstract class Html implements Html5Trait {
     protected JavascriptBuilder js;
 
     private HtmlStyle style;
-    private boolean firstLine = true;
     private int currentTabulations = 0;
 
     protected abstract void build();
 
-    protected void prepare(){
+    protected void prepare() {
         StringBuilder stringBuilder = new StringBuilder()
         html = new RawHtmlBuilder(stringBuilder)
         escape = new EscapedHtmlBuilder(stringBuilder)
@@ -36,15 +35,20 @@ abstract class Html implements Html5Trait {
 
     protected void renderJavascript(StringBuilder rendered) {
         if (js.scoped.size() > 0) {
-            rendered << '<script>function _$defer(f){if($){$(document).ready(f)}else{f()}};</script>' << endLine()
+            rendered << tabulate() << '<script>function _$defer(f){if(typeof $ !== \'undefined\'){$(document).ready(f)}else{f()}}</script>' << endLine()
             for (List<String> statements : js.scoped) {
-                rendered << '<script>' << endLine()
-                rendered << ' _$defer(function(){' << endLine()
+                rendered << tabulate() << '<script>' << endLine()
+                scopePlus()
+                rendered << tabulate() << '_$defer(function(){' << endLine()
+                scopePlus()
                 for (String statement : statements) {
-                    rendered << '  ' << statement << endLine()
+                    rendered << tabulate() << statement << endLine()
                 }
-                rendered << ' }' << endLine()
-                rendered << '</script>' << endLine()
+                scopeMinus()
+                rendered << tabulate() << '});' << endLine()
+
+                scopeMinus()
+                rendered << tabulate() << '</script>' << endLine()
             }
         }
     }
@@ -57,12 +61,10 @@ abstract class Html implements Html5Trait {
     // Generate a <tag attr="value">CONTENT</tag>
     void tag(String tag, Map attrs, Closure body) {
 
-        if (!firstLine) {
+        if (html.finishesWithATag()) {
             html << endLine()
-        } else {
-            firstLine = false
+            html << tabulate()
         }
-        html << getCurrentTabulations()
 
         html << "<${tag}"
         attrs?.each { Object k, Object v ->
@@ -95,9 +97,11 @@ abstract class Html implements Html5Trait {
         scopeMinus()
 
         if (body) {
+            if (html.finishesWithATag()) {
+                html << endLine()
+                html << tabulate()
+            }
             html << "</${tag}>"
-            html << endLine()
-            html << getCurrentTabulations(-1)
         }
     }
 
@@ -121,7 +125,7 @@ abstract class Html implements Html5Trait {
         return ''
     }
 
-    protected String getCurrentTabulations(int modifier = 0) {
+    protected String tabulate(int modifier = 0) {
         if (style == HtmlStyle.PRETTY) {
             int i = currentTabulations + modifier
             StringBuilder sb = new StringBuilder()

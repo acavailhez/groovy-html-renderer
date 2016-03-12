@@ -39,6 +39,10 @@ public class SimpleTest extends AbstractTest {
                             escape << 'embed'
                         }
                     }
+                    span {
+                        escape << 'embed '
+                        escape << 'several'
+                    }
                 }
             }
         }).withStyle(HtmlStyle.PRETTY)
@@ -49,10 +53,10 @@ public class SimpleTest extends AbstractTest {
  <span>
   <p>embed</p>
  </span>
+ <span>embed several</span>
 </div>
 ''')
     }
-
 
 
 }

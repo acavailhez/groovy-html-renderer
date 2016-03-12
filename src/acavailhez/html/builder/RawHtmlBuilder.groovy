@@ -17,6 +17,11 @@ class RawHtmlBuilder {
         return this
     }
 
+    boolean finishesWithATag() {
+        if(!stringBuilder || stringBuilder.length() <= 0) return false
+        return stringBuilder.charAt(stringBuilder.length() - 1) == '>'
+    }
+
     @Override
     public String toString() {
         return stringBuilder.toString()
