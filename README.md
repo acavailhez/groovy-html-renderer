@@ -30,7 +30,7 @@ Html tags are rendered using a groovy closure, so:
 div(attribute:"value",'attribute-two':"value 2"){
    html << '<span class="icon"></span>'
    div{
-   escape << 'text to print'
+     escape << 'text to print'
    }
 }
 ```
@@ -46,5 +46,30 @@ Will render:
 </div>
 ```
 
+## Javascript
+
+It's convenient to write small javascript snipets where they are relevant, only to have them be deferred to the end of the document,
+
+```
+div{
+   div{
+     escape << 'text to print'
+     js << 'execute();'
+   }
+}
+```
+
+Will render:
+
+```
+<div attribute="value" attribute-two="value">
+ <div>
+  text to print
+ </div>
+</div>
+<script>
+ execute();
+</script>
+```
 
 
