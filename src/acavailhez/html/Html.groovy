@@ -26,17 +26,23 @@ abstract class Html implements Html5Trait {
         build()
         StringBuilder rendered = new StringBuilder()
         rendered << html.toString()
-        rendered << '<script>' << endLine()
-        for (List<String> statements : js.scoped) {
-            rendered << ' try{' << endLine()
-            for (String statement : statements) {
-                rendered << '  ' << statement << endLine()
-            }
-            rendered << ' }catch(e){console.log(e)}'
-            rendered << endLine()
-        }
-        rendered << '</script>' << endLine()
+        renderJavascript(rendered)
         return rendered.toString()
+    }
+
+    protected void renderJavascript(StringBuilder rendered) {
+        if (js.scoped.size() > 0) {
+            rendered << '<script>function _$defer(f){if($){$(document).ready(f)}else{f()}};</script>' << endLine()
+            for (List<String> statements : js.scoped) {
+                rendered << '<script>' << endLine()
+                rendered << ' _$defer(function(){' << endLine()
+                for (String statement : statements) {
+                    rendered << '  ' << statement << endLine()
+                }
+                rendered << ' }' << endLine()
+                rendered << '</script>' << endLine()
+            }
+        }
     }
 
     public Html withStyle(HtmlStyle style) {
