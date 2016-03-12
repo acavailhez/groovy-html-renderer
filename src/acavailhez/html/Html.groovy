@@ -1,6 +1,7 @@
 package acavailhez.html
 
 import acavailhez.html.builder.EscapedHtmlBuilder
+import acavailhez.html.builder.JavascriptBuilder
 import acavailhez.html.builder.RawHtmlBuilder
 import acavailhez.html.traits.Html5Trait
 
@@ -9,7 +10,7 @@ abstract class Html implements Html5Trait {
 
     protected RawHtmlBuilder html;
     protected EscapedHtmlBuilder escape;
-    protected RawHtmlBuilder js;
+    protected JavascriptBuilder js;
 
     private HtmlStyle style;
     private boolean firstLine = true;
@@ -21,9 +22,21 @@ abstract class Html implements Html5Trait {
         StringBuilder stringBuilder = new StringBuilder()
         html = new RawHtmlBuilder(stringBuilder)
         escape = new EscapedHtmlBuilder(stringBuilder)
-        js = new RawHtmlBuilder(stringBuilder)
+        js = new JavascriptBuilder()
         build()
-        return html.toString()
+        StringBuilder rendered = new StringBuilder()
+        rendered << html.toString()
+        rendered << '<script>' << endLine()
+        for (List<String> statements : js.scoped) {
+            rendered << ' try{' << endLine()
+            for (String statement : statements) {
+                rendered << '  ' << statement << endLine()
+            }
+            rendered << ' }catch(e){console.log(e)}'
+            rendered << endLine()
+        }
+        rendered << '</script>' << endLine()
+        return rendered.toString()
     }
 
     public Html withStyle(HtmlStyle style) {
@@ -59,7 +72,8 @@ abstract class Html implements Html5Trait {
         } else {
             html << '/>'
         }
-        currentTabulations++
+
+        scopePlus()
 
         if (body) {
             def bodyOut = body()
@@ -67,13 +81,27 @@ abstract class Html implements Html5Trait {
                 html << bodyOut
             }
         }
-        currentTabulations--
+
+        scopeMinus()
 
         if (body) {
             html << "</${tag}>"
             html << endLine()
             html << getCurrentTabulations(-1)
         }
+    }
+
+    // called when going down in the DOM tree
+    private void scopePlus() {
+        currentTabulations++
+        js.stash()
+    }
+
+    // called when going up in the DOM tree
+    private void scopeMinus() {
+        currentTabulations--
+        js.stash()
+
     }
 
     private String endLine() {

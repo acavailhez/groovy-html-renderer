@@ -1,8 +1,8 @@
-import acavailhez.html.Html
-import acavailhez.html.HtmlStyle
+package acavailhez.html
+
 import org.junit.Test
 
-public class SimpleTest {
+public class SimpleTest extends AbstractTest {
 
     @Test
     public void testEmpty() throws Exception {
@@ -42,13 +42,17 @@ public class SimpleTest {
                 }
             }
         }).withStyle(HtmlStyle.PRETTY)
-                .render().replaceAll(System.lineSeparator(), '\n')
+                .render()
 
-        assert html == "<div>\n" +
-                " <span>\n" +
-                "  <p>embed</p>\n" +
-                " </span>\n" +
-                "</div>\n"
+        assert renderEquals(html, '''
+<div>
+ <span>
+  <p>embed</p>
+ </span>
+</div>
+''')
     }
+
+
 
 }
