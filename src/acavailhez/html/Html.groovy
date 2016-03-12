@@ -16,13 +16,17 @@ abstract class Html implements Html5Trait {
     private boolean firstLine = true;
     private int currentTabulations = 0;
 
-    public abstract void build();
+    protected abstract void build();
 
-    public String render() {
+    protected void prepare(){
         StringBuilder stringBuilder = new StringBuilder()
         html = new RawHtmlBuilder(stringBuilder)
         escape = new EscapedHtmlBuilder(stringBuilder)
         js = new JavascriptBuilder()
+    }
+
+    public String render() {
+        prepare()
         build()
         StringBuilder rendered = new StringBuilder()
         rendered << html.toString()
@@ -98,26 +102,26 @@ abstract class Html implements Html5Trait {
     }
 
     // called when going down in the DOM tree
-    private void scopePlus() {
+    protected void scopePlus() {
         currentTabulations++
         js.stash()
     }
 
     // called when going up in the DOM tree
-    private void scopeMinus() {
+    protected void scopeMinus() {
         currentTabulations--
         js.stash()
 
     }
 
-    private String endLine() {
+    protected String endLine() {
         if (style == HtmlStyle.PRETTY) {
             return System.lineSeparator()
         }
         return ''
     }
 
-    private String getCurrentTabulations(int modifier = 0) {
+    protected String getCurrentTabulations(int modifier = 0) {
         if (style == HtmlStyle.PRETTY) {
             int i = currentTabulations + modifier
             StringBuilder sb = new StringBuilder()

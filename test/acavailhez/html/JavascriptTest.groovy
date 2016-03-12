@@ -9,7 +9,7 @@ public class JavascriptTest extends AbstractTest{
     public void testJavascript() throws Exception {
         String html = (new Html() {
             @Override
-            public void build() {
+            protected void build() {
                 div {
                     js << 'var a=1;'
                     js << 'a=2;'
