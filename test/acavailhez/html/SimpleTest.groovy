@@ -33,8 +33,8 @@ public class SimpleTest extends AbstractTest {
         String html = (new Html() {
             @Override
             public void build() {
-                div(attr:"outter"){
-                    div(attr:"inner"){
+                div(attr: "outter") {
+                    div(attr: "inner") {
                         escape << 'embed'
                     }
                 }
@@ -42,6 +42,20 @@ public class SimpleTest extends AbstractTest {
         }).getRawHtml()
 
         assert html == '<div attr="outter"><div attr="inner">embed</div></div>'
+    }
+
+    @Test
+    public void testForgotStream() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                div {
+                    'embed'
+                }
+            }
+        }).getRawHtml()
+
+        assert html == '<div></div>'
     }
 
     @Test

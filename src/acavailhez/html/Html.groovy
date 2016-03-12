@@ -100,19 +100,10 @@ abstract class Html implements Html5Trait, AttemptTrait {
         }
         if (body) {
             html << '>'
+            body()
+            html << "</${tag}>"
         } else {
             html << ' />'
-        }
-
-        if (body) {
-            def bodyOut = body()
-            if (bodyOut instanceof String) {
-                html << bodyOut
-            }
-        }
-
-        if (body) {
-            html << "</${tag}>"
         }
 
         scope.commitToPreviousScope()
