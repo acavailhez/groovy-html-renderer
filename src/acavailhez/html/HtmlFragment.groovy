@@ -9,32 +9,27 @@ import acavailhez.html.builder.HtmlBuilder
 abstract class HtmlFragment extends Html {
 
     // Write javascript in context, it will be defered
-    Javascript js
-    // If you want to write some html to be appended at the end of the document
-    // (typically a modal, to be isolated at the root of DOM for css reasons)
-    HtmlBuilder deferHtmlBuilder
+    protected Javascript js
+    String deferredHtml = ''
 
     public HtmlFragment() {
         js = new Javascript()
         scope.addScopable(js)
-        deferHtmlBuilder = new HtmlBuilder()
-        scope.addScopable(deferHtmlBuilder)
     }
 
-    protected void defer(Closure toDefer){
-        html = deferHtmlBuilder.html
-        escape = deferHtmlBuilder.escape
+    protected void defer(Closure toDefer) {
+        scope.prepareForNewScope()
         toDefer()
-        html = rootHtmlBuilder.html
-        escape = rootHtmlBuilder.escape
+        deferredHtml += rootHtmlBuilder.html.toString()
+        scope.rollbackCurrentScope()
     }
 
     public String getRawJavascript() {
         return js.getRawJavascript()
     }
 
-    public String getRawDeferredHtml(){
-        return deferHtmlBuilder.toRawHtml()
+    public String getRawDeferredHtml() {
+        return deferredHtml
     }
 
 }

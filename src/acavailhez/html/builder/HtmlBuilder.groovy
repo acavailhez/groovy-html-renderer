@@ -24,7 +24,7 @@ class HtmlBuilder implements HtmlScopable {
 
     @Override
     void prepareForNewScope() {
-        if (currentStringBuilder) {
+        if (currentStringBuilder != null) {
             stringBuilderStack.push(currentStringBuilder)
         }
         currentStringBuilder = new StringBuilder()
@@ -51,6 +51,8 @@ class HtmlBuilder implements HtmlScopable {
         if (!stringBuilderStack.isEmpty()) {
             StringBuilder previousStringBuilder = stringBuilderStack.pop()
             currentStringBuilder = previousStringBuilder
+            html.setStringBuilder(currentStringBuilder)
+            escape.setStringBuilder(currentStringBuilder)
         }
         else{
             // drop current
@@ -58,7 +60,7 @@ class HtmlBuilder implements HtmlScopable {
         }
     }
 
-    public String toRawHtml() {
+    public String getRawHtml() {
         return currentStringBuilder.toString()
     }
 }

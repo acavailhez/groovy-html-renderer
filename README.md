@@ -46,6 +46,34 @@ Will render:
 </div>
 ```
 
+## Attempt
+
+If the generation of your html throws an exception, then all html is lost
+For complex pages, you may want to attempt rendering some elements and continue if that element failed, even providing a fallback:
+
+```
+div {
+    attempt {
+        div {
+            escape << 'text'
+            throw new Exception("oups")
+        }
+    } { Throwable t ->
+        span {
+            escape << 'failed with:' << t.getMessage()
+        }
+    }
+}
+```
+
+Will render:
+
+```
+<div>
+ <span>failed with:oups</span>
+</div>
+```
+
 ## Javascript
 
 It's convenient to write small javascript snipets where they are relevant, only to have them be deferred to the end of the document,

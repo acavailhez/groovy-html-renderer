@@ -4,11 +4,15 @@ import acavailhez.html.builder.EscapedHtmlBuilder
 import acavailhez.html.builder.HtmlBuilder
 import acavailhez.html.builder.RawHtmlBuilder
 import acavailhez.html.scope.HtmlScope
+import acavailhez.html.traits.CaptureTrait
 import acavailhez.html.traits.Html5Trait
 import acavailhez.html.traits.AttemptTrait
 
 // Render a piece of html
-abstract class Html implements Html5Trait, AttemptTrait {
+abstract class Html implements
+        Html5Trait,
+        AttemptTrait,
+        CaptureTrait {
 
     // State local to the current DOM element
     protected final HtmlScope scope
@@ -45,6 +49,10 @@ abstract class Html implements Html5Trait, AttemptTrait {
         return escape
     }
 
+    HtmlBuilder getRootHtmlBuilder() {
+        return rootHtmlBuilder
+    }
+
     RawHtmlBuilder getHtml() {
         return html
     }
@@ -68,7 +76,7 @@ abstract class Html implements Html5Trait, AttemptTrait {
 
     protected String getRawHtml() {
         render()
-        String result = rootHtmlBuilder.toRawHtml()
+        String result = rootHtmlBuilder.getRawHtml()
         if (style == HtmlStyle.PRETTY) {
             result = HtmlUtils.tidy(result)
         }
