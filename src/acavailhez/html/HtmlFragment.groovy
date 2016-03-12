@@ -1,7 +1,4 @@
 package acavailhez.html
-
-import acavailhez.html.builder.HtmlBuilder
-
 // Piece of html,
 // Can be rendered in different circumstances
 // Typically asynchronously:
