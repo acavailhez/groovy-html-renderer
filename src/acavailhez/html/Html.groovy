@@ -5,9 +5,10 @@ import acavailhez.html.builder.HtmlBuilder
 import acavailhez.html.builder.RawHtmlBuilder
 import acavailhez.html.scope.HtmlScope
 import acavailhez.html.traits.Html5Trait
+import acavailhez.html.traits.AttemptTrait
 
 // Render a piece of html
-abstract class Html implements Html5Trait {
+abstract class Html implements Html5Trait, AttemptTrait {
 
     // State local to the current DOM element
     protected final HtmlScope scope
@@ -42,6 +43,18 @@ abstract class Html implements Html5Trait {
             escape << input
         }
         return escape
+    }
+
+    RawHtmlBuilder getHtml() {
+        return html
+    }
+
+    EscapedHtmlBuilder getEscape() {
+        return escape
+    }
+
+    HtmlScope getScope() {
+        return scope
     }
 
     protected Html render() {
