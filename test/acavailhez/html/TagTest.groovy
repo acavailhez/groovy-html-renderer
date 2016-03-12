@@ -13,7 +13,7 @@ public class TagTest extends AbstractTest {
                     escape << 'INSIDE THE DIV'
                 }
             }
-        }).render()
+        }).getRawHtml()
 
         assert html == '<div attribute="value value; value-value| value&quot;value">INSIDE THE DIV</div>'
     }
@@ -27,7 +27,7 @@ public class TagTest extends AbstractTest {
                     escape << 'INSIDE THE DIV'
                 }
             }
-        }).render()
+        }).getRawHtml()
 
         assert html == '<div>INSIDE THE DIV</div>'
     }
@@ -42,7 +42,7 @@ public class TagTest extends AbstractTest {
                     escape << 'INSIDE THE DIV'
                 }
             }
-        }).render()
+        }).getRawHtml()
 
         assert html == '<div attr1="one" attr2="two" attr-three="three">INSIDE THE DIV</div>'
     }

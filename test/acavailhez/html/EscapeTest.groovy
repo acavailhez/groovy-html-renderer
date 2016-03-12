@@ -15,7 +15,7 @@ public class EscapeTest extends AbstractTest{
                     escape << null
                 }
             }
-        }).render()
+        }).getRawHtml()
 
         assert html == '<div></div>'
     }
@@ -29,7 +29,7 @@ public class EscapeTest extends AbstractTest{
                     escape << "Test String" << " String2"
                 }
             }
-        }).render()
+        }).getRawHtml()
 
         assert html == '<div>Test String String2</div>'
     }
@@ -43,7 +43,7 @@ public class EscapeTest extends AbstractTest{
                     escape << [a: "b"]
                 }
             }
-        }).render()
+        }).getRawHtml()
 
         assert html == '<div>[a:b]</div>'
     }
@@ -57,7 +57,7 @@ public class EscapeTest extends AbstractTest{
                     escape << "a < b => &nbsp;"
                 }
             }
-        }).render()
+        }).getRawHtml()
 
         assert html == '<div>a &lt; b =&gt; &amp;nbsp;</div>'
     }

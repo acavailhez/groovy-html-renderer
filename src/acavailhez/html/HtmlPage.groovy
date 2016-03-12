@@ -2,7 +2,7 @@ package acavailhez.html
 
 import acavailhez.html.traits.HeadTrait
 
-abstract class HtmlPage extends Html implements HeadTrait {
+abstract class HtmlPage extends HtmlFragment implements HeadTrait {
 
 
     protected void head() {
@@ -30,24 +30,18 @@ abstract class HtmlPage extends Html implements HeadTrait {
 
     @Override
     final protected void build() {
-        // Everything is done in render
-    }
-
-    @Override
-    public String render() {
-        prepare()
         html << '<!doctype html>'
         tag('html', [:]) {
             tag('head', [:]) {
-                html  << '<meta charset="utf-8">'
-                html  << '<title>' << title() << '</title>'
+                html << '<meta charset="utf-8">'
+                html << '<title>' << title() << '</title>'
                 String description = description()
                 if (description != null && !description.isEmpty()) {
-                    html  << '<meta name="description" content="' << HtmlUtils.escapeTextToHtml(description) << '">'
+                    html << '<meta name="description" content="' << HtmlUtils.escapeTextToHtml(description) << '">'
                 }
                 String viewport = viewport()
                 if (viewport != null && !viewport.isEmpty()) {
-                    html  << viewport
+                    html << viewport
                 }
                 String favicon = favicon()
                 if (favicon != null && !favicon.isEmpty()) {
@@ -55,15 +49,14 @@ abstract class HtmlPage extends Html implements HeadTrait {
                     if (favicon.endsWith('.png')) {
                         type = "image/png"
                     }
-                    html  << '<link rel="icon" href="' << favicon << '" type="' << type << '">'
+                    html << '<link rel="icon" href="' << favicon << '" type="' << type << '">'
                 }
                 head()
             }
             tag('body', [:]) {
                 body()
-                renderJavascript()
+                js.renderForHtml(html)
             }
         }
-        return format()
     }
 }

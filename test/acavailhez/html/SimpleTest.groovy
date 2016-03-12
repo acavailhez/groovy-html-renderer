@@ -11,7 +11,7 @@ public class SimpleTest extends AbstractTest {
             public void build() {
 
             }
-        }).render() == ""
+        }).getRawHtml() == ""
     }
 
     @Test
@@ -23,9 +23,25 @@ public class SimpleTest extends AbstractTest {
                     escape << 'INSIDE THE DIV'
                 }
             }
-        }).render()
+        }).getRawHtml()
 
         assert html == '<div class="class-of-div">INSIDE THE DIV</div>'
+    }
+
+    @Test
+    public void testLevel() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                div(attr:"outter"){
+                    div(attr:"inner"){
+                        escape << 'embed'
+                    }
+                }
+            }
+        }).getRawHtml()
+
+        assert html == '<div attr="outter"><div attr="inner">embed</div></div>'
     }
 
     @Test
@@ -46,7 +62,7 @@ public class SimpleTest extends AbstractTest {
                 }
             }
         }).withStyle(HtmlStyle.PRETTY)
-                .render()
+                .getRawHtml()
 
         assert renderEquals(html, '''
 <div>

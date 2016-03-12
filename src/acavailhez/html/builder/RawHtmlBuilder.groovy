@@ -1,11 +1,14 @@
 package acavailhez.html.builder
-
 // append string directly
 class RawHtmlBuilder {
 
-    private final StringBuilder stringBuilder
+    private  StringBuilder stringBuilder
 
-    public RawHtmlBuilder(StringBuilder stringBuilder) {
+    public RawHtmlBuilder() {
+        // Nothing to do
+    }
+
+    void setStringBuilder(StringBuilder stringBuilder){
         this.stringBuilder = stringBuilder
     }
 

@@ -5,9 +5,13 @@ import acavailhez.html.HtmlUtils
 // append string directly
 class EscapedHtmlBuilder {
 
-    private final StringBuilder stringBuilder
+    private StringBuilder stringBuilder
 
-    public EscapedHtmlBuilder(StringBuilder stringBuilder) {
+    public EscapedHtmlBuilder() {
+        // Nothing to do
+    }
+
+    void setStringBuilder(StringBuilder stringBuilder) {
         this.stringBuilder = stringBuilder
     }
 

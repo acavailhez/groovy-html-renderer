@@ -19,7 +19,7 @@ public class PageTest extends AbstractTest {
                 }
             }
 
-        }).withStyle(HtmlStyle.PRETTY).render()
+        }).withStyle(HtmlStyle.PRETTY).getRawHtml()
 
         assert renderEquals(html, '''
 <!doctype html>
@@ -69,7 +69,7 @@ public class PageTest extends AbstractTest {
                 }
             }
 
-        }).withStyle(HtmlStyle.PRETTY).render()
+        }).withStyle(HtmlStyle.PRETTY).getRawHtml()
 
         assert renderEquals(html, '''
 <!doctype html>
@@ -104,7 +104,7 @@ public class PageTest extends AbstractTest {
                 }
             }
 
-        }).withStyle(HtmlStyle.PRETTY).render()
+        }).withStyle(HtmlStyle.PRETTY).getRawHtml()
 
         assert renderEquals(html, '''
 <!doctype html>
