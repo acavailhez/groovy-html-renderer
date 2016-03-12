@@ -13,4 +13,8 @@ abstract class HtmlFragment extends Html {
         scope.addScopable(js)
     }
 
+    public String getRawJavascript() {
+        return js.getRawJavascript()
+    }
+
 }

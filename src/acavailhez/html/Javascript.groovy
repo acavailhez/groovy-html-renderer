@@ -32,6 +32,7 @@ public class Javascript implements HtmlScopable {
         if (currentScopedStatements.size() > 0) {
             scopedStatements.add(currentScopedStatements)
         }
+        currentScopedStatements = new LinkedList<>()
     }
 
     @Override
@@ -66,7 +67,7 @@ public class Javascript implements HtmlScopable {
             for (String statement : statements) {
                 js << statement
             }
-            js << 'catch(e){console.log(e)}'
+            js << '}catch(e){console.log(e)}'
         }
         return js.toString()
     }
