@@ -37,12 +37,12 @@ public class TagTest {
         String html = (new Html() {
             @Override
             public void build() {
-                div(attr1: "one", attr2:"two") {
+                div(attr1: "one", attr2: "two", 'attr-three': "three") {
                     escape << 'INSIDE THE DIV'
                 }
             }
         }).render()
 
-        assert html == '<div attr1="one" attr2="two">INSIDE THE DIV</div>'
+        assert html == '<div attr1="one" attr2="two" attr-three="three">INSIDE THE DIV</div>'
     }
 }

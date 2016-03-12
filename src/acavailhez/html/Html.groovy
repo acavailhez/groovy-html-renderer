@@ -1,5 +1,6 @@
 package acavailhez.html
 
+import acavailhez.html.builder.EscapedHtmlBuilder
 import acavailhez.html.builder.RawHtmlBuilder
 import acavailhez.html.traits.Html5Trait
 
@@ -7,7 +8,7 @@ import acavailhez.html.traits.Html5Trait
 abstract class Html implements Html5Trait {
 
     protected RawHtmlBuilder html;
-    protected RawHtmlBuilder escape;
+    protected EscapedHtmlBuilder escape;
     protected RawHtmlBuilder js;
 
     private HtmlStyle style;
@@ -19,7 +20,7 @@ abstract class Html implements Html5Trait {
     public String render() {
         StringBuilder stringBuilder = new StringBuilder()
         html = new RawHtmlBuilder(stringBuilder)
-        escape = new RawHtmlBuilder(stringBuilder)
+        escape = new EscapedHtmlBuilder(stringBuilder)
         js = new RawHtmlBuilder(stringBuilder)
         build()
         return html.toString()
@@ -30,7 +31,7 @@ abstract class Html implements Html5Trait {
         return this
     }
 
-    // generate a <tag attr="value">CONTENT</tag>
+    // Generate a <tag attr="value">CONTENT</tag>
     void tag(String tag, Map attrs, Closure body) {
 
         if (!firstLine) {
@@ -93,6 +94,4 @@ abstract class Html implements Html5Trait {
         }
         return ''
     }
-
-
 }

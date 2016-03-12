@@ -1,19 +1,21 @@
 package acavailhez.html.builder
 
+import acavailhez.html.HtmlUtils
+
 // append string directly
-class RawHtmlBuilder {
+class EscapedHtmlBuilder {
 
     private final StringBuilder stringBuilder
 
-    public RawHtmlBuilder(StringBuilder stringBuilder) {
+    public EscapedHtmlBuilder(StringBuilder stringBuilder) {
         this.stringBuilder = stringBuilder
     }
 
-    public RawHtmlBuilder leftShift(def s) {
+    public EscapedHtmlBuilder leftShift(def s) {
         if (s == null) {
             return this
         }
-        stringBuilder << s.toString()
+        stringBuilder << HtmlUtils.escapeTextToHtml(s)
         return this
     }
 
