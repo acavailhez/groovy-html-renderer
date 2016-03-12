@@ -36,18 +36,18 @@ abstract class HtmlPage extends Html implements HeadTrait {
     @Override
     public String render() {
         prepare()
-        html << '<!doctype html>' << endLine()
+        html << '<!doctype html>'
         tag('html', [:]) {
             tag('head', [:]) {
-                html << tabulate() << '<meta charset="utf-8">' << endLine()
-                html << tabulate() << '<title>' << title() << '</title>' << endLine()
+                html  << '<meta charset="utf-8">'
+                html  << '<title>' << title() << '</title>'
                 String description = description()
                 if (description != null && !description.isEmpty()) {
-                    html << tabulate() << '<meta name="description" content="' << HtmlUtils.escapeTextToHtml(description) << '">' << endLine()
+                    html  << '<meta name="description" content="' << HtmlUtils.escapeTextToHtml(description) << '">'
                 }
                 String viewport = viewport()
                 if (viewport != null && !viewport.isEmpty()) {
-                    html << tabulate() << viewport << endLine()
+                    html  << viewport
                 }
                 String favicon = favicon()
                 if (favicon != null && !favicon.isEmpty()) {
@@ -55,7 +55,7 @@ abstract class HtmlPage extends Html implements HeadTrait {
                     if (favicon.endsWith('.png')) {
                         type = "image/png"
                     }
-                    html << tabulate() << '<link rel="icon" href="' << favicon << '" type="' << type << '">'
+                    html  << '<link rel="icon" href="' << favicon << '" type="' << type << '">'
                 }
                 head()
             }
