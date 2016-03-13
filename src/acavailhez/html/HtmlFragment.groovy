@@ -29,4 +29,15 @@ abstract class HtmlFragment extends Html {
         return deferredHtml
     }
 
+    // insert a fragment into another
+    protected insert(HtmlFragment fragment, HtmlRenderMode mode){
+        if(mode != HtmlRenderMode.IMMEDIATE){
+            throw new Exception("mode not supported")
+        }
+        fragment.render()
+        html << fragment.getRawHtml()
+        deferredHtml += fragment.getRawDeferredHtml()
+        js << fragment.getRawJavascript()
+    }
+
 }

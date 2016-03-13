@@ -74,9 +74,23 @@ Will render:
 </div>
 ```
 
+## Scope
+
+You can store some variables at the current DOM element level to retrieve later
+
+```
+div {
+    scope.put("key",1)
+    div {
+        int value = scope.get("key")
+        escape << 'text'
+    }
+}
+```
+
 ## Javascript
 
-It's convenient to write small javascript snipets where they are relevant, only to have them be deferred to the end of the document,
+It's convenient to write small javascript snippets where they are relevant, only to have them be deferred to the end of the document,
 
 ```
 div{

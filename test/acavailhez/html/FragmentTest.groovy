@@ -48,4 +48,40 @@ try{var i=0;}catch(e){console.log(e)}''')
         assert renderEquals(fragment.getRawDeferredHtml(), '''
 <div class="modal">deferred</div>''')
     }
+
+    @Test
+    public void testInsert() throws Exception {
+        HtmlFragment fragment = (new HtmlFragment() {
+
+            protected void build() {
+                div {
+                    insert(new HtmlFragment() {
+                        @Override
+                        protected void build() {
+                            div {
+                                escape << "fragment"
+                            }
+                            defer {
+                                div(class: 'modal') {
+                                    escape << 'deferred'
+                                }
+                            }
+                        }
+                    }, HtmlRenderMode.IMMEDIATE)
+                    escape << "text"
+                }
+            }
+
+        }).withStyle(HtmlStyle.PRETTY)
+
+        assert renderEquals(fragment.getRawHtml(), '''
+  <div>
+    <div>
+      fragment
+  </div>text
+  </div>
+''')
+        assert renderEquals(fragment.getRawDeferredHtml(), '''
+<div class="modal">deferred</div>''')
+    }
 }
