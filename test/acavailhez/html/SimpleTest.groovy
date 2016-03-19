@@ -15,6 +15,16 @@ public class SimpleTest extends AbstractTest {
     }
 
     @Test
+    public void testEmptyTag() throws Exception {
+        assert (new Html() {
+            @Override
+            public void build() {
+                tag('br', [:], null)
+            }
+        }).getRawHtml() == "<br>"
+    }
+
+    @Test
     public void testDiv() throws Exception {
         String html = (new Html() {
             @Override

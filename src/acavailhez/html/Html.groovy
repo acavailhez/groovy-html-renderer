@@ -108,12 +108,10 @@ abstract class Html implements
                 html << " $k=\"$escaped\""
             }
         }
+        html << '>'
         if (body) {
-            html << '>'
             body()
             html << "</${tag}>"
-        } else {
-            html << ' />'
         }
 
         scope.commitToPreviousScope()
