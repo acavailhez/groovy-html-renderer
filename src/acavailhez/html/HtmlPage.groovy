@@ -31,8 +31,8 @@ abstract class HtmlPage extends HtmlFragment implements HeadTrait {
     @Override
     final protected void build() {
         html << '<!doctype html>'
-        tag('html', [:]) {
-            tag('head', [:]) {
+        html {
+            head {
                 html << '<meta charset="utf-8">'
                 html << '<title>' << title() << '</title>'
                 String description = description()

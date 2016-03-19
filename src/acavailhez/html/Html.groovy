@@ -7,10 +7,12 @@ import acavailhez.html.scope.HtmlScope
 import acavailhez.html.traits.CaptureTrait
 import acavailhez.html.traits.Html5Trait
 import acavailhez.html.traits.AttemptTrait
+import acavailhez.html.traits.ShortcutTrait
 
 // Render a piece of html
 abstract class Html implements
         Html5Trait,
+        ShortcutTrait,
         AttemptTrait,
         CaptureTrait {
 
