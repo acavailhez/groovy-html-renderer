@@ -71,7 +71,7 @@ Taking the example of Bootstrap's modal ([http://getbootstrap.com/javascript/#st
    </div><!-- /.modal -->
    ```
 
-It is possible to write a  `BootstrapHtmlTrait` this would simplified it to:
+It is possible to write a `BootstrapHtmlTrait` which would simplify it to:
 
 ```
 bootstrapSimpleModal("Modal title",tabindex:'-1'){
