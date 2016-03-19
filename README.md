@@ -11,19 +11,23 @@ Rendering engines that add new tags to html itself can become quite messy (looki
 So instead of bringing code to html by add clumsy `if` and `for` statements in custom tags (`<c:if>`), groovy-html-renderer brings html to the code itself.
 And the syntax of groovy is a suprisingly good fit for this:
 
-```div(class:'box'){
+```
+div(class:'box'){
   div(class:'box-body'){
     escape << "content of the box"
   }
-}```
+}
+```
 
 can render:
 
-```<div class="box">
+```
+<div class="box">
   <div class="box">
      content of the box
   </div>
-</div>```
+</div>
+```
 
 Once you are in code, all sorts of interesting features become possible, such as the `attempt` function, which will act like a try-catch:
 
@@ -47,7 +51,8 @@ This will prevent the whole document from crashing if only a non-critical part o
 Using Groovy's traits, it's easy to add new shortcuts and features to the syntax. 
 Taking the example of Bootstrap's modal ([http://getbootstrap.com/javascript/#static-example](http://getbootstrap.com/javascript/#static-example)), writing it directly requires typing:
 
-```<div class="modal fade" tabindex="-1" role="dialog">
+```
+<div class="modal fade" tabindex="-1" role="dialog">
      <div class="modal-dialog">
        <div class="modal-content">
          <div class="modal-header">
@@ -63,16 +68,19 @@ Taking the example of Bootstrap's modal ([http://getbootstrap.com/javascript/#st
          </div>
        </div><!-- /.modal-content -->
      </div><!-- /.modal-dialog -->
-   </div><!-- /.modal -->```
+   </div><!-- /.modal -->
+   ```
 
 It is possible to write a  `BootstrapHtmlTrait` this would simplified it to:
 
-```bootstrapSimpleModal("Modal title",tabindex:'-1'){
+```
+bootstrapSimpleModal("Modal title",tabindex:'-1'){
   p("One fine body…")
 }{
   bootstrapButton("Close", btnClass:'default', 'data-dismiss':'modal')
   bootstrapButton("Save changes", btnClass:'primary')
-}```
+}
+```
 
 Exposing only the important content and making the code easier to read
 
@@ -104,9 +112,11 @@ To render it in a visually appealing way, do:
 
 This will render:
 
-```<div class="foo bar">
+```
+<div class="foo bar">
   html5 forever &lt;3
-</div>```
+</div>
+```
 
 ## Tags
 
