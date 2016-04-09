@@ -21,7 +21,7 @@ trait Bootstrap4ButtonTrait extends Html5Trait {
         Bootstrap4ButtonStyle type = attrs.opt('btnStyle', Bootstrap4ButtonStyle, Bootstrap4ButtonStyle.DEFAULT)
         attrs.remove('btnStyle')
         attrs.type = 'button'
-        attrs.class = 'btn btn-' + type.name().toLowerCase()
+        attrs.addToClass('btn btn-' + type.name().toLowerCase())
         button(attrs) {
             body()
         }

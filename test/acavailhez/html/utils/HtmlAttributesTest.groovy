@@ -1,6 +1,7 @@
 package acavailhez.html.utils
 
 import acavailhez.html.AbstractTest
+import acavailhez.html.traits.bootstrap.Bootstrap4ButtonStyle
 import org.junit.Test
 
 public class HtmlAttributesTest extends AbstractTest {
@@ -71,6 +72,39 @@ public class HtmlAttributesTest extends AbstractTest {
         catch (IllegalArgumentException ex) {
             // we're good
         }
+
+    }
+
+    @Test
+    public void testEnum() throws Exception {
+
+        HtmlAttributes attrs = HtmlAttributes.wrap([
+                default: Bootstrap4ButtonStyle.DEFAULT,
+                primary: 'PRIMARY',
+                success: 'success'
+        ])
+        assert attrs.opt('default', Bootstrap4ButtonStyle) == Bootstrap4ButtonStyle.DEFAULT
+        assert attrs.opt('primary', Bootstrap4ButtonStyle) == Bootstrap4ButtonStyle.PRIMARY
+        assert attrs.opt('success', Bootstrap4ButtonStyle) == Bootstrap4ButtonStyle.SUCCESS
+
+    }
+
+    @Test
+    public void testAddClass() throws Exception {
+
+        HtmlAttributes attrs
+
+        attrs = HtmlAttributes.wrap([:])
+        attrs.addToClass("my-class")
+        assert attrs.class == "my-class"
+
+        attrs = HtmlAttributes.wrap([class:"previous-class"])
+        attrs.addToClass("my-class")
+        assert attrs.class == "previous-class my-class"
+
+        attrs = HtmlAttributes.wrap([class:"previous-class"])
+        attrs.addToClass(null)
+        assert attrs.class == "previous-class"
 
     }
 }

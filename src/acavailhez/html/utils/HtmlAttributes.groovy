@@ -6,9 +6,9 @@ package acavailhez.html.utils
 // HtmlAttributes.wrap() will keep the existing map and modify it
 //
 // Added methods: get/opt
-// opt(key, String, "default") will get the [key] value or default if not set
-// get(key, String) will get the [key] value and raise an exception if not present
-
+// - opt(key, String, "default") will get the [key] value or default if not set
+// - get(key, String) will get the [key] value and raise a IllegalArgumentException if not present
+// - addToClass(String) will append new classes to the existing one (or create one)
 class HtmlAttributes implements Map<String, Object> {
 
     private final Map<String, Object> map;
@@ -36,6 +36,7 @@ class HtmlAttributes implements Map<String, Object> {
 
     // Accessors
 
+    // opt(key, String, "default") will get the [key] value or default if not set
     public Object opt(String key) {
         return opt(key, Object)
     }
@@ -45,10 +46,22 @@ class HtmlAttributes implements Map<String, Object> {
             return defaultValue
         }
         Object nonCast = map.get(key)
+        if (nonCast == null) {
+            return null
+        }
+        if (classToCast.isEnum()) {
+            // try to find the correct enum, ignore case
+            for (Object enumValue : classToCast.getEnumConstants()) {
+                if (enumValue.toString().toLowerCase().equals(nonCast.toString().toLowerCase())) {
+                    return (T) enumValue
+                }
+            }
+        }
         // TODO cast more intelligently
         return (T) nonCast;
     }
 
+    // get(key, String) will get the [key] value and raise a IllegalArgumentException if not present
     public Object get(String key) {
         return get(key, Object)
     }
@@ -59,6 +72,18 @@ class HtmlAttributes implements Map<String, Object> {
             throw new IllegalArgumentException("Missing attribute '" + key + "'")
         }
         return value
+    }
+
+    // addToClass(String) will append new classes to the existing one (or create one)
+    public void addToClass(String newClass) {
+        if (newClass == null) {
+            return
+        }
+        if (!this.containsKey("class")) {
+            this.put("class", newClass)
+        } else {
+            this.put("class", get("class", String) + " " + newClass)
+        }
     }
 
     // Implementation of Map
