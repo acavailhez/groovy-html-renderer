@@ -232,6 +232,12 @@ trait Html5Trait extends HtmlTrait {
         tag('li', attrs, body)
     }
 
+    void li(String escapeContent) {
+        html << '<li>'
+        escape << escapeContent
+        html << '</li>'
+    }
+
     void main(Closure body) {
         tag('main', [:], body)
     }
@@ -254,6 +260,12 @@ trait Html5Trait extends HtmlTrait {
 
     void p(Map attrs, Closure body) {
         tag('p', attrs, body)
+    }
+
+    void p(String escapeContent) {
+        html << '<p>'
+        escape << escapeContent
+        html << '</p>'
     }
 
     void pre(Closure body) {
@@ -1093,6 +1105,4 @@ trait Html5Trait extends HtmlTrait {
     void img(Map attrs) {
         tag('img', attrs, null)
     }
-
-
 }

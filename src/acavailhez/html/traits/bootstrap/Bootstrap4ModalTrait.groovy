@@ -3,6 +3,7 @@ package acavailhez.html.traits.bootstrap
 import acavailhez.html.traits.Html5Trait
 
 // shortcuts for bootstrap 4 modals
+// http://v4-alpha.getbootstrap.com/components/modal/
 trait Bootstrap4ModalTrait extends Html5Trait {
 
     // shortcut
@@ -36,7 +37,7 @@ trait Bootstrap4ModalTrait extends Html5Trait {
         String title = optAttr('title', String)
         String close = optAttr('closeLabel', String)
 
-        div(class: 'modal fade', tabindex: tabindex) {
+        div(class: 'modal fade', tabindex: tabindex, role: 'dialog') {
             div(class: 'modal-dialog') {
                 div(class: 'modal-content') {
                     div(class: 'modal-header') {
@@ -48,7 +49,7 @@ trait Bootstrap4ModalTrait extends Html5Trait {
                                 html << '<span aria-hidden="true">&times;</span>'
                             }
                             if (title && !title.isEmpty()) {
-                                h4 {
+                                h4(class: 'modal-title') {
                                     escape << title
                                 }
                             }

@@ -121,6 +121,7 @@ abstract class Html implements
 
     // Accessors of current attributes
     // Those will only work if attributes have been scoped
+    // TODO move those in a Map wrapper
 
     void scopeAttrs(Map attrs) {
         scope.put('_attrs', attrs)

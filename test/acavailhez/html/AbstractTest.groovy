@@ -15,6 +15,10 @@ abstract class AbstractTest {
         expect = expect.replaceAll("\\s+", " ")
         expect = expect.replaceAll("> ", ">")
         expect = expect.replaceAll(" <", "<")
+        if (render != expect) {
+            println('render: ' + render)
+            println('expect: ' + expect)
+        }
         return render == expect
     }
 }

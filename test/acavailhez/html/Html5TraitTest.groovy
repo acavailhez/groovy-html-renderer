@@ -4,8 +4,7 @@ import org.junit.Test
 
 public class Html5TraitTest extends AbstractTest {
 
-
-    // --- Basic elements
+// --- Basic elements
 
     @Test
     public void testhtmlWithAttr() throws Exception {
@@ -765,6 +764,18 @@ public class Html5TraitTest extends AbstractTest {
     }
 
     @Test
+    public void testliInline() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                li("content of li")
+            }
+        }).getRawHtml()
+
+        assert html == '<li>content of li</li>'
+    }
+
+    @Test
     public void testmainWithAttr() throws Exception {
         String html = (new Html() {
             @Override
@@ -842,6 +853,18 @@ public class Html5TraitTest extends AbstractTest {
                 p{
                     escape << 'content of p'
                 }
+            }
+        }).getRawHtml()
+
+        assert html == '<p>content of p</p>'
+    }
+
+    @Test
+    public void testpInline() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                p("content of p")
             }
         }).getRawHtml()
 
@@ -3405,5 +3428,4 @@ public class Html5TraitTest extends AbstractTest {
 
         assert html == '<img class="class-of-img">'
     }
-
 }
