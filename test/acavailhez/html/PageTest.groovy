@@ -80,7 +80,7 @@ public class PageTest extends AbstractTest {
   <meta name="description" content="Page about &quot;interesting&quot; things">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <link rel="icon" href="/favicon.png" type="image/png">
-  <meta property="og:type" content="website">
+  <meta content="website" property="og:type">
   <link href="https://cdn.com/min.css" rel="stylesheet" type="text/css">
   <script src="https://cdn.com/min.js"></script>
  </head>

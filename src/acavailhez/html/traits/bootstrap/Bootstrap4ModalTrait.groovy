@@ -1,6 +1,7 @@
 package acavailhez.html.traits.bootstrap
 
 import acavailhez.html.traits.Html5Trait
+import acavailhez.html.utils.HtmlAttributes
 
 // shortcuts for bootstrap 4 modals
 // http://v4-alpha.getbootstrap.com/components/modal/
@@ -26,16 +27,16 @@ trait Bootstrap4ModalTrait extends Html5Trait {
     // title, String: if present and header is null, the modal will have a head with this string (escaped)
     // tabindex, int: if present will set the tab-index
     // closeLabel, String: the label of the close cross
-    void bootstrapModal(Map attrs,
+    void bootstrapModal(Map map,
                         Closure header,
                         Closure body,
                         Closure footer) {
 
-        scopeAttrs(attrs)
+        HtmlAttributes attrs = HtmlAttributes.wrap(map)
 
-        int tabindex = getAttr('tabindex', Integer, -1)
-        String title = optAttr('title', String)
-        String close = optAttr('closeLabel', String)
+        int tabindex = attrs.opt('tabindex', Integer, -1)
+        String title = attrs.opt('title', String)
+        String close = attrs.opt('closeLabel', String)
 
         div(class: 'modal fade', tabindex: tabindex, role: 'dialog') {
             div(class: 'modal-dialog') {

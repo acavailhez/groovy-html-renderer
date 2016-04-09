@@ -1,6 +1,7 @@
 package acavailhez.html.traits.bootstrap
 
 import acavailhez.html.traits.Html5Trait
+import acavailhez.html.utils.HtmlAttributes
 
 // shortcuts for bootstrap 4 buttons
 // http://v4-alpha.getbootstrap.com/components/buttons/
@@ -14,15 +15,14 @@ trait Bootstrap4ButtonTrait extends Html5Trait {
         }
     }
 
-    void bootstrapButton(Map attrs,
+    void bootstrapButton(Map map,
                          Closure body) {
-        scopeAttrs(attrs)
-        Bootstrap4ButtonStyle type = getAttr('btnStyle', Bootstrap4ButtonStyle, Bootstrap4ButtonStyle.DEFAULT)
-        Map btnAttrs = attrs
-        btnAttrs.remove('btnStyle')
-        btnAttrs.type = 'button'
-        btnAttrs.class = 'btn btn-' + type.name().toLowerCase()
-        button(btnAttrs) {
+        HtmlAttributes attrs = HtmlAttributes.copy(map)
+        Bootstrap4ButtonStyle type = attrs.opt('btnStyle', Bootstrap4ButtonStyle, Bootstrap4ButtonStyle.DEFAULT)
+        attrs.remove('btnStyle')
+        attrs.type = 'button'
+        attrs.class = 'btn btn-' + type.name().toLowerCase()
+        button(attrs) {
             body()
         }
     }

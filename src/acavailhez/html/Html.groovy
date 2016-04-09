@@ -8,6 +8,7 @@ import acavailhez.html.traits.CaptureTrait
 import acavailhez.html.traits.Html5Trait
 import acavailhez.html.traits.AttemptTrait
 import acavailhez.html.traits.ShortcutTrait
+import acavailhez.html.utils.HtmlUtils
 
 // Render a piece of html
 abstract class Html implements
@@ -95,19 +96,23 @@ abstract class Html implements
 
         scope.prepareForNewScope()
 
-        scopeAttrs(attrs)
-
         html << "<${tag}"
-        attrs?.each { Object k, Object v ->
-            k = k?.toString()
-            if (!v) return
-            if (v instanceof Closure) {
-                html << " $k=\""
-                (v as Closure)()
-                html << '"'
-            } else {
-                String escaped = HtmlUtils.escapeHtmlAttribute(v)
-                html << " $k=\"$escaped\""
+        if (attrs) {
+            List<String> keys = attrs.keySet().collect { it.toString() }
+            Collections.sort(keys)
+            for (Object keyO : keys) {
+                String key = keyO.toString()
+                Object value = attrs.get(key)
+                if (value) {
+                    if (value instanceof Closure) {
+                        html << " $key=\""
+                        (value as Closure)()
+                        html << '"'
+                    } else {
+                        String escaped = HtmlUtils.escapeHtmlAttribute(value)
+                        html << " $key=\"$escaped\""
+                    }
+                }
             }
         }
         html << '>'
@@ -117,35 +122,6 @@ abstract class Html implements
         }
 
         scope.commitToPreviousScope()
-    }
-
-    // Accessors of current attributes
-    // Those will only work if attributes have been scoped
-    // TODO move those in a Map wrapper
-
-    void scopeAttrs(Map attrs) {
-        scope.put('_attrs', attrs)
-    }
-
-    public Object optAttr(String key) {
-        return optAttr(key, Object)
-    }
-
-    public <T> T optAttr(String key, Class<T> classToCast, T defaultValue = null) {
-        Map attrs = (Map) getScope().get('_attrs')
-        return HtmlUtils.optAttribute(attrs, key, classToCast, defaultValue)
-    }
-
-    public Object getAttr(String key) {
-        return getAttr(key, Object)
-    }
-
-    public <T> T getAttr(String key, Class<T> classToCast, T defaultValue = null) throws IllegalArgumentException {
-        T value = optAttr(key, classToCast, defaultValue)
-        if (value == null) {
-            throw new IllegalArgumentException("Missing attribute '" + key + "'")
-        }
-        return value
     }
 
 }

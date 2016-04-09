@@ -1,6 +1,7 @@
 package acavailhez.html
 
 import acavailhez.html.traits.HeadTrait
+import acavailhez.html.utils.HtmlUtils
 
 abstract class HtmlPage extends HtmlFragment implements HeadTrait {
 

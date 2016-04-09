@@ -1,6 +1,6 @@
 package acavailhez.html.builder
 
-import acavailhez.html.HtmlUtils
+import acavailhez.html.utils.HtmlUtils
 
 // append string directly
 class EscapedHtmlBuilder {

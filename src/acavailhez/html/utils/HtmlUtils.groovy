@@ -1,4 +1,4 @@
-package acavailhez.html
+package acavailhez.html.utils
 
 import org.apache.commons.lang3.StringEscapeUtils
 import org.jsoup.Jsoup
@@ -27,18 +27,6 @@ class HtmlUtils {
             return ''
         }
         return StringEscapeUtils.escapeHtml4(text.toString())
-    }
-
-    public static <T> T optAttribute(Map attributes, String key, Class<T> classToCast, T defaultValue) {
-        if(attributes == null){
-            return defaultValue
-        }
-        if (!attributes.containsKey(key)) {
-            return defaultValue
-        }
-        Object nonCast = attributes.get(key)
-        // TODO cast more intelligently
-        return (T) nonCast;
     }
 
     // beautify html

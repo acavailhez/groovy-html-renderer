@@ -44,6 +44,6 @@ public class TagTest extends AbstractTest {
             }
         }).getRawHtml()
 
-        assert html == '<div attr1="one" attr2="two" attr-three="three">INSIDE THE DIV</div>'
+        assert html == '<div attr-three="three" attr1="one" attr2="two">INSIDE THE DIV</div>'
     }
 }

@@ -1,35 +1,77 @@
-package acavailhez.html.utils
+package acavailhez.html.scripts
 
 // Useful generators
 
 void generateNormalTag(String tag) {
-    print """void ${tag}(Closure body) {
-        tag('${tag}', [:], body)
+    print """@Test
+    public void test${tag}WithAttr() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                ${tag}(class: 'class-of-${tag}') {
+                    escape << 'content of ${tag}'
+                }
+            }
+        }).getRawHtml()
+
+        assert html == '<${tag} class="class-of-${tag}">content of ${tag}</${tag}>'
     }
 
-    void ${tag}(Map attrs, Closure body) {
-        tag('${tag}', attrs, body)
+    @Test
+    public void test${tag}WithoutAttr() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                ${tag}{
+                    escape << 'content of ${tag}'
+                }
+            }
+        }).getRawHtml()
+
+        assert html == '<${tag}>content of ${tag}</${tag}>'
     }\n\n"""
 }
 
 void generateContentlessTag(String tag) {
-    print """void ${tag}(Map attrs) {
-        tag('${tag}', attrs, null)
+    print """ @Test
+    public void test${tag}WithoutContent() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                ${tag}(class:"class-of-${tag}")
+            }
+        }).getRawHtml()
+
+        assert html == '<${tag} class="class-of-${tag}">'
     }\n\n"""
 }
 
 void generateInlineTag(String tag) {
     generateNormalTag(tag)
-    print """void ${tag}(String escapeContent) {
-        html << '<${tag}>'
-        escape << escapeContent
-        html << '</${tag}>'
+    print """@Test
+    public void test${tag}Inline() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                ${tag}("content of ${tag}")
+            }
+        }).getRawHtml()
+
+        assert html == '<${tag}>content of ${tag}</${tag}>'
     }\n\n"""
 }
 
 void generateEmptyTag(String tag) {
-    print """void ${tag}(){
-        html << '<${tag}>'
+    print """@Test
+    public void test${tag}Empty() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                ${tag}()
+            }
+        }).getRawHtml()
+
+        assert html == '<${tag}>'
     }\n\n"""
 }
 
