@@ -2,7 +2,9 @@ package acavailhez.html
 
 import acavailhez.html.traits.HeadTrait
 import acavailhez.html.utils.HtmlUtils
+import groovy.transform.CompileStatic
 
+@CompileStatic
 abstract class HtmlPage extends HtmlFragment implements HeadTrait {
 
 

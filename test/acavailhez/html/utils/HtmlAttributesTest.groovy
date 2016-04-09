@@ -65,6 +65,17 @@ public class HtmlAttributesTest extends AbstractTest {
     public void testGet() throws Exception {
 
         HtmlAttributes attrs = HtmlAttributes.wrap([one: 1, two: 'two'])
+        assert attrs.get('one') == 1
+        assert attrs.get('one', Integer) == 1
+        assert attrs.get('two') == 'two'
+        assert attrs.get('two', String) == 'two'
+
+    }
+
+    @Test
+    public void testGetThrow() throws Exception {
+
+        HtmlAttributes attrs = HtmlAttributes.wrap([one: 1, two: 'two'])
         try {
             attrs.get('three', String)
             throw new RuntimeException("Should not happen")
@@ -98,11 +109,11 @@ public class HtmlAttributesTest extends AbstractTest {
         attrs.addToClass("my-class")
         assert attrs.class == "my-class"
 
-        attrs = HtmlAttributes.wrap([class:"previous-class"])
+        attrs = HtmlAttributes.wrap([class: "previous-class"])
         attrs.addToClass("my-class")
         assert attrs.class == "previous-class my-class"
 
-        attrs = HtmlAttributes.wrap([class:"previous-class"])
+        attrs = HtmlAttributes.wrap([class: "previous-class"])
         attrs.addToClass(null)
         assert attrs.class == "previous-class"
 

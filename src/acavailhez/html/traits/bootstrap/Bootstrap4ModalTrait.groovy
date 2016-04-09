@@ -66,7 +66,6 @@ trait Bootstrap4ModalTrait extends Html5Trait {
                     }
                 }
             }
-
         }
     }
 

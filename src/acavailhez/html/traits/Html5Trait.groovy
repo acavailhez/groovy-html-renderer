@@ -1,6 +1,9 @@
 package acavailhez.html.traits
 
+import groovy.transform.CompileStatic
+
 // All tags from https://developer.mozilla.org/en-US/docs/Web/HTML/Element
+@CompileStatic
 trait Html5Trait extends HtmlTrait {
 
     // --- Basic elements

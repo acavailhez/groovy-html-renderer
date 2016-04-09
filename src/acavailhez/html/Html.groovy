@@ -9,8 +9,10 @@ import acavailhez.html.traits.Html5Trait
 import acavailhez.html.traits.AttemptTrait
 import acavailhez.html.traits.ShortcutTrait
 import acavailhez.html.utils.HtmlUtils
+import groovy.transform.CompileStatic
 
 // Render a piece of html
+@CompileStatic
 abstract class Html implements
         Html5Trait,
         ShortcutTrait,
@@ -69,7 +71,7 @@ abstract class Html implements
     }
 
     protected Html render() {
-        if (rendered) return
+        if (rendered) return this
         scope.prepareForNewScope()
         build()
         scope.commitToPreviousScope()

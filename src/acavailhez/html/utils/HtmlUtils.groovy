@@ -1,5 +1,6 @@
 package acavailhez.html.utils
 
+import groovy.transform.CompileStatic
 import org.apache.commons.lang3.StringEscapeUtils
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
@@ -8,6 +9,7 @@ import org.jsoup.parser.Parser
 
 import java.nio.charset.Charset
 
+@CompileStatic
 class HtmlUtils {
 
     // Escape the value of a html tag attribute
@@ -31,7 +33,7 @@ class HtmlUtils {
 
     // beautify html
     public static String tidy(String html) {
-        Document doc = null
+        Document doc
         if (html.contains('<html')) {
             doc = Jsoup.parse(html);
         } else {
