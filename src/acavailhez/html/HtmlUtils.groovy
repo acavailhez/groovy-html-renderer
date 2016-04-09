@@ -29,13 +29,25 @@ class HtmlUtils {
         return StringEscapeUtils.escapeHtml4(text.toString())
     }
 
+    public static <T> T optAttribute(Map attributes, String key, Class<T> classToCast, T defaultValue) {
+        if(attributes == null){
+            return defaultValue
+        }
+        if (!attributes.containsKey(key)) {
+            return defaultValue
+        }
+        Object nonCast = attributes.get(key)
+        // TODO cast more intelligently
+        return (T) nonCast;
+    }
+
     // beautify html
     public static String tidy(String html) {
         Document doc = null
         if (html.contains('<html')) {
-             doc = Jsoup.parse(html);
+            doc = Jsoup.parse(html);
         } else {
-             doc = Jsoup.parse(html, '', Parser.xmlParser());
+            doc = Jsoup.parse(html, '', Parser.xmlParser());
         }
         doc.outputSettings().prettyPrint(true);
         doc.outputSettings().syntax(Document.OutputSettings.Syntax.html);

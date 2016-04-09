@@ -18,7 +18,7 @@ abstract class HtmlPage extends HtmlFragment implements HeadTrait {
 
     protected String viewport() {
         // override if you want to change the viewport
-        return '<meta name="viewport" content="width=device-width, initial-scale=1.0">'
+        return '<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">'
     }
 
     protected String favicon() {
@@ -43,6 +43,8 @@ abstract class HtmlPage extends HtmlFragment implements HeadTrait {
                 if (viewport != null && !viewport.isEmpty()) {
                     html << viewport
                 }
+                // Force Internet Explorer to use its latest rendering mode (http://stackoverflow.com/questions/6771258/whats-the-difference-if-meta-http-equiv-x-ua-compatible-content-ie-edge-e)
+                html << '<meta http-equiv="x-ua-compatible" content="ie=edge">'
                 String favicon = favicon()
                 if (favicon != null && !favicon.isEmpty()) {
                     String type = "image/x-icon"

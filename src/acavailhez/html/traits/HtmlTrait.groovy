@@ -21,4 +21,16 @@ abstract trait HtmlTrait {
 
     abstract EscapedHtmlBuilder getEscape()
 
+    // Accessors in current attributes
+    abstract Object optAttr(String key);
+
+    abstract <T> T optAttr(String key, Class<T> classToCast);
+
+    abstract <T> T optAttr(String key, Class<T> classToCast, T defaultValue);
+
+    abstract Object getAttr(String key) throws IllegalArgumentException;
+
+    abstract <T> T getAttr(String key, Class<T> classToCast) throws IllegalArgumentException;
+
+    abstract <T> T getAttr(String key, Class<T> classToCast, T defaultValue) throws IllegalArgumentException;
 }
