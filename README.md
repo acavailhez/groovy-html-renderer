@@ -79,14 +79,14 @@ Taking the example of Bootstrap's modal ([http://getbootstrap.com/javascript/#st
    </div><!-- /.modal -->
 ```
 
-It is possible to write a `BootstrapHtmlTrait` which would simplify it to:
+With `Bootstrap4Trait` it can be simplified to:
 
 ```
-bootstrapSimpleModal("Modal title",tabindex:'-1'){
-  p("One fine body…")
-}{
-  bootstrapButton("Close", btnClass:'default', 'data-dismiss':'modal')
-  bootstrapButton("Save changes", btnClass:'primary')
+bootstrapModal(title: "Modal title", closeLabel: "Close") {
+    p("One fine body…")
+} {
+    bootstrapButton("Close", 'data-dismiss': 'modal')
+    bootstrapButton("Save changes", btnStyle: Bootstrap4ButtonStyle.PRIMARY)
 }
 ```
 
