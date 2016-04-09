@@ -27,7 +27,8 @@ public class PageTest extends AbstractTest {
  <head>
   <meta charset="utf-8">
   <title>Page</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
  </head>
  <body>
   <div>text</div>
@@ -77,6 +78,7 @@ public class PageTest extends AbstractTest {
  <head>  <meta charset="utf-8">
   <title>Page</title>
   <meta name="description" content="Page about &quot;interesting&quot; things">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   <link rel="icon" href="/favicon.png" type="image/png">
   <meta property="og:type" content="website">
   <link href="https://cdn.com/min.css" rel="stylesheet" type="text/css">
@@ -112,7 +114,8 @@ public class PageTest extends AbstractTest {
  <head>
   <meta charset="utf-8">
   <title>Page</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
  </head>
  <body>
   <div>text</div>

@@ -69,7 +69,7 @@ Taking the example of Bootstrap's modal ([http://getbootstrap.com/javascript/#st
        </div><!-- /.modal-content -->
      </div><!-- /.modal-dialog -->
    </div><!-- /.modal -->
-   ```
+```
 
 It is possible to write a `BootstrapHtmlTrait` which would simplify it to:
 

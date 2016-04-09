@@ -95,6 +95,8 @@ abstract class Html implements
 
         scope.prepareForNewScope()
 
+        scope.put('_attrs', attrs)
+
         html << "<${tag}"
         attrs?.each { Object k, Object v ->
             k = k?.toString()
@@ -116,4 +118,28 @@ abstract class Html implements
 
         scope.commitToPreviousScope()
     }
+
+    // Accessors of current attributes
+
+    public Object optAttr(String key) {
+        return optAttr(key, Object)
+    }
+
+    public <T> T optAttr(String key, Class<T> classToCast, T defaultValue = null) {
+        Map attrs = (Map) getScope().get('_attrs')
+        return HtmlUtils.optAttribute(attrs, key, classToCast, defaultValue)
+    }
+
+    public Object getAttr(String key) {
+        return getAttr(key, Object)
+    }
+
+    public <T> T getAttr(String key, Class<T> classToCast, T defaultValue = null) throws IllegalArgumentException {
+        T value = optAttr(key, classToCast, defaultValue)
+        if (value == null) {
+            throw new IllegalArgumentException("Missing attribute '" + key + "'")
+        }
+        return value
+    }
+
 }

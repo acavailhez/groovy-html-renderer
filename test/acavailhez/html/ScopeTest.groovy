@@ -19,6 +19,7 @@ public class ScopeTest extends AbstractTest {
 
         assert value == "value"
     }
+
     @Test
     public void testSameLevelAfterStuff() throws Exception {
         String value = null
