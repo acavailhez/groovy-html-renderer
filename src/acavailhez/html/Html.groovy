@@ -95,7 +95,7 @@ abstract class Html implements
 
         scope.prepareForNewScope()
 
-        scope.put('_attrs', attrs)
+        scopeAttrs(attrs)
 
         html << "<${tag}"
         attrs?.each { Object k, Object v ->
@@ -120,6 +120,11 @@ abstract class Html implements
     }
 
     // Accessors of current attributes
+    // Those will only work if attributes have been scoped
+
+    void scopeAttrs(Map attrs) {
+        scope.put('_attrs', attrs)
+    }
 
     public Object optAttr(String key) {
         return optAttr(key, Object)

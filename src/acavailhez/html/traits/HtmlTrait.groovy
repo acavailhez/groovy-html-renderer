@@ -22,6 +22,8 @@ abstract trait HtmlTrait {
     abstract EscapedHtmlBuilder getEscape()
 
     // Accessors in current attributes
+    abstract void scopeAttrs(Map attrs);
+
     abstract Object optAttr(String key);
 
     abstract <T> T optAttr(String key, Class<T> classToCast);
