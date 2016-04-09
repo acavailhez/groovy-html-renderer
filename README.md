@@ -2,6 +2,14 @@
 
 in-code html rendering engine using the groovy syntax
 
+```
+div(class:'box'){
+  div(class:'box-body'){
+    escape << "content of the box"
+  }
+}
+```
+
 ## Why?
 
 Server-side rendering of complex html is not everyone's cup of tea, but if you fancy it, `groovy-html-renderer` provides a solid way to do it
