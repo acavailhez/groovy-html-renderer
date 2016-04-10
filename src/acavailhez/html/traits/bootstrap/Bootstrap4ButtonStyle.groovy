@@ -10,4 +10,5 @@ enum Bootstrap4ButtonStyle {
     WARNING,
     DANGER,
     LINK
+
 }

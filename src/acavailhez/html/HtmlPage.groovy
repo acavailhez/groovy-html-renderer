@@ -4,6 +4,15 @@ import acavailhez.html.traits.HeadTrait
 import acavailhez.html.utils.HtmlUtils
 import groovy.transform.CompileStatic
 
+// Renders a full html page
+// To configure, override the functions:
+//
+// title() - will specify the <title> of the page
+// description() - will specify the <meta name="description" content="XX">
+// viewport() - will reconfigure the <meta name="viewport" content="XX">
+// favicon() - will reconfigure the favicon url (the type will depend on the file extension)
+// head() - will append more to the <head>
+//
 @CompileStatic
 abstract class HtmlPage extends HtmlFragment implements HeadTrait {
 
@@ -21,7 +30,7 @@ abstract class HtmlPage extends HtmlFragment implements HeadTrait {
 
     protected String viewport() {
         // override if you want to change the viewport
-        return '<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">'
+        return 'width=device-width, initial-scale=1, shrink-to-fit=no'
     }
 
     protected String favicon() {
@@ -44,7 +53,7 @@ abstract class HtmlPage extends HtmlFragment implements HeadTrait {
                 }
                 String viewport = viewport()
                 if (viewport != null && !viewport.isEmpty()) {
-                    html << viewport
+                    html << '<meta name="viewport" content=' + viewport + '">'
                 }
                 // Force Internet Explorer to use its latest rendering mode (http://stackoverflow.com/questions/6771258/whats-the-difference-if-meta-http-equiv-x-ua-compatible-content-ie-edge-e)
                 html << '<meta http-equiv="x-ua-compatible" content="ie=edge">'

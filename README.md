@@ -1,6 +1,6 @@
 # groovy-html-renderer
 
-in-code html rendering engine using the groovy syntax
+in-code html5 rendering engine is a suprisingly good fit for the groovy syntax:
 
 ```
 div(class:'box'){
@@ -10,24 +10,7 @@ div(class:'box'){
 }
 ```
 
-## Why?
-
-Server-side rendering of complex html is not everyone's cup of tea, but if you fancy it, `groovy-html-renderer` provides a solid way to do it
-
-Rendering engines that add new tags to html itself can become quite messy (looking at you jsp)
-
-So instead of bringing code to html by add clumsy `if` and `for` statements in custom tags (`<c:if>`), groovy-html-renderer brings html to the code itself.
-And the syntax of groovy is a suprisingly good fit for this:
-
-```
-div(class:'box'){
-  div(class:'box-body'){
-    escape << "content of the box"
-  }
-}
-```
-
-can render:
+renders:
 
 ```
 <div class="box">
@@ -36,6 +19,13 @@ can render:
   </div>
 </div>
 ```
+
+## Why?
+
+Server-side rendering of complex html is not everyone's cup of tea, but if you fancy it, `groovy-html-renderer` provides a reliable way to do it
+
+In java, your choice is usually limited to jsp or similar templating engine, working on html and adding clumsy `if` and `for` statements in custom tags (`<c:if>`).
+In `groovy-html-renderer` you are rendering the html in the code itself, so you can leverage the power of the tools you already have, as well as type-check your objects.
 
 Once you are in code, all sorts of interesting features become possible, such as the `attempt` function, which will act like a try-catch:
 
@@ -54,39 +44,53 @@ div {
 }
 ```
 
-This will prevent the whole document from crashing if only a non-critical part of it failed to render
+renders:
 
-Using Groovy's traits, it's easy to add new shortcuts and features to the syntax. 
+```
+<div>
+  <span>oups</span>
+</div>
+```
+
+This will prevent the whole document from crashing if only a non-critical part failed to render
+
+Using Groovy's `Trait`, it's easy to add new shortcuts and features to the syntax. 
 Taking the example of Bootstrap's modal ([http://getbootstrap.com/javascript/#static-example](http://getbootstrap.com/javascript/#static-example)), writing it directly requires typing:
 
 ```
 <div class="modal fade" tabindex="-1" role="dialog">
-     <div class="modal-dialog">
-       <div class="modal-content">
-         <div class="modal-header">
-           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-           <h4 class="modal-title">Modal title</h4>
-         </div>
-         <div class="modal-body">
-           <p>One fine body&hellip;</p>
-         </div>
-         <div class="modal-footer">
-           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-           <button type="button" class="btn btn-primary">Save changes</button>
-         </div>
-       </div><!-- /.modal-content -->
-     </div><!-- /.modal-dialog -->
-   </div><!-- /.modal -->
+ <div class="modal-dialog">
+   <div class="modal-content">
+     <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+       <h4 class="modal-title">Modal title</h4>
+     </div>
+     <div class="modal-body">
+       <p>One fine body&hellip;</p>
+     </div>
+     <div class="modal-footer">
+       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+       <button type="button" class="btn btn-primary">Save changes</button>
+     </div>
+   </div><!-- /.modal-content -->
+ </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 ```
 
 With `Bootstrap4Trait` it can be simplified to:
 
 ```
-bootstrapModal(title: "Modal title", closeLabel: "Close") {
-    p("One fine body…")
-} {
-    bootstrapButton("Close", 'data-dismiss': 'modal')
-    bootstrapButton("Save changes", btnStyle: Bootstrap4ButtonStyle.PRIMARY)
+public class Snippet extends Html implements Bootstrap4Trait{
+  public void build() {
+  
+    bootstrapModal(title: "Modal title", closeLabel: "Close") {
+      p("One fine body…")
+    } {
+      bootstrapButton("Close", 'data-dismiss': 'modal')
+      bootstrapButton("Save changes", btnStyle: Bootstrap4ButtonStyle.PRIMARY)
+    }  
+         
+  }
 }
 ```
 
@@ -150,6 +154,45 @@ Will render:
 </div>
 ```
 
+## Full page
+
+To render a full html page, extend `HtmlPage`:
+
+```
+ class BasicPage extends HtmlPage{
+ 
+  @Override
+  protected String title() {
+      return 'Page about politics'
+  }
+  
+  protected void body() {
+      div {
+          escape << "text"
+      }
+  }
+ }
+ ```
+ 
+ renders:
+ 
+ ```
+ <!doctype html>
+ <html>
+  <head>
+   <meta charset="utf-8">
+   <title>Page about politics</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  </head>
+  <body>
+   <div>text</div>
+  </body>
+ </html>
+ ```
+ 
+ See `HtmlPage.groovy` for more details on what you can configure
+
 ## Attempt
 
 If the generation of your html throws an exception, then all html is lost
@@ -192,7 +235,13 @@ div {
 }
 ```
 
-## Javascript
+This can be useful when building traits that add new behavior
+
+## HtmlFragment
+
+Html fragments are snippet of html with some added features:
+
+### Javascript
 
 It's convenient to write small javascript snippets where they are relevant, only to have them be deferred to the end of the document,
 
@@ -205,7 +254,11 @@ div{
 }
 ```
 
-## Defer html
+The javascript will be collected separately. 
+In a `HtmlPage`, this javascript will be appended to a `<script>` before the `<body>` is closed
+In a standard `HtmlFragment`, the javascript will be accessible using `getRawJavascript()`
+
+### Deferred html
 
 Some content like modals is better deferred at the end of the document, to isolate it from the current css nesting,
 but this content is better rendered in place when you need it, so it's possible to invoke some html to be deferred to the end of the document:
@@ -221,3 +274,5 @@ div {
 }
 ```
 
+In a `HtmlPage`, this html will be written before the `<body>` is closed
+In a standard `HtmlFragment`, the deferred html will be accessible using `getRawDeferredHtml()`
