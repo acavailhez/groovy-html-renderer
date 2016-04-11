@@ -1,7 +1,5 @@
 package acavailhez.html
 
-import acavailhez.html.Html
-import acavailhez.html.HtmlStyle
 import org.junit.Test
 
 public class EscapeTest extends AbstractTest{

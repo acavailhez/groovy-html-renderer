@@ -1,2 +1,6 @@
 rootProject.name = 'html-renderer'
 
+include ':core'
+include ':jetty'
+include ':jetty-demo'
+
