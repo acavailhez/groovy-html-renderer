@@ -1,6 +1,6 @@
 # groovy-html-renderer
 
-in-code html5 rendering engine using the groovy syntax:
+in-code html5 rendering engine leveraging the groovy syntax:
 
 ```
 div(class:'box'){
