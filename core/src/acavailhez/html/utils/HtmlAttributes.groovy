@@ -78,7 +78,7 @@ class HtmlAttributes implements Map<String, Object> {
     }
 
     // addToClass(String) will append new classes to the existing one (or create one)
-    public void addToClass(String newClass) {
+    public HtmlAttributes addToClass(String newClass) {
         if (newClass == null) {
             return
         }
@@ -87,6 +87,7 @@ class HtmlAttributes implements Map<String, Object> {
         } else {
             this.put("class", get("class", String) + " " + newClass)
         }
+        return this
     }
 
     // Implementation of Map

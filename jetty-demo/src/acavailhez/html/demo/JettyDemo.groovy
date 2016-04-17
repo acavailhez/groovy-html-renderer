@@ -5,7 +5,10 @@ import org.eclipse.jetty.server.Server
 class JettyDemo {
 
     public static void main(String[] args) throws Exception {
-        Server server = new Server(8080);
+        Server server = new Server(8081);
+
+        server.setHandler(new HtmlPageHandler(new Frontpage()))
+
         server.start();
         server.dumpStdErr();
         server.join();

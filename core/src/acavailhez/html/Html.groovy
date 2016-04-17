@@ -79,7 +79,7 @@ abstract class Html implements
         return this
     }
 
-    protected String getRawHtml() {
+    public String getRawHtml() {
         render()
         String result = rootHtmlBuilder.getRawHtml()
         if (style == HtmlStyle.PRETTY) {
