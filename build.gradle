@@ -20,6 +20,7 @@ allprojects {
         test {
             java { srcDirs = ["test"] }
             groovy { srcDirs = ["test"] }
+            resources { srcDirs = ["test-resources"] }
         }
     }
 }
@@ -33,6 +34,8 @@ project(':core') {
         compile 'org.jsoup:jsoup:1.8.3' // for html prettyfier
 
         testCompile 'junit:junit:4.11'
+        testCompile 'org.apache.velocity:velocity:1.7' // for perf comparison
+        testCompile 'org.apache.velocity:velocity-tools:2.0'
     }
 }
 
