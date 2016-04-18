@@ -31,14 +31,19 @@ class HtmlUtils {
         return StringEscapeUtils.escapeHtml4(text.toString())
     }
 
-    // beautify html
-    public static String tidy(String html) {
+    public static Document getHtmlDocumentFromSource(String html, String baseUri = '') {
         Document doc
         if (html.contains('<html')) {
-            doc = Jsoup.parse(html);
+            doc = Jsoup.parse(html, baseUri);
         } else {
             doc = Jsoup.parse(html, '', Parser.xmlParser());
         }
+        return doc
+    }
+
+    // beautify html
+    public static String tidy(String html) {
+        Document doc = getHtmlDocumentFromSource(html)
         doc.outputSettings().prettyPrint(true);
         doc.outputSettings().syntax(Document.OutputSettings.Syntax.html);
         doc.outputSettings().escapeMode(Entities.EscapeMode.xhtml);

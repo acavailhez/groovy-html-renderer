@@ -1,5 +1,3 @@
-package acavailhez.html.scripts
-
 // Useful generators
 
 void generateNormalTag(String tag) {

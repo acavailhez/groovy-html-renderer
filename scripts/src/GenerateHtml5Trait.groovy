@@ -1,6 +1,5 @@
-package acavailhez.html.scripts
 
-// Useful generators
+// Generate the lengthy code of Html5Traits
 
 void generateNormalTag(String tag) {
     print """void ${tag}(Closure body) {

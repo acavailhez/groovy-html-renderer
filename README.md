@@ -14,7 +14,7 @@ renders:
 
 ```
 <div class="box">
-  <div class="box">
+  <div class="box-body">
      content of the box
   </div>
 </div>

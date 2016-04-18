@@ -36,6 +36,17 @@ project(':core') {
     }
 }
 
+project(':scripts') {
+
+    dependencies {
+        compile project(':core')
+
+        compile 'org.jodd:jodd:3.4.1'
+        compile 'org.jodd:jodd-http:3.7'
+        testCompile 'junit:junit:4.11'
+    }
+}
+
 project(':jetty') {
 
     apply plugin: 'jetty'
