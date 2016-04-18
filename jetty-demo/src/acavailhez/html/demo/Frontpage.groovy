@@ -15,7 +15,8 @@ class Frontpage extends HtmlPage implements Bootstrap4NavTrait {
         return "in-code html5 rendering engine leveraging the groovy syntax"
     }
 
-    @Override protected void head(){
+    @Override
+    protected void head() {
         css("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css")
         javascript("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js")
     }
@@ -23,7 +24,7 @@ class Frontpage extends HtmlPage implements Bootstrap4NavTrait {
     @Override
     protected void body() {
         bootstrapNavbar {
-            bootstrapBrand([:], "html-groovy-renderer")
+            bootstrapBrand("html-groovy-renderer")
             bootstrapNavUl([:]) {
                 bootstrapNavLiA([:]) {
                     escape << 'Simple'

@@ -21,11 +21,14 @@ trait Bootstrap4NavTrait extends Html5Trait {
     }
 
     // <a class="navbar-brand" href="#">Navbar</a>
-    void bootstrapBrand(Map map, String brand) {
-        HtmlAttributes attrs = HtmlAttributes.copy(map)
-        a(attrs.addToClass('navbar-brand')) {
+    void bootstrapBrand(String brand) {
+        bootstrapBrand([:]) {
             escape << brand
         }
+    }
+
+    void bootstrapBrand(Map map, Closure body) {
+        a(HtmlAttributes.copy(map).addToClass('navbar-brand'), body)
     }
 
     // <ul class="nav">
