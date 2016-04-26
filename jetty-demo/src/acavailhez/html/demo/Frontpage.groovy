@@ -23,10 +23,10 @@ class Frontpage extends HtmlPage implements Bootstrap4NavTrait {
 
     @Override
     protected void body() {
-        bootstrapNavbar {
-            bootstrapBrand("html-groovy-renderer")
-            bootstrapNavUl([:]) {
-                bootstrapNavLiA([:]) {
+        navbar {
+            brand("html-groovy-renderer")
+            ulNav {
+                liANav([href: '#']) {
                     escape << 'Simple'
                 }
             }
