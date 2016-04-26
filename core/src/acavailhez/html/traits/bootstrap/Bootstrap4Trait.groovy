@@ -7,6 +7,7 @@ trait Bootstrap4Trait extends HtmlTrait
         implements Bootstrap4ModalTrait,
                 Bootstrap4BtnTrait,
                 Bootstrap4NavTrait,
-                Bootstrap4GridTrait {
+                Bootstrap4GridTrait,
+                Bootstrap4AlertTrait {
     // All bootstrap traits at once
 }
