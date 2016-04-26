@@ -1,7 +1,9 @@
 package acavailhez.html.scope
 
+import acavailhez.html.utils.OptGet
+
 // Scoped state of the html
-class HtmlScope {
+class HtmlScope implements OptGet {
 
     private List<Map<String, Object>> stack = new LinkedList<>()
     private List<HtmlScopable> scopables = new LinkedList<>()
@@ -15,7 +17,13 @@ class HtmlScope {
         stack.last().put(key, value)
     }
 
-    public Object get(String key) {
+    @Override
+    void onMissingKey(Object key, Class classToCast) {
+        throw new IllegalArgumentException("Scope does not contain:" + key + " of class:" + classToCast)
+    }
+
+    @Override
+    Object opt(Object key) {
         Object value = null
         for (Map<String, Object> map : stack) {
             if (map.containsKey(key)) {

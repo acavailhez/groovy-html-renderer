@@ -12,12 +12,10 @@ import groovy.transform.CompileStatic
 // - get(key, String) will get the [key] value and raise a IllegalArgumentException if not present
 // - addToClass(String) will append new classes to the existing one (or create one)
 @CompileStatic
-class HtmlAttributes implements Map<String, Object> {
-
-    private final Map<String, Object> map;
+class HtmlAttributes extends OptGetMap {
 
     private HtmlAttributes(Map<String, Object> map) {
-        this.map = map;
+        super(map);
     }
 
     public static HtmlAttributes copy(Map map) {
@@ -37,118 +35,17 @@ class HtmlAttributes implements Map<String, Object> {
         return new HtmlAttributes(map)
     }
 
-    // Accessors
-
-    // opt(key, String, "default") will get the [key] value or default if not set
-    public Object opt(String key) {
-        return opt(key, Object)
-    }
-
-    public <T> T opt(String key, Class<T> classToCast, T defaultValue = null) {
-        if (!map.containsKey(key)) {
-            return defaultValue
-        }
-        Object nonCast = map.get(key)
-        if (nonCast == null) {
-            return null
-        }
-        if (classToCast.isEnum()) {
-            // try to find the correct enum, ignore case
-            for (Object enumValue : classToCast.getEnumConstants()) {
-                if (enumValue.toString().toLowerCase().equals(nonCast.toString().toLowerCase())) {
-                    return (T) enumValue
-                }
-            }
-        }
-        // TODO cast more intelligently
-        return (T) nonCast;
-    }
-
-    // get(key, String) will get the [key] value and raise a IllegalArgumentException if not present
-    public Object get(String key) {
-        return get(key, Object)
-    }
-
-    public <T> T get(String key, Class<T> classToCast) throws IllegalArgumentException {
-        T value = opt(key, classToCast)
-        if (value == null) {
-            throw new IllegalArgumentException("Missing attribute '" + key + "'")
-        }
-        return value
-    }
-
     // addToClass(String) will append new classes to the existing one (or create one)
     public HtmlAttributes addToClass(String newClass) {
         if (newClass == null) {
-            return
+            return this
         }
         if (!this.containsKey("class")) {
             this.put("class", newClass)
         } else {
-            this.put("class", get("class", String) + " " + newClass)
+            String classesString = get("class", String)
+            this.put("class", classesString + " " + newClass)
         }
         return this
-    }
-
-    // Implementation of Map
-
-    @Override
-    int size() {
-        return map.size()
-    }
-
-    @Override
-    boolean isEmpty() {
-        return map.isEmpty()
-    }
-
-    @Override
-    boolean containsKey(Object key) {
-        return map.containsKey(key)
-    }
-
-    @Override
-    boolean containsValue(Object value) {
-        return map.containsValue(value)
-    }
-
-    @Override
-    Object get(Object key) {
-        return map.get(key)
-    }
-
-    @Override
-    Object put(String key, Object value) {
-        return map.put(key, value)
-    }
-
-    @Override
-    Object remove(Object key) {
-        return map.remove(key)
-    }
-
-    @Override
-    void putAll(Map<? extends String, ?> m) {
-        map.putAll(m)
-    }
-
-    @Override
-    void clear() {
-        map.clear()
-    }
-
-    @Override
-    Set<String> keySet() {
-        return map.keySet()
-    }
-
-    @Override
-    Collection<Object> values() {
-        return map.values()
-    }
-
-    @Override
-    Set<Map.Entry<String, Object>> entrySet() {
-        return map.entrySet()
     }
 }

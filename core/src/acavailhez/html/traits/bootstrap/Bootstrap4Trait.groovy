@@ -6,6 +6,7 @@ import acavailhez.html.traits.HtmlTrait
 trait Bootstrap4Trait extends HtmlTrait
         implements Bootstrap4ModalTrait,
                 Bootstrap4BtnTrait,
-                Bootstrap4NavTrait {
+                Bootstrap4NavTrait,
+                Bootstrap4GridTrait {
     // All bootstrap traits at once
 }
