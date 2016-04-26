@@ -86,8 +86,8 @@ public class Snippet extends Html implements Bootstrap4Trait{
     bootstrapModal(title: "Modal title", closeLabel: "Close") {
       p("One fine body…")
     } {
-      bootstrapButton("Close", 'data-dismiss': 'modal')
-      bootstrapButton("Save changes", btnStyle: Bootstrap4ButtonStyle.PRIMARY)
+      button(btn('data-dismiss': 'modal'), "Close")
+      button(btn(color: Bootstrap4Color.PRIMARY), "Save changes")
     }  
          
   }

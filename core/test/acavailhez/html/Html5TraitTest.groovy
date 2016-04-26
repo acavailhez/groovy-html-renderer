@@ -4,7 +4,7 @@ import org.junit.Test
 
 public class Html5TraitTest extends AbstractTest {
 
-// --- Basic elements
+    // --- Basic elements
 
     @Test
     public void testhtmlWithAttr() throws Exception {
@@ -185,6 +185,18 @@ public class Html5TraitTest extends AbstractTest {
         assert html == '<title>content of title</title>'
     }
 
+    @Test
+    public void testtitleInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                title([:],"content of title")
+            }
+        }).getRawHtml()
+
+        assert html == '<title>content of title</title>'
+    }
+
 
     // --- Content sectioning
 
@@ -329,6 +341,30 @@ public class Html5TraitTest extends AbstractTest {
     }
 
     @Test
+    public void testh1Inline() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                h1("content of h1")
+            }
+        }).getRawHtml()
+
+        assert html == '<h1>content of h1</h1>'
+    }
+
+    @Test
+    public void testh1InlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                h1([:],"content of h1")
+            }
+        }).getRawHtml()
+
+        assert html == '<h1>content of h1</h1>'
+    }
+
+    @Test
     public void testh2WithAttr() throws Exception {
         String html = (new Html() {
             @Override
@@ -350,6 +386,30 @@ public class Html5TraitTest extends AbstractTest {
                 h2{
                     escape << 'content of h2'
                 }
+            }
+        }).getRawHtml()
+
+        assert html == '<h2>content of h2</h2>'
+    }
+
+    @Test
+    public void testh2Inline() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                h2("content of h2")
+            }
+        }).getRawHtml()
+
+        assert html == '<h2>content of h2</h2>'
+    }
+
+    @Test
+    public void testh2InlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                h2([:],"content of h2")
             }
         }).getRawHtml()
 
@@ -385,6 +445,30 @@ public class Html5TraitTest extends AbstractTest {
     }
 
     @Test
+    public void testh3Inline() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                h3("content of h3")
+            }
+        }).getRawHtml()
+
+        assert html == '<h3>content of h3</h3>'
+    }
+
+    @Test
+    public void testh3InlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                h3([:],"content of h3")
+            }
+        }).getRawHtml()
+
+        assert html == '<h3>content of h3</h3>'
+    }
+
+    @Test
     public void testh4WithAttr() throws Exception {
         String html = (new Html() {
             @Override
@@ -406,6 +490,30 @@ public class Html5TraitTest extends AbstractTest {
                 h4{
                     escape << 'content of h4'
                 }
+            }
+        }).getRawHtml()
+
+        assert html == '<h4>content of h4</h4>'
+    }
+
+    @Test
+    public void testh4Inline() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                h4("content of h4")
+            }
+        }).getRawHtml()
+
+        assert html == '<h4>content of h4</h4>'
+    }
+
+    @Test
+    public void testh4InlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                h4([:],"content of h4")
             }
         }).getRawHtml()
 
@@ -441,6 +549,30 @@ public class Html5TraitTest extends AbstractTest {
     }
 
     @Test
+    public void testh5Inline() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                h5("content of h5")
+            }
+        }).getRawHtml()
+
+        assert html == '<h5>content of h5</h5>'
+    }
+
+    @Test
+    public void testh5InlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                h5([:],"content of h5")
+            }
+        }).getRawHtml()
+
+        assert html == '<h5>content of h5</h5>'
+    }
+
+    @Test
     public void testh6WithAttr() throws Exception {
         String html = (new Html() {
             @Override
@@ -462,6 +594,30 @@ public class Html5TraitTest extends AbstractTest {
                 h6{
                     escape << 'content of h6'
                 }
+            }
+        }).getRawHtml()
+
+        assert html == '<h6>content of h6</h6>'
+    }
+
+    @Test
+    public void testh6Inline() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                h6("content of h6")
+            }
+        }).getRawHtml()
+
+        assert html == '<h6>content of h6</h6>'
+    }
+
+    @Test
+    public void testh6InlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                h6([:],"content of h6")
             }
         }).getRawHtml()
 
@@ -776,6 +932,18 @@ public class Html5TraitTest extends AbstractTest {
     }
 
     @Test
+    public void testliInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                li([:],"content of li")
+            }
+        }).getRawHtml()
+
+        assert html == '<li>content of li</li>'
+    }
+
+    @Test
     public void testmainWithAttr() throws Exception {
         String html = (new Html() {
             @Override
@@ -865,6 +1033,18 @@ public class Html5TraitTest extends AbstractTest {
             @Override
             public void build() {
                 p("content of p")
+            }
+        }).getRawHtml()
+
+        assert html == '<p>content of p</p>'
+    }
+
+    @Test
+    public void testpInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                p([:],"content of p")
             }
         }).getRawHtml()
 
@@ -971,6 +1151,18 @@ public class Html5TraitTest extends AbstractTest {
     }
 
     @Test
+    public void testabbrInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                abbr([:],"content of abbr")
+            }
+        }).getRawHtml()
+
+        assert html == '<abbr>content of abbr</abbr>'
+    }
+
+    @Test
     public void testbWithAttr() throws Exception {
         String html = (new Html() {
             @Override
@@ -1004,6 +1196,18 @@ public class Html5TraitTest extends AbstractTest {
             @Override
             public void build() {
                 b("content of b")
+            }
+        }).getRawHtml()
+
+        assert html == '<b>content of b</b>'
+    }
+
+    @Test
+    public void testbInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                b([:],"content of b")
             }
         }).getRawHtml()
 
@@ -1051,6 +1255,18 @@ public class Html5TraitTest extends AbstractTest {
     }
 
     @Test
+    public void testbdiInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                bdi([:],"content of bdi")
+            }
+        }).getRawHtml()
+
+        assert html == '<bdi>content of bdi</bdi>'
+    }
+
+    @Test
     public void testbdoWithAttr() throws Exception {
         String html = (new Html() {
             @Override
@@ -1084,6 +1300,18 @@ public class Html5TraitTest extends AbstractTest {
             @Override
             public void build() {
                 bdo("content of bdo")
+            }
+        }).getRawHtml()
+
+        assert html == '<bdo>content of bdo</bdo>'
+    }
+
+    @Test
+    public void testbdoInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                bdo([:],"content of bdo")
             }
         }).getRawHtml()
 
@@ -1131,6 +1359,18 @@ public class Html5TraitTest extends AbstractTest {
     }
 
     @Test
+    public void testbrInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                br([:],"content of br")
+            }
+        }).getRawHtml()
+
+        assert html == '<br>content of br</br>'
+    }
+
+    @Test
     public void testciteWithAttr() throws Exception {
         String html = (new Html() {
             @Override
@@ -1164,6 +1404,18 @@ public class Html5TraitTest extends AbstractTest {
             @Override
             public void build() {
                 cite("content of cite")
+            }
+        }).getRawHtml()
+
+        assert html == '<cite>content of cite</cite>'
+    }
+
+    @Test
+    public void testciteInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                cite([:],"content of cite")
             }
         }).getRawHtml()
 
@@ -1211,6 +1463,18 @@ public class Html5TraitTest extends AbstractTest {
     }
 
     @Test
+    public void testcodeInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                code([:],"content of code")
+            }
+        }).getRawHtml()
+
+        assert html == '<code>content of code</code>'
+    }
+
+    @Test
     public void testdataWithAttr() throws Exception {
         String html = (new Html() {
             @Override
@@ -1244,6 +1508,18 @@ public class Html5TraitTest extends AbstractTest {
             @Override
             public void build() {
                 data("content of data")
+            }
+        }).getRawHtml()
+
+        assert html == '<data>content of data</data>'
+    }
+
+    @Test
+    public void testdataInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                data([:],"content of data")
             }
         }).getRawHtml()
 
@@ -1291,6 +1567,18 @@ public class Html5TraitTest extends AbstractTest {
     }
 
     @Test
+    public void testdfnInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                dfn([:],"content of dfn")
+            }
+        }).getRawHtml()
+
+        assert html == '<dfn>content of dfn</dfn>'
+    }
+
+    @Test
     public void testemWithAttr() throws Exception {
         String html = (new Html() {
             @Override
@@ -1324,6 +1612,18 @@ public class Html5TraitTest extends AbstractTest {
             @Override
             public void build() {
                 em("content of em")
+            }
+        }).getRawHtml()
+
+        assert html == '<em>content of em</em>'
+    }
+
+    @Test
+    public void testemInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                em([:],"content of em")
             }
         }).getRawHtml()
 
@@ -1371,6 +1671,18 @@ public class Html5TraitTest extends AbstractTest {
     }
 
     @Test
+    public void testiInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                i([:],"content of i")
+            }
+        }).getRawHtml()
+
+        assert html == '<i>content of i</i>'
+    }
+
+    @Test
     public void testkbdWithAttr() throws Exception {
         String html = (new Html() {
             @Override
@@ -1404,6 +1716,18 @@ public class Html5TraitTest extends AbstractTest {
             @Override
             public void build() {
                 kbd("content of kbd")
+            }
+        }).getRawHtml()
+
+        assert html == '<kbd>content of kbd</kbd>'
+    }
+
+    @Test
+    public void testkbdInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                kbd([:],"content of kbd")
             }
         }).getRawHtml()
 
@@ -1451,6 +1775,18 @@ public class Html5TraitTest extends AbstractTest {
     }
 
     @Test
+    public void testmarkInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                mark([:],"content of mark")
+            }
+        }).getRawHtml()
+
+        assert html == '<mark>content of mark</mark>'
+    }
+
+    @Test
     public void testqWithAttr() throws Exception {
         String html = (new Html() {
             @Override
@@ -1484,6 +1820,18 @@ public class Html5TraitTest extends AbstractTest {
             @Override
             public void build() {
                 q("content of q")
+            }
+        }).getRawHtml()
+
+        assert html == '<q>content of q</q>'
+    }
+
+    @Test
+    public void testqInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                q([:],"content of q")
             }
         }).getRawHtml()
 
@@ -1531,6 +1879,18 @@ public class Html5TraitTest extends AbstractTest {
     }
 
     @Test
+    public void testrpInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                rp([:],"content of rp")
+            }
+        }).getRawHtml()
+
+        assert html == '<rp>content of rp</rp>'
+    }
+
+    @Test
     public void testrtWithAttr() throws Exception {
         String html = (new Html() {
             @Override
@@ -1564,6 +1924,18 @@ public class Html5TraitTest extends AbstractTest {
             @Override
             public void build() {
                 rt("content of rt")
+            }
+        }).getRawHtml()
+
+        assert html == '<rt>content of rt</rt>'
+    }
+
+    @Test
+    public void testrtInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                rt([:],"content of rt")
             }
         }).getRawHtml()
 
@@ -1611,6 +1983,18 @@ public class Html5TraitTest extends AbstractTest {
     }
 
     @Test
+    public void testrtcInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                rtc([:],"content of rtc")
+            }
+        }).getRawHtml()
+
+        assert html == '<rtc>content of rtc</rtc>'
+    }
+
+    @Test
     public void testrubyWithAttr() throws Exception {
         String html = (new Html() {
             @Override
@@ -1644,6 +2028,18 @@ public class Html5TraitTest extends AbstractTest {
             @Override
             public void build() {
                 ruby("content of ruby")
+            }
+        }).getRawHtml()
+
+        assert html == '<ruby>content of ruby</ruby>'
+    }
+
+    @Test
+    public void testrubyInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                ruby([:],"content of ruby")
             }
         }).getRawHtml()
 
@@ -1691,6 +2087,18 @@ public class Html5TraitTest extends AbstractTest {
     }
 
     @Test
+    public void testsInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                s([:],"content of s")
+            }
+        }).getRawHtml()
+
+        assert html == '<s>content of s</s>'
+    }
+
+    @Test
     public void testsampWithAttr() throws Exception {
         String html = (new Html() {
             @Override
@@ -1724,6 +2132,18 @@ public class Html5TraitTest extends AbstractTest {
             @Override
             public void build() {
                 samp("content of samp")
+            }
+        }).getRawHtml()
+
+        assert html == '<samp>content of samp</samp>'
+    }
+
+    @Test
+    public void testsampInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                samp([:],"content of samp")
             }
         }).getRawHtml()
 
@@ -1771,6 +2191,18 @@ public class Html5TraitTest extends AbstractTest {
     }
 
     @Test
+    public void testsmallInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                small([:],"content of small")
+            }
+        }).getRawHtml()
+
+        assert html == '<small>content of small</small>'
+    }
+
+    @Test
     public void testspanWithAttr() throws Exception {
         String html = (new Html() {
             @Override
@@ -1804,6 +2236,18 @@ public class Html5TraitTest extends AbstractTest {
             @Override
             public void build() {
                 span("content of span")
+            }
+        }).getRawHtml()
+
+        assert html == '<span>content of span</span>'
+    }
+
+    @Test
+    public void testspanInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                span([:],"content of span")
             }
         }).getRawHtml()
 
@@ -1851,6 +2295,18 @@ public class Html5TraitTest extends AbstractTest {
     }
 
     @Test
+    public void teststrongInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                strong([:],"content of strong")
+            }
+        }).getRawHtml()
+
+        assert html == '<strong>content of strong</strong>'
+    }
+
+    @Test
     public void testsubWithAttr() throws Exception {
         String html = (new Html() {
             @Override
@@ -1884,6 +2340,18 @@ public class Html5TraitTest extends AbstractTest {
             @Override
             public void build() {
                 sub("content of sub")
+            }
+        }).getRawHtml()
+
+        assert html == '<sub>content of sub</sub>'
+    }
+
+    @Test
+    public void testsubInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                sub([:],"content of sub")
             }
         }).getRawHtml()
 
@@ -1931,6 +2399,18 @@ public class Html5TraitTest extends AbstractTest {
     }
 
     @Test
+    public void testsupInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                sup([:],"content of sup")
+            }
+        }).getRawHtml()
+
+        assert html == '<sup>content of sup</sup>'
+    }
+
+    @Test
     public void testtimeWithAttr() throws Exception {
         String html = (new Html() {
             @Override
@@ -1964,6 +2444,18 @@ public class Html5TraitTest extends AbstractTest {
             @Override
             public void build() {
                 time("content of time")
+            }
+        }).getRawHtml()
+
+        assert html == '<time>content of time</time>'
+    }
+
+    @Test
+    public void testtimeInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                time([:],"content of time")
             }
         }).getRawHtml()
 
@@ -2011,6 +2503,18 @@ public class Html5TraitTest extends AbstractTest {
     }
 
     @Test
+    public void testuInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                u([:],"content of u")
+            }
+        }).getRawHtml()
+
+        assert html == '<u>content of u</u>'
+    }
+
+    @Test
     public void testvarWithAttr() throws Exception {
         String html = (new Html() {
             @Override
@@ -2051,6 +2555,18 @@ public class Html5TraitTest extends AbstractTest {
     }
 
     @Test
+    public void testvarInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                var([:],"content of var")
+            }
+        }).getRawHtml()
+
+        assert html == '<var>content of var</var>'
+    }
+
+    @Test
     public void testwbrWithAttr() throws Exception {
         String html = (new Html() {
             @Override
@@ -2084,6 +2600,18 @@ public class Html5TraitTest extends AbstractTest {
             @Override
             public void build() {
                 wbr("content of wbr")
+            }
+        }).getRawHtml()
+
+        assert html == '<wbr>content of wbr</wbr>'
+    }
+
+    @Test
+    public void testwbrInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                wbr([:],"content of wbr")
             }
         }).getRawHtml()
 
@@ -2415,6 +2943,18 @@ public class Html5TraitTest extends AbstractTest {
     }
 
     @Test
+    public void testdelInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                del([:],"content of del")
+            }
+        }).getRawHtml()
+
+        assert html == '<del>content of del</del>'
+    }
+
+    @Test
     public void testinsWithAttr() throws Exception {
         String html = (new Html() {
             @Override
@@ -2448,6 +2988,18 @@ public class Html5TraitTest extends AbstractTest {
             @Override
             public void build() {
                 ins("content of ins")
+            }
+        }).getRawHtml()
+
+        assert html == '<ins>content of ins</ins>'
+    }
+
+    @Test
+    public void testinsInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                ins([:],"content of ins")
             }
         }).getRawHtml()
 
@@ -2762,6 +3314,30 @@ public class Html5TraitTest extends AbstractTest {
                 button{
                     escape << 'content of button'
                 }
+            }
+        }).getRawHtml()
+
+        assert html == '<button>content of button</button>'
+    }
+
+    @Test
+    public void testbuttonInline() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                button("content of button")
+            }
+        }).getRawHtml()
+
+        assert html == '<button>content of button</button>'
+    }
+
+    @Test
+    public void testbuttonInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                button([:],"content of button")
             }
         }).getRawHtml()
 
@@ -3259,6 +3835,18 @@ public class Html5TraitTest extends AbstractTest {
         assert html == '<summary>content of summary</summary>'
     }
 
+    @Test
+    public void testsummaryInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                summary([:],"content of summary")
+            }
+        }).getRawHtml()
+
+        assert html == '<summary>content of summary</summary>'
+    }
+
 
     // --- Web Components
 
@@ -3399,6 +3987,30 @@ public class Html5TraitTest extends AbstractTest {
                 a{
                     escape << 'content of a'
                 }
+            }
+        }).getRawHtml()
+
+        assert html == '<a>content of a</a>'
+    }
+
+    @Test
+    public void testaInline() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                a("content of a")
+            }
+        }).getRawHtml()
+
+        assert html == '<a>content of a</a>'
+    }
+
+    @Test
+    public void testaInlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                a([:],"content of a")
             }
         }).getRawHtml()
 

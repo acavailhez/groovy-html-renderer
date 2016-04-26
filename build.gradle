@@ -3,9 +3,12 @@ allprojects {
 
     apply plugin: 'java'
     apply plugin: 'groovy'
+    apply plugin: 'maven'
+    apply plugin: 'signing'
 
     sourceCompatibility = 1.8
 
+    group = 'com.github.acavailhez'
     version = '2.0-SNAPSHOT'
 
     repositories {
@@ -23,9 +26,61 @@ allprojects {
             resources { srcDirs = ["test-resources"] }
         }
     }
+
+    // Add sources to the published artifact
+    task sourcesJar(type: Jar) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+    artifacts {
+        archives sourcesJar
+    }
+    signing {
+        sign configurations.archives
+    }
+
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+                repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                    authentication(userName: ossrhUsername, password: ossrhPassword)
+                }
+
+                snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                    authentication(userName: ossrhUsername, password: ossrhPassword)
+                }
+
+                pom.project {
+                    name 'groovy-html-renderer'
+                    packaging 'jar'
+                    description 'in-code html5 rendering engine leveraging the groovy syntax'
+                    url 'https://github.com/acavailhez/groovy-html-renderer'
+
+                    licenses {
+                        license {
+                            name 'The Apache License, Version 2.0'
+                            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id 'acavailhez'
+                            name 'Arnaud CAVAILHEZ'
+                            email 'arnaud@cavailhez.fr'
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 project(':core') {
+
+    archivesBaseName = 'groovy-html-renderer'
 
     dependencies {
         compile 'org.codehaus.groovy:groovy-all:2.4.4'

@@ -2,7 +2,7 @@ package acavailhez.html.bootstrap
 
 import acavailhez.html.AbstractTest
 import acavailhez.html.Html
-import acavailhez.html.traits.bootstrap.Bootstrap4ButtonStyle
+import acavailhez.html.traits.bootstrap.Bootstrap4Color
 import acavailhez.html.traits.bootstrap.Bootstrap4Trait
 import org.junit.Test
 
@@ -75,8 +75,8 @@ public class BootstrapModalTest extends AbstractTest {
                 bootstrapModal(title: "Modal title", closeLabel: "Close") {
                     p("One fine body…")
                 } {
-                    bootstrapButton("Close", 'data-dismiss': 'modal')
-                    bootstrapButton("Save changes", btnStyle: Bootstrap4ButtonStyle.PRIMARY)
+                    button(btn('data-dismiss': 'modal'), "Close")
+                    button(btn(color: Bootstrap4Color.PRIMARY), "Save changes")
                 }
             }
         }).getRawHtml()

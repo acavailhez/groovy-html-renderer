@@ -53,7 +53,7 @@ abstract class HtmlPage extends HtmlFragment implements HeadTrait {
                 }
                 String viewport = viewport()
                 if (viewport != null && !viewport.isEmpty()) {
-                    html << '<meta name="viewport" content=' + viewport + '">'
+                    html << '<meta name="viewport" content="' + viewport + '">'
                 }
                 // Force Internet Explorer to use its latest rendering mode (http://stackoverflow.com/questions/6771258/whats-the-difference-if-meta-http-equiv-x-ua-compatible-content-ie-edge-e)
                 html << '<meta http-equiv="x-ua-compatible" content="ie=edge">'

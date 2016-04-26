@@ -1,6 +1,6 @@
 package acavailhez.html.traits.bootstrap
 
-enum Bootstrap4ButtonStyle {
+enum Bootstrap4Color {
 
     DEFAULT,
     PRIMARY,

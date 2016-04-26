@@ -65,6 +65,12 @@ trait Html5Trait extends HtmlTrait {
         html << '</title>'
     }
 
+    void title(Map attrs, String escapeContent) {
+        title(attrs){
+            escape << escapeContent
+        }
+    }
+
 
     // --- Content sectioning
 
@@ -108,12 +114,36 @@ trait Html5Trait extends HtmlTrait {
         tag('h1', attrs, body)
     }
 
+    void h1(String escapeContent) {
+        html << '<h1>'
+        escape << escapeContent
+        html << '</h1>'
+    }
+
+    void h1(Map attrs, String escapeContent) {
+        h1(attrs){
+            escape << escapeContent
+        }
+    }
+
     void h2(Closure body) {
         tag('h2', [:], body)
     }
 
     void h2(Map attrs, Closure body) {
         tag('h2', attrs, body)
+    }
+
+    void h2(String escapeContent) {
+        html << '<h2>'
+        escape << escapeContent
+        html << '</h2>'
+    }
+
+    void h2(Map attrs, String escapeContent) {
+        h2(attrs){
+            escape << escapeContent
+        }
     }
 
     void h3(Closure body) {
@@ -124,12 +154,36 @@ trait Html5Trait extends HtmlTrait {
         tag('h3', attrs, body)
     }
 
+    void h3(String escapeContent) {
+        html << '<h3>'
+        escape << escapeContent
+        html << '</h3>'
+    }
+
+    void h3(Map attrs, String escapeContent) {
+        h3(attrs){
+            escape << escapeContent
+        }
+    }
+
     void h4(Closure body) {
         tag('h4', [:], body)
     }
 
     void h4(Map attrs, Closure body) {
         tag('h4', attrs, body)
+    }
+
+    void h4(String escapeContent) {
+        html << '<h4>'
+        escape << escapeContent
+        html << '</h4>'
+    }
+
+    void h4(Map attrs, String escapeContent) {
+        h4(attrs){
+            escape << escapeContent
+        }
     }
 
     void h5(Closure body) {
@@ -140,12 +194,36 @@ trait Html5Trait extends HtmlTrait {
         tag('h5', attrs, body)
     }
 
+    void h5(String escapeContent) {
+        html << '<h5>'
+        escape << escapeContent
+        html << '</h5>'
+    }
+
+    void h5(Map attrs, String escapeContent) {
+        h5(attrs){
+            escape << escapeContent
+        }
+    }
+
     void h6(Closure body) {
         tag('h6', [:], body)
     }
 
     void h6(Map attrs, Closure body) {
         tag('h6', attrs, body)
+    }
+
+    void h6(String escapeContent) {
+        html << '<h6>'
+        escape << escapeContent
+        html << '</h6>'
+    }
+
+    void h6(Map attrs, String escapeContent) {
+        h6(attrs){
+            escape << escapeContent
+        }
     }
 
     void hgroup(Closure body) {
@@ -241,6 +319,12 @@ trait Html5Trait extends HtmlTrait {
         html << '</li>'
     }
 
+    void li(Map attrs, String escapeContent) {
+        li(attrs){
+            escape << escapeContent
+        }
+    }
+
     void main(Closure body) {
         tag('main', [:], body)
     }
@@ -269,6 +353,12 @@ trait Html5Trait extends HtmlTrait {
         html << '<p>'
         escape << escapeContent
         html << '</p>'
+    }
+
+    void p(Map attrs, String escapeContent) {
+        p(attrs){
+            escape << escapeContent
+        }
     }
 
     void pre(Closure body) {
@@ -304,6 +394,12 @@ trait Html5Trait extends HtmlTrait {
         html << '</abbr>'
     }
 
+    void abbr(Map attrs, String escapeContent) {
+        abbr(attrs){
+            escape << escapeContent
+        }
+    }
+
     void b(Closure body) {
         tag('b', [:], body)
     }
@@ -316,6 +412,12 @@ trait Html5Trait extends HtmlTrait {
         html << '<b>'
         escape << escapeContent
         html << '</b>'
+    }
+
+    void b(Map attrs, String escapeContent) {
+        b(attrs){
+            escape << escapeContent
+        }
     }
 
     void bdi(Closure body) {
@@ -332,6 +434,12 @@ trait Html5Trait extends HtmlTrait {
         html << '</bdi>'
     }
 
+    void bdi(Map attrs, String escapeContent) {
+        bdi(attrs){
+            escape << escapeContent
+        }
+    }
+
     void bdo(Closure body) {
         tag('bdo', [:], body)
     }
@@ -344,6 +452,12 @@ trait Html5Trait extends HtmlTrait {
         html << '<bdo>'
         escape << escapeContent
         html << '</bdo>'
+    }
+
+    void bdo(Map attrs, String escapeContent) {
+        bdo(attrs){
+            escape << escapeContent
+        }
     }
 
     void br(Closure body) {
@@ -360,6 +474,12 @@ trait Html5Trait extends HtmlTrait {
         html << '</br>'
     }
 
+    void br(Map attrs, String escapeContent) {
+        br(attrs){
+            escape << escapeContent
+        }
+    }
+
     void cite(Closure body) {
         tag('cite', [:], body)
     }
@@ -372,6 +492,12 @@ trait Html5Trait extends HtmlTrait {
         html << '<cite>'
         escape << escapeContent
         html << '</cite>'
+    }
+
+    void cite(Map attrs, String escapeContent) {
+        cite(attrs){
+            escape << escapeContent
+        }
     }
 
     void code(Closure body) {
@@ -388,6 +514,12 @@ trait Html5Trait extends HtmlTrait {
         html << '</code>'
     }
 
+    void code(Map attrs, String escapeContent) {
+        code(attrs){
+            escape << escapeContent
+        }
+    }
+
     void data(Closure body) {
         tag('data', [:], body)
     }
@@ -400,6 +532,12 @@ trait Html5Trait extends HtmlTrait {
         html << '<data>'
         escape << escapeContent
         html << '</data>'
+    }
+
+    void data(Map attrs, String escapeContent) {
+        data(attrs){
+            escape << escapeContent
+        }
     }
 
     void dfn(Closure body) {
@@ -416,6 +554,12 @@ trait Html5Trait extends HtmlTrait {
         html << '</dfn>'
     }
 
+    void dfn(Map attrs, String escapeContent) {
+        dfn(attrs){
+            escape << escapeContent
+        }
+    }
+
     void em(Closure body) {
         tag('em', [:], body)
     }
@@ -428,6 +572,12 @@ trait Html5Trait extends HtmlTrait {
         html << '<em>'
         escape << escapeContent
         html << '</em>'
+    }
+
+    void em(Map attrs, String escapeContent) {
+        em(attrs){
+            escape << escapeContent
+        }
     }
 
     void i(Closure body) {
@@ -444,6 +594,12 @@ trait Html5Trait extends HtmlTrait {
         html << '</i>'
     }
 
+    void i(Map attrs, String escapeContent) {
+        i(attrs){
+            escape << escapeContent
+        }
+    }
+
     void kbd(Closure body) {
         tag('kbd', [:], body)
     }
@@ -456,6 +612,12 @@ trait Html5Trait extends HtmlTrait {
         html << '<kbd>'
         escape << escapeContent
         html << '</kbd>'
+    }
+
+    void kbd(Map attrs, String escapeContent) {
+        kbd(attrs){
+            escape << escapeContent
+        }
     }
 
     void mark(Closure body) {
@@ -472,6 +634,12 @@ trait Html5Trait extends HtmlTrait {
         html << '</mark>'
     }
 
+    void mark(Map attrs, String escapeContent) {
+        mark(attrs){
+            escape << escapeContent
+        }
+    }
+
     void q(Closure body) {
         tag('q', [:], body)
     }
@@ -484,6 +652,12 @@ trait Html5Trait extends HtmlTrait {
         html << '<q>'
         escape << escapeContent
         html << '</q>'
+    }
+
+    void q(Map attrs, String escapeContent) {
+        q(attrs){
+            escape << escapeContent
+        }
     }
 
     void rp(Closure body) {
@@ -500,6 +674,12 @@ trait Html5Trait extends HtmlTrait {
         html << '</rp>'
     }
 
+    void rp(Map attrs, String escapeContent) {
+        rp(attrs){
+            escape << escapeContent
+        }
+    }
+
     void rt(Closure body) {
         tag('rt', [:], body)
     }
@@ -512,6 +692,12 @@ trait Html5Trait extends HtmlTrait {
         html << '<rt>'
         escape << escapeContent
         html << '</rt>'
+    }
+
+    void rt(Map attrs, String escapeContent) {
+        rt(attrs){
+            escape << escapeContent
+        }
     }
 
     void rtc(Closure body) {
@@ -528,6 +714,12 @@ trait Html5Trait extends HtmlTrait {
         html << '</rtc>'
     }
 
+    void rtc(Map attrs, String escapeContent) {
+        rtc(attrs){
+            escape << escapeContent
+        }
+    }
+
     void ruby(Closure body) {
         tag('ruby', [:], body)
     }
@@ -540,6 +732,12 @@ trait Html5Trait extends HtmlTrait {
         html << '<ruby>'
         escape << escapeContent
         html << '</ruby>'
+    }
+
+    void ruby(Map attrs, String escapeContent) {
+        ruby(attrs){
+            escape << escapeContent
+        }
     }
 
     void s(Closure body) {
@@ -556,6 +754,12 @@ trait Html5Trait extends HtmlTrait {
         html << '</s>'
     }
 
+    void s(Map attrs, String escapeContent) {
+        s(attrs){
+            escape << escapeContent
+        }
+    }
+
     void samp(Closure body) {
         tag('samp', [:], body)
     }
@@ -568,6 +772,12 @@ trait Html5Trait extends HtmlTrait {
         html << '<samp>'
         escape << escapeContent
         html << '</samp>'
+    }
+
+    void samp(Map attrs, String escapeContent) {
+        samp(attrs){
+            escape << escapeContent
+        }
     }
 
     void small(Closure body) {
@@ -584,6 +794,12 @@ trait Html5Trait extends HtmlTrait {
         html << '</small>'
     }
 
+    void small(Map attrs, String escapeContent) {
+        small(attrs){
+            escape << escapeContent
+        }
+    }
+
     void span(Closure body) {
         tag('span', [:], body)
     }
@@ -596,6 +812,12 @@ trait Html5Trait extends HtmlTrait {
         html << '<span>'
         escape << escapeContent
         html << '</span>'
+    }
+
+    void span(Map attrs, String escapeContent) {
+        span(attrs){
+            escape << escapeContent
+        }
     }
 
     void strong(Closure body) {
@@ -612,6 +834,12 @@ trait Html5Trait extends HtmlTrait {
         html << '</strong>'
     }
 
+    void strong(Map attrs, String escapeContent) {
+        strong(attrs){
+            escape << escapeContent
+        }
+    }
+
     void sub(Closure body) {
         tag('sub', [:], body)
     }
@@ -624,6 +852,12 @@ trait Html5Trait extends HtmlTrait {
         html << '<sub>'
         escape << escapeContent
         html << '</sub>'
+    }
+
+    void sub(Map attrs, String escapeContent) {
+        sub(attrs){
+            escape << escapeContent
+        }
     }
 
     void sup(Closure body) {
@@ -640,6 +874,12 @@ trait Html5Trait extends HtmlTrait {
         html << '</sup>'
     }
 
+    void sup(Map attrs, String escapeContent) {
+        sup(attrs){
+            escape << escapeContent
+        }
+    }
+
     void time(Closure body) {
         tag('time', [:], body)
     }
@@ -652,6 +892,12 @@ trait Html5Trait extends HtmlTrait {
         html << '<time>'
         escape << escapeContent
         html << '</time>'
+    }
+
+    void time(Map attrs, String escapeContent) {
+        time(attrs){
+            escape << escapeContent
+        }
     }
 
     void u(Closure body) {
@@ -668,6 +914,12 @@ trait Html5Trait extends HtmlTrait {
         html << '</u>'
     }
 
+    void u(Map attrs, String escapeContent) {
+        u(attrs){
+            escape << escapeContent
+        }
+    }
+
     void var(Closure body) {
         tag('var', [:], body)
     }
@@ -682,6 +934,12 @@ trait Html5Trait extends HtmlTrait {
         html << '</var>'
     }
 
+    void var(Map attrs, String escapeContent) {
+        var(attrs){
+            escape << escapeContent
+        }
+    }
+
     void wbr(Closure body) {
         tag('wbr', [:], body)
     }
@@ -694,6 +952,12 @@ trait Html5Trait extends HtmlTrait {
         html << '<wbr>'
         escape << escapeContent
         html << '</wbr>'
+    }
+
+    void wbr(Map attrs, String escapeContent) {
+        wbr(attrs){
+            escape << escapeContent
+        }
     }
 
 
@@ -802,6 +1066,12 @@ trait Html5Trait extends HtmlTrait {
         html << '</del>'
     }
 
+    void del(Map attrs, String escapeContent) {
+        del(attrs){
+            escape << escapeContent
+        }
+    }
+
     void ins(Closure body) {
         tag('ins', [:], body)
     }
@@ -814,6 +1084,12 @@ trait Html5Trait extends HtmlTrait {
         html << '<ins>'
         escape << escapeContent
         html << '</ins>'
+    }
+
+    void ins(Map attrs, String escapeContent) {
+        ins(attrs){
+            escape << escapeContent
+        }
     }
 
 
@@ -908,6 +1184,18 @@ trait Html5Trait extends HtmlTrait {
 
     void button(Map attrs, Closure body) {
         tag('button', attrs, body)
+    }
+
+    void button(String escapeContent) {
+        html << '<button>'
+        escape << escapeContent
+        html << '</button>'
+    }
+
+    void button(Map attrs, String escapeContent) {
+        button(attrs){
+            escape << escapeContent
+        }
     }
 
     void datalist(Closure body) {
@@ -1055,6 +1343,12 @@ trait Html5Trait extends HtmlTrait {
         html << '</summary>'
     }
 
+    void summary(Map attrs, String escapeContent) {
+        summary(attrs){
+            escape << escapeContent
+        }
+    }
+
 
     // --- Web Components
 
@@ -1099,6 +1393,18 @@ trait Html5Trait extends HtmlTrait {
 
     void a(Map attrs, Closure body) {
         tag('a', attrs, body)
+    }
+
+    void a(String escapeContent) {
+        html << '<a>'
+        escape << escapeContent
+        html << '</a>'
+    }
+
+    void a(Map attrs, String escapeContent) {
+        a(attrs){
+            escape << escapeContent
+        }
     }
 
     void br(){

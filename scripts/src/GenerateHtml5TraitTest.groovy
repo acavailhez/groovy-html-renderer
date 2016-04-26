@@ -57,6 +57,18 @@ void generateInlineTag(String tag) {
 
         assert html == '<${tag}>content of ${tag}</${tag}>'
     }\n\n"""
+
+    print """@Test
+    public void test${tag}InlineWithAttrs() throws Exception {
+        String html = (new Html() {
+            @Override
+            public void build() {
+                ${tag}([:],"content of ${tag}")
+            }
+        }).getRawHtml()
+
+        assert html == '<${tag}>content of ${tag}</${tag}>'
+    }\n\n"""
 }
 
 void generateEmptyTag(String tag) {
@@ -99,12 +111,12 @@ generateNormalTag('address')
 generateNormalTag('article')
 generateNormalTag('footer')
 generateNormalTag('header')
-generateNormalTag('h1')
-generateNormalTag('h2')
-generateNormalTag('h3')
-generateNormalTag('h4')
-generateNormalTag('h5')
-generateNormalTag('h6')
+generateInlineTag('h1')
+generateInlineTag('h2')
+generateInlineTag('h3')
+generateInlineTag('h4')
+generateInlineTag('h5')
+generateInlineTag('h6')
 generateNormalTag('hgroup')
 generateNormalTag('nav')
 generateNormalTag('section')
@@ -198,7 +210,7 @@ generateNormalTag('tr')
 
 section("Forms")
 
-generateNormalTag('button')
+generateInlineTag('button')
 generateNormalTag('datalist')
 generateNormalTag('fieldset')
 generateNormalTag('form')
@@ -229,6 +241,6 @@ generateNormalTag('template')
 
 section("Elements strangely absent from the doc")
 
-generateNormalTag('a')
+generateInlineTag('a')
 generateEmptyTag('br')
 generateContentlessTag('img')

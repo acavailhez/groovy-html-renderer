@@ -2,7 +2,8 @@ package acavailhez.html.bootstrap
 
 import acavailhez.html.AbstractTest
 import acavailhez.html.Html
-import acavailhez.html.traits.bootstrap.Bootstrap4ButtonStyle
+import acavailhez.html.traits.bootstrap.Bootstrap4Color
+import acavailhez.html.traits.bootstrap.Bootstrap4Size
 import acavailhez.html.traits.bootstrap.Bootstrap4Trait
 import org.junit.Test
 
@@ -15,11 +16,11 @@ public class BootstrapButtonTest extends AbstractTest {
         String html = (new BootstrapHtml() {
             @Override
             public void build() {
-                bootstrapButton([:], "Click me")
+                a(btn([:]), "Click me")
             }
         }).getRawHtml()
 
-        assert renderEquals(html, '<button class="btn btn-default" type="button">Click me</button>')
+        assert renderEquals(html, '<a class="btn btn-default" type="button">Click me</a>')
     }
 
     @Test
@@ -27,7 +28,7 @@ public class BootstrapButtonTest extends AbstractTest {
         String html = (new BootstrapHtml() {
             @Override
             public void build() {
-                bootstrapButton(id: 'abc') {
+                button(btn(id: 'abc')) {
                     escape << 'Click ' + ' me'
                 }
             }
@@ -37,37 +38,37 @@ public class BootstrapButtonTest extends AbstractTest {
     }
 
     @Test
-    public void testStyle() throws Exception {
+    public void testColor() throws Exception {
         String html = (new BootstrapHtml() {
             @Override
             public void build() {
-                bootstrapButton("Do the thing", btnStyle: Bootstrap4ButtonStyle.DANGER)
+                a(btn(color: Bootstrap4Color.DANGER), "Do the thing")
             }
         }).getRawHtml()
 
-        assert renderEquals(html, '<button class="btn btn-danger" type="button">Do the thing</button>')
+        assert renderEquals(html, '<a class="btn btn-danger" type="button">Do the thing</a>')
     }
 
     @Test
-    public void testStyleString() throws Exception {
+    public void testColorString() throws Exception {
         String html = (new BootstrapHtml() {
             @Override
             public void build() {
-                bootstrapButton("Do the thing", btnStyle: 'danger')
+                a(btn(color: 'danger'), "Do the thing")
             }
         }).getRawHtml()
 
-        assert renderEquals(html, '<button class="btn btn-danger" type="button">Do the thing</button>')
+        assert renderEquals(html, '<a class="btn btn-danger" type="button">Do the thing</a>')
     }
 
     @Test
-    public void testButtonWrongStyle() throws Exception {
+    public void testButtonWrongColor() throws Exception {
 
         try {
             String html = (new BootstrapHtml() {
                 @Override
                 public void build() {
-                    bootstrapButton("Do the thing", btnStyle: 'danger2')
+                    a(btn(color: 'danger2'), "Do the thing")
                 }
             }).getRawHtml()
 
@@ -79,14 +80,26 @@ public class BootstrapButtonTest extends AbstractTest {
     }
 
     @Test
+    public void testButtonSize() throws Exception {
+        String html = (new BootstrapHtml() {
+            @Override
+            public void build() {
+                a(btn(color: Bootstrap4Color.DANGER, size: Bootstrap4Size.LG), "Do the thing")
+            }
+        }).getRawHtml()
+
+        assert renderEquals(html, '<a class="btn-lg btn btn-danger" type="button">Do the thing</a>')
+    }
+
+    @Test
     public void testAddClass() throws Exception {
         String html = (new BootstrapHtml() {
             @Override
             public void build() {
-                bootstrapButton("Click me", class: 'my-button-class')
+                a(btn(class: 'my-button-class'), "Click me")
             }
         }).getRawHtml()
 
-        assert renderEquals(html, '<button class="my-button-class btn btn-default" type="button">Click me</button>')
+        assert renderEquals(html, '<a class="my-button-class btn btn-default" type="button">Click me</a>')
     }
 }

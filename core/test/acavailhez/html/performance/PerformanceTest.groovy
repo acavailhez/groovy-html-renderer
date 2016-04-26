@@ -3,7 +3,7 @@ package acavailhez.html.performance
 import acavailhez.html.AbstractTest
 import acavailhez.html.Html
 import acavailhez.html.HtmlStyle
-import acavailhez.html.traits.bootstrap.Bootstrap4ButtonStyle
+import acavailhez.html.traits.bootstrap.Bootstrap4Color
 import acavailhez.html.traits.bootstrap.Bootstrap4Trait
 import org.apache.velocity.Template
 import org.apache.velocity.VelocityContext
@@ -83,8 +83,8 @@ public class PerformanceTest extends AbstractTest {
             bootstrapModal(title: title, closeLabel: "Close") {
                 p(content)
             } {
-                bootstrapButton("Close", 'data-dismiss': 'modal')
-                bootstrapButton("Save changes", btnStyle: Bootstrap4ButtonStyle.PRIMARY)
+                button(btn('data-dismiss': 'modal'), "Close")
+                button(btn(color: Bootstrap4Color.PRIMARY), "Save changes")
             }
         }
     }
