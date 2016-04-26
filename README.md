@@ -83,7 +83,7 @@ With `Bootstrap4Trait` it can be simplified to:
 public class Snippet extends Html implements Bootstrap4Trait{
   public void build() {
   
-    bootstrapModal(title: "Modal title", closeLabel: "Close") {
+    modal(title: "Modal title", closeLabel: "Close") {
       p("One fine body…")
     } {
       button(btn('data-dismiss': 'modal'), "Close")

@@ -80,7 +80,7 @@ public class PerformanceTest extends AbstractTest {
 
         @Override
         protected void build() {
-            bootstrapModal(title: title, closeLabel: "Close") {
+            modal(title: title, closeLabel: "Close") {
                 p(content)
             } {
                 button(btn('data-dismiss': 'modal'), "Close")

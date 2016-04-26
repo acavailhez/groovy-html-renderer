@@ -8,16 +8,16 @@ import acavailhez.html.utils.HtmlAttributes
 trait Bootstrap4ModalTrait extends Html5Trait {
 
     // shortcut
-    void bootstrapModal(Map attrs,
-                        Closure body) {
-        bootstrapModal(attrs, null, body, null)
+    void modal(Map attrs,
+               Closure body) {
+        modal(attrs, null, body, null)
     }
 
     // shortcut
-    void bootstrapModal(Map attrs,
-                        Closure body,
-                        Closure footer) {
-        bootstrapModal(attrs, null, body, footer)
+    void modal(Map attrs,
+               Closure body,
+               Closure footer) {
+        modal(attrs, null, body, footer)
     }
 
     // A bootstrap modal with basic options
@@ -27,10 +27,10 @@ trait Bootstrap4ModalTrait extends Html5Trait {
     // title, String: if present and header is null, the modal will have a head with this string (escaped)
     // tabindex, int: if present will set the tab-index
     // closeLabel, String: the label of the close cross
-    void bootstrapModal(Map map,
-                        Closure header,
-                        Closure body,
-                        Closure footer) {
+    void modal(Map map,
+               Closure header,
+               Closure body,
+               Closure footer) {
 
         HtmlAttributes attrs = HtmlAttributes.wrap(map)
 

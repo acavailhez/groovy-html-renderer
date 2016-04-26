@@ -15,7 +15,7 @@ public class BootstrapModalTest extends AbstractTest {
         String html = (new BootstrapHtml() {
             @Override
             public void build() {
-                bootstrapModal([:]) {
+                modal([:]) {
 
                 }
             }
@@ -43,7 +43,7 @@ public class BootstrapModalTest extends AbstractTest {
         String html = (new BootstrapHtml() {
             @Override
             public void build() {
-                bootstrapModal([title: 'A nice title', tabindex: 2]) {
+                modal([title: 'A nice title', tabindex: 2]) {
 
                 }
             }
@@ -72,7 +72,7 @@ public class BootstrapModalTest extends AbstractTest {
         String html = (new BootstrapHtml() {
             @Override
             public void build() {
-                bootstrapModal(title: "Modal title", closeLabel: "Close") {
+                modal(title: "Modal title", closeLabel: "Close") {
                     p("One fine body…")
                 } {
                     button(btn('data-dismiss': 'modal'), "Close")
