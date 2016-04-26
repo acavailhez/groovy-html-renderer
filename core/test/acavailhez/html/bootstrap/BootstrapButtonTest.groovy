@@ -88,7 +88,19 @@ public class BootstrapButtonTest extends AbstractTest {
             }
         }).getRawHtml()
 
-        assert renderEquals(html, '<a class="btn-lg btn btn-danger" type="button">Do the thing</a>')
+        assert renderEquals(html, '<a class="btn btn-danger btn-lg" type="button">Do the thing</a>')
+    }
+
+    @Test
+    public void testOutline() throws Exception {
+        String html = (new BootstrapHtml() {
+            @Override
+            public void build() {
+                a(btn(color: Bootstrap4Color.DANGER, outline: true, size: Bootstrap4Size.LG), "Do the thing")
+            }
+        }).getRawHtml()
+
+        assert renderEquals(html, '<a class="btn btn-danger-outline btn-lg" type="button">Do the thing</a>')
     }
 
     @Test
