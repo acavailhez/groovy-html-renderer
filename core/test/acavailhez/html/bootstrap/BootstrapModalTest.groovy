@@ -101,4 +101,16 @@ public class BootstrapModalTest extends AbstractTest {
 </div>
 ''')
     }
+
+    @Test
+    public void testModalA() throws Exception {
+        String html = (new BootstrapHtml() {
+            @Override
+            public void build() {
+                a(btn(modal(color:Bootstrap4Color.PRIMARY, modal:'my-modal')),"Open modal")
+            }
+        }).getRawHtml()
+
+        assert renderEquals(html, '<a class="btn btn-primary" data-target="#my-modal" data-toggle="modal" type="button">Open modal</a>')
+    }
 }

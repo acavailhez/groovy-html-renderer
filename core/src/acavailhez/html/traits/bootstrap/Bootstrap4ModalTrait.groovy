@@ -69,4 +69,15 @@ trait Bootstrap4ModalTrait extends Html5Trait {
         }
     }
 
+    // when applied to <a>, will open a modal
+    HtmlAttributes modal(Map map) {
+        HtmlAttributes attrs = HtmlAttributes.wrap(map)
+
+        String modalId = attrs.get('modal', String)
+        attrs.remove('modal')
+        attrs.put('data-toggle', 'modal')
+        attrs.put('data-target', '#' + modalId)
+
+        return attrs
+    }
 }
