@@ -34,11 +34,17 @@ trait Bootstrap4ModalTrait extends Html5Trait {
 
         HtmlAttributes attrs = HtmlAttributes.wrap(map)
 
-        int tabindex = attrs.opt('tabindex', Integer, -1)
         String title = attrs.opt('title', String)
-        String close = attrs.opt('closeLabel', String)
+        attrs.remove('title')
 
-        div(class: 'modal fade', tabindex: tabindex, role: 'dialog') {
+        String close = attrs.opt('closeLabel', String)
+        attrs.remove('closeLabel')
+
+        attrs.addToClass('modal fade')
+        attrs.put('role', 'dialog')
+        attrs.put('tabindex', attrs.opt('tabindex', Integer, -1))
+
+        div(attrs) {
             div(class: 'modal-dialog') {
                 div(class: 'modal-content') {
                     div(class: 'modal-header') {

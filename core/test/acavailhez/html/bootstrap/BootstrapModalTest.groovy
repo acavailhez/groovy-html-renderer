@@ -43,14 +43,14 @@ public class BootstrapModalTest extends AbstractTest {
         String html = (new BootstrapHtml() {
             @Override
             public void build() {
-                modal([title: 'A nice title', tabindex: 2]) {
+                modal([title: 'A nice title', tabindex: 2, id:'my-modal']) {
 
                 }
             }
         }).getRawHtml()
 
         assert renderEquals(html, '''
- <div class="modal fade" role="dialog" tabindex="2">
+ <div class="modal fade" id="my-modal" role="dialog" tabindex="2">
   <div class="modal-dialog">
    <div class="modal-content">
     <div class="modal-header">
