@@ -1,4 +1,4 @@
-import acavailhez.html.traits.bootstrap.Bootstrap4Size
+import Bootstrap4Size
 import org.apache.commons.lang3.StringUtils
 
 void col(int cols, Bootstrap4Size size) {

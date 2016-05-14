@@ -86,7 +86,7 @@ public class ScopeTest extends AbstractTest {
                     div {
                         scope.put("key", "value")
                     }
-                    value = scope.get("key")
+                    value = scope.opt("key")
                 }
             }
         }).render()

@@ -1,4 +1,4 @@
-package acavailhez.html.traits.bootstrap
+package acavailhez.html.bootstrap
 
 import acavailhez.html.traits.Html5Trait
 import acavailhez.html.utils.HtmlAttributes

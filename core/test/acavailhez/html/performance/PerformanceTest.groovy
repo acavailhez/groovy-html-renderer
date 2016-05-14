@@ -3,8 +3,8 @@ package acavailhez.html.performance
 import acavailhez.html.AbstractTest
 import acavailhez.html.Html
 import acavailhez.html.HtmlStyle
-import acavailhez.html.traits.bootstrap.Bootstrap4Color
-import acavailhez.html.traits.bootstrap.Bootstrap4Trait
+import acavailhez.html.bootstrap.Bootstrap4Color
+import acavailhez.html.bootstrap.Bootstrap4Trait
 import org.apache.velocity.Template
 import org.apache.velocity.VelocityContext
 import org.apache.velocity.app.VelocityEngine

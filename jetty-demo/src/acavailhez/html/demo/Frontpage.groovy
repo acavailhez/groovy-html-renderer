@@ -1,7 +1,7 @@
 package acavailhez.html.demo
 
 import acavailhez.html.HtmlPage
-import acavailhez.html.traits.bootstrap.Bootstrap4NavTrait
+import Bootstrap4NavTrait
 
 class Frontpage extends HtmlPage implements Bootstrap4NavTrait {
 

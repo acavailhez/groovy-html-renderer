@@ -1,4 +1,4 @@
-package acavailhez.html.traits.bootstrap
+package acavailhez.html.bootstrap
 
 enum Bootstrap4Color {
 

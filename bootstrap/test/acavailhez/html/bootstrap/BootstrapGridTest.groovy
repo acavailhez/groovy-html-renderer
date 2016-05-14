@@ -2,7 +2,7 @@ package acavailhez.html.bootstrap
 
 import acavailhez.html.AbstractTest
 import acavailhez.html.Html
-import acavailhez.html.traits.bootstrap.Bootstrap4Trait
+import Bootstrap4Trait
 import org.junit.Test
 
 public class BootstrapGridTest extends AbstractTest {

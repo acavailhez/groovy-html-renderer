@@ -89,8 +89,27 @@ project(':core') {
         compile 'org.jsoup:jsoup:1.8.3' // for html prettyfier
 
         testCompile 'junit:junit:4.11'
+        testCompile project(':bootstrap')
         testCompile 'org.apache.velocity:velocity:1.7' // for perf comparison
         testCompile 'org.apache.velocity:velocity-tools:2.0'
+    }
+}
+
+project(':bootstrap') {
+
+    dependencies {
+        compile project(':core')
+
+        testCompile 'junit:junit:4.11'
+    }
+}
+
+project(':resources') {
+
+    dependencies {
+        compile project(':core')
+
+        testCompile 'junit:junit:4.11'
     }
 }
 
