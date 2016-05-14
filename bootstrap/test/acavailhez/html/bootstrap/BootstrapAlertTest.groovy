@@ -2,8 +2,6 @@ package acavailhez.html.bootstrap
 
 import acavailhez.html.AbstractTest
 import acavailhez.html.Html
-import Bootstrap4Color
-import Bootstrap4Trait
 import org.junit.Test
 
 public class BootstrapAlertTest extends AbstractTest {
