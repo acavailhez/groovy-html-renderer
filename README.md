@@ -98,5 +98,5 @@ Exposing only the important content and making the code easier to read
 
 Let's jump into the features
 
-## [Core features](core/README.md)    
-## [Resources (js and css)](resources/README.md)
+### [Core features](core/README.md)    
+### [Resources (js and css)](resources/README.md)
