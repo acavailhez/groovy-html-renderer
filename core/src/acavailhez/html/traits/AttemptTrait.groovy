@@ -1,9 +1,7 @@
 package acavailhez.html.traits
 
 import acavailhez.html.scope.HtmlScope
-import groovy.transform.CompileStatic
 
-@CompileStatic
 trait AttemptTrait extends HtmlTrait {
 
     // Attempt to execute the code, if fails, rollsback and execute the fallback

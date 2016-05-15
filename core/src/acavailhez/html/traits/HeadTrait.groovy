@@ -1,8 +1,5 @@
 package acavailhez.html.traits
 
-import groovy.transform.CompileStatic
-
-@CompileStatic
 trait HeadTrait extends HtmlTrait {
     abstract void tag(String tag, Map attrs, Closure body)
 

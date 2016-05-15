@@ -1,13 +1,12 @@
 package acavailhez.html
 
-import groovy.transform.CompileStatic
+import acavailhez.html.traits.HtmlFragmentTrait
 
 // Piece of html,
 // Can be rendered in different circumstances
 // Typically asynchronously:
 // the main HTML is rendered and calls back to render this fragment
-@CompileStatic
-abstract class HtmlFragment extends Html {
+abstract class HtmlFragment extends Html implements HtmlFragmentTrait{
 
     // Write javascript in context, it will be defered
     protected Javascript js
@@ -18,7 +17,7 @@ abstract class HtmlFragment extends Html {
         scope.addScopable(js)
     }
 
-    protected void defer(Closure toDefer) {
+    public void defer(Closure toDefer) {
         scope.prepareForNewScope()
         toDefer()
         deferredHtml += rootHtmlBuilder.html.toString()

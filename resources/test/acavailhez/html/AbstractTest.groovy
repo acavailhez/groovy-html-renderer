@@ -11,6 +11,20 @@ abstract class AbstractTest {
             println('contains: ' + find)
             return false
         }
+        if (options.before) {
+            if (!(render.indexOf(find) < render.indexOf(options.before))) {
+                println('render: ' + render)
+                println('before: ' + find)
+                return false
+            }
+        }
+        if (options.after) {
+            if (!(render.indexOf(find) > render.indexOf(options.after) && render.indexOf(options.after) > 0)) {
+                println('render: ' + render)
+                println('after: ' + find)
+                return false
+            }
+        }
         return true
     }
 

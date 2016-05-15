@@ -4,9 +4,7 @@ import acavailhez.html.builder.EscapedHtmlBuilder
 import acavailhez.html.builder.HtmlBuilder
 import acavailhez.html.builder.RawHtmlBuilder
 import acavailhez.html.scope.HtmlScope
-import groovy.transform.CompileStatic
 
-@CompileStatic
 abstract trait HtmlTrait {
 
     abstract void tag(String tag, Map attrs, Closure body)

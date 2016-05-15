@@ -1,9 +1,7 @@
 package acavailhez.html.traits
 
 import acavailhez.html.scope.HtmlScope
-import groovy.transform.CompileStatic
 
-@CompileStatic
 trait CaptureTrait extends HtmlTrait {
 
     // Runs the code but does not write to the main html
