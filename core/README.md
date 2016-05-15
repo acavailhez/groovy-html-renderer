@@ -179,3 +179,44 @@ div {
 
 In a `HtmlPage`, this html will be written before the `<body>` is closed
 In a standard `HtmlFragment`, the deferred html will be accessible using `getRawDeferredHtml()`
+
+
+## HtmlPage
+
+`HtmlPage` will render a full html page, here is a basic example:
+
+```
+public class SimplePage extends HtmlPage{
+
+    // Renders the description of the page
+    protected String description() {
+        return 'Page about "interesting" things'
+    }
+
+    protected String favicon() {
+        return '/favicon.png'
+    }
+
+    protected String viewport() {
+        return null // remove viewport
+    }
+
+    protected String title() {
+        return "We talk about books"
+    }
+
+    protected void head() {
+        meta(property: "og:type", content: "website")
+        css('https://cdn.com/min.css')
+        javascript('https://cdn.com/min.js')
+    }
+
+    protected void body() {
+        div {
+            escape << "text"
+        }
+    }
+}
+```
+
+Instead of coding inside the `render` function you code inside the `body`, the header is handled separately

@@ -2,6 +2,7 @@ package acavailhez.html.resources
 
 import acavailhez.html.AbstractTest
 import acavailhez.html.HtmlPage
+import acavailhez.html.HtmlStyle
 import org.junit.Test
 
 class SimpleTests extends AbstractTest {
@@ -14,7 +15,7 @@ class SimpleTests extends AbstractTest {
     }
 
     @Test
-    public void absoluteResources() throws Exception {
+    public void pack() throws Exception {
         HtmlResourcesPack pack = new HtmlResourcesPack()
         pack.add('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css')
         pack.add('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js')
@@ -52,9 +53,11 @@ class SimpleTests extends AbstractTest {
             }
 
             public void body() {
-                div{}
+                div {
+                    escape << "text"
+                }
             }
-        }).getRawHtml()
+        }).withStyle(HtmlStyle.PRETTY).getRawHtml()
 
         assert contains(html, '''
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" rel="stylesheet" type="text/css">
