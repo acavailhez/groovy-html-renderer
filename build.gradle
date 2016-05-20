@@ -113,15 +113,6 @@ project(':resources') {
     }
 }
 
-project(':forms') {
-
-    dependencies {
-        compile project(':core')
-
-        testCompile project(':tests')
-    }
-}
-
 project(':scripts') {
 
     dependencies {
