@@ -1,11 +1,11 @@
 package acavailhez.html.resources
 
-import acavailhez.html.AbstractTest
 import acavailhez.html.HtmlPage
 import acavailhez.html.HtmlStyle
+import acavailhez.html.tests.AbstractTests
 import org.junit.Test
 
-class SimpleTests extends AbstractTest {
+class SimpleTests extends AbstractTests {
 
     static abstract class ResourcesPage extends HtmlPage implements HtmlResourcesTrait {
         @Override

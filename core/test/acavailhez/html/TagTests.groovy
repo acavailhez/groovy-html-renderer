@@ -1,8 +1,9 @@
 package acavailhez.html
 
+import acavailhez.html.tests.AbstractTests
 import org.junit.Test
 
-public class TagTest extends AbstractTest {
+public class TagTests extends AbstractTests {
 
     @Test
     public void testEscapeAttribute() throws Exception {

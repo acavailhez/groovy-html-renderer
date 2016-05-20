@@ -1,9 +1,9 @@
 package acavailhez.html.utils
 
-import acavailhez.html.AbstractTest
+import acavailhez.html.tests.AbstractTests
 import org.junit.Test
 
-public class GetOptTest extends AbstractTest {
+public class GetOptTests extends AbstractTests {
 
     @Test
     public void testSimple() throws Exception {

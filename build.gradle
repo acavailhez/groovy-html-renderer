@@ -88,7 +88,7 @@ project(':core') {
         compile 'org.apache.commons:commons-lang3:3.0'
         compile 'org.jsoup:jsoup:1.8.3' // for html prettyfier
 
-        testCompile 'junit:junit:4.11'
+        testCompile project(':tests')
         testCompile project(':bootstrap')
         testCompile 'org.apache.velocity:velocity:1.7' // for perf comparison
         testCompile 'org.apache.velocity:velocity-tools:2.0'
@@ -100,7 +100,7 @@ project(':bootstrap') {
     dependencies {
         compile project(':core')
 
-        testCompile 'junit:junit:4.11'
+        testCompile project(':tests')
     }
 }
 
@@ -109,7 +109,16 @@ project(':resources') {
     dependencies {
         compile project(':core')
 
-        testCompile 'junit:junit:4.11'
+        testCompile project(':tests')
+    }
+}
+
+project(':forms') {
+
+    dependencies {
+        compile project(':core')
+
+        testCompile project(':tests')
     }
 }
 
@@ -117,10 +126,10 @@ project(':scripts') {
 
     dependencies {
         compile project(':core')
-
         compile 'org.jodd:jodd:3.4.1'
         compile 'org.jodd:jodd-http:3.7'
-        testCompile 'junit:junit:4.11'
+
+        testCompile project(':tests')
     }
 }
 
@@ -132,7 +141,7 @@ project(':jetty') {
         compile project(':core')
         compile 'org.eclipse.jetty:jetty-server:9.3.6.v20151106'
 
-        testCompile 'junit:junit:4.11'
+        testCompile project(':tests')
     }
 }
 
@@ -143,6 +152,15 @@ project(':jetty-demo') {
     dependencies {
         compile project(':jetty')
 
-        testCompile 'junit:junit:4.11'
+        testCompile project(':tests')
+    }
+}
+
+project(':tests') {
+
+    dependencies {
+        compile project(':core')
+
+        compile 'junit:junit:4.11'
     }
 }

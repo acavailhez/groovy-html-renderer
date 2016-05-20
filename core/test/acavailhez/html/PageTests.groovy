@@ -1,8 +1,9 @@
 package acavailhez.html
 
+import acavailhez.html.tests.AbstractTests
 import org.junit.Test
 
-public class PageTest extends AbstractTest {
+public class PageTests extends AbstractTests {
 
 
     @Test

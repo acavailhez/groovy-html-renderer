@@ -1,8 +1,9 @@
 package acavailhez.html
 
+import acavailhez.html.tests.AbstractTests
 import org.junit.Test
 
-public class AttemptTest extends AbstractTest {
+public class AttemptTests extends AbstractTests {
 
     @Test
     public void testSuccess() throws Exception {
