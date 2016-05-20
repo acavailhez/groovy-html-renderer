@@ -1,8 +1,9 @@
 package acavailhez.html
 
+import acavailhez.html.tests.AbstractTests
 import org.junit.Test
 
-public class ShortcutTest extends AbstractTest {
+public class ShortcutTests extends AbstractTests {
 
     @Test
     public void testDdt() throws Exception {

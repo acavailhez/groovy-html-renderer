@@ -1,16 +1,16 @@
 package acavailhez.html.performance
 
-import acavailhez.html.AbstractTest
 import acavailhez.html.Html
 import acavailhez.html.HtmlStyle
 import acavailhez.html.bootstrap.Bootstrap4Color
 import acavailhez.html.bootstrap.Bootstrap4Trait
+import acavailhez.html.tests.AbstractTests
 import org.apache.velocity.Template
 import org.apache.velocity.VelocityContext
 import org.apache.velocity.app.VelocityEngine
 import org.junit.Test
 
-public class PerformanceTest extends AbstractTest {
+public class PerformanceTests extends AbstractTests {
 
     class PerfHtml extends Html {
 
@@ -49,7 +49,6 @@ public class PerformanceTest extends AbstractTest {
         }
         diff = System.currentTimeMillis() - ms
         println 'Simple HTML 1000:' + diff + 'ms'
-
 
         // velocity
         VelocityEngine ve = new VelocityEngine();
@@ -108,7 +107,6 @@ public class PerformanceTest extends AbstractTest {
         }
         diff = System.currentTimeMillis() - ms
         println 'Simple HTML 1000:' + diff + 'ms'
-
 
         // velocity
         VelocityEngine ve = new VelocityEngine();

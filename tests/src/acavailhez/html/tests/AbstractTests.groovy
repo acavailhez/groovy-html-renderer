@@ -1,7 +1,7 @@
-package acavailhez.html
+package acavailhez.html.tests
 
 
-abstract class AbstractTest {
+abstract class AbstractTests {
 
     protected boolean contains(String render, String find, Map options = [:]) {
         render = canonize(render)

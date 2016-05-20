@@ -1,8 +1,9 @@
 package acavailhez.html
 
+import acavailhez.html.tests.AbstractTests
 import org.junit.Test
 
-public class ScopeTest extends AbstractTest {
+public class ScopeTests extends AbstractTests {
 
     @Test
     public void testSameLevel() throws Exception {

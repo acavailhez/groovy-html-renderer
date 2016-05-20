@@ -1,8 +1,9 @@
 package acavailhez.html
 
+import acavailhez.html.tests.AbstractTests
 import org.junit.Test
 
-public class Html5TraitTest extends AbstractTest {
+public class Html5TraitTests extends AbstractTests {
 
     // --- Basic elements
 

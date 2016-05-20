@@ -1,10 +1,10 @@
 package acavailhez.html.bootstrap
 
-import acavailhez.html.AbstractTest
 import acavailhez.html.Html
+import acavailhez.html.tests.AbstractTests
 import org.junit.Test
 
-public class BootstrapGridTest extends AbstractTest {
+public class BootstrapGridTests extends AbstractTests {
 
     static abstract class BootstrapHtml extends Html implements Bootstrap4Trait {}
 

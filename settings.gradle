@@ -6,4 +6,5 @@ include ':resources'
 include ':scripts'
 include ':jetty'
 include ':jetty-demo'
+include ':tests'
 
