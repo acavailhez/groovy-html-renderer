@@ -1,10 +1,13 @@
 package acavailhez.html.utils;
 
+import groovy.transform.CompileStatic;
+
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
 // Simple map wrapper exposing GetOpt function
+@CompileStatic
 public class OptGetMap implements Map<String, Object>, OptGet {
 
     private final Map<String, Object> map;

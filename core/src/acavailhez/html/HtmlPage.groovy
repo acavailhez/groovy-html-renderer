@@ -2,6 +2,7 @@ package acavailhez.html
 
 import acavailhez.html.traits.HeadTrait
 import acavailhez.html.utils.HtmlUtils
+import groovy.transform.CompileStatic
 
 // Renders a full html page
 // To configure, override the functions:
@@ -12,6 +13,8 @@ import acavailhez.html.utils.HtmlUtils
 // favicon() - will reconfigure the favicon url (the type will depend on the file extension)
 // head() - will append more to the <head>
 //
+
+@CompileStatic
 abstract class HtmlPage extends HtmlFragment implements HeadTrait {
 
 

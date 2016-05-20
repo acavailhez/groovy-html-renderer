@@ -2,8 +2,6 @@ package acavailhez.html.performance
 
 import acavailhez.html.Html
 import acavailhez.html.HtmlStyle
-import acavailhez.html.bootstrap.Bootstrap4Color
-import acavailhez.html.bootstrap.Bootstrap4Trait
 import acavailhez.html.tests.AbstractTests
 import org.apache.velocity.Template
 import org.apache.velocity.VelocityContext
@@ -67,27 +65,6 @@ public class PerformanceTests extends AbstractTests {
 
     }
 
-    class ModalHtml extends Html implements Bootstrap4Trait {
-
-        private final String title
-        private final String content
-
-        public ModalHtml(String title, String content) {
-            this.title = title
-            this.content = content
-        }
-
-        @Override
-        protected void build() {
-            modal(title: title, closeLabel: "Close") {
-                p(content)
-            } {
-                button(btn('data-dismiss': 'modal'), "Close")
-                button(btn(color: Bootstrap4Color.PRIMARY), "Save changes")
-            }
-        }
-    }
-
     @Test
     public void test1000Modals() throws Exception {
 
@@ -123,11 +100,16 @@ public class PerformanceTests extends AbstractTests {
         }
         diff = System.currentTimeMillis() - ms
         println 'Velocity Simple HTML 1000:' + diff + 'ms'
-
     }
 
     @Test
     public void test1000Pages() throws Exception {
+        println 'preheat'
+        for (int i = 0; i < 100; i++) {
+            new GrailsFrontPage().getRawHtml()
+        }
+
+        println 'go'
         long ms = System.currentTimeMillis()
         for (int i = 0; i < 1000; i++) {
             new GrailsFrontPage().getRawHtml()

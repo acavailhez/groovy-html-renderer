@@ -71,7 +71,7 @@ public class PageTests extends AbstractTests {
                 }
             }
 
-        }).withStyle(HtmlStyle.PRETTY).getRawHtml()
+        }).getRawHtml()
 
         assert renderEquals(html, '''
 <!doctype html>
@@ -81,7 +81,7 @@ public class PageTests extends AbstractTests {
   <meta name="description" content="Page about &quot;interesting&quot; things">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <link rel="icon" href="/favicon.png" type="image/png">
-  <meta content="website" property="og:type">
+  <meta property="og:type" content="website">
   <link href="https://cdn.com/min.css" rel="stylesheet" type="text/css">
   <script src="https://cdn.com/min.js"></script>
  </head>

@@ -7,7 +7,7 @@ public class AttemptTests extends AbstractTests {
 
     @Test
     public void testSuccess() throws Exception {
-        assert (new Html() {
+        String html = (new Html() {
             @Override
             public void build() {
                 div {
@@ -18,12 +18,14 @@ public class AttemptTests extends AbstractTests {
                     }
                 }
             }
-        }).getRawHtml() == "<div><div>text</div></div>"
+        }).getRawHtml()
+
+        assert renderEquals(html, "<div><div>text</div></div>")
     }
 
     @Test
     public void testSuccessWithCatch() throws Exception {
-        assert (new Html() {
+        String html = (new Html() {
             @Override
             public void build() {
                 attempt {
@@ -40,12 +42,14 @@ public class AttemptTests extends AbstractTests {
                     }
                 }
             }
-        }).getRawHtml() == "<div><div>text</div></div>"
+        }).getRawHtml()
+
+        assert renderEquals(html, "<div><div>text</div></div>")
     }
 
     @Test
     public void testError() throws Exception {
-        assert (new Html() {
+        String html = (new Html() {
             @Override
             public void build() {
                 div {
@@ -57,12 +61,14 @@ public class AttemptTests extends AbstractTests {
                     }
                 }
             }
-        }).getRawHtml() == "<div></div>"
+        }).getRawHtml()
+
+        assert renderEquals(html, "<div></div>")
     }
 
     @Test
     public void testErrorWithCatch() throws Exception {
-        assert (new Html() {
+        String html = (new Html() {
             @Override
             public void build() {
                 div {
@@ -79,6 +85,8 @@ public class AttemptTests extends AbstractTests {
                 }
 
             }
-        }).getRawHtml() == "<div><span>failed with:oups</span></div>"
+        }).getRawHtml()
+
+        assert renderEquals(html, "<div><span>failed with:oups</span></div>")
     }
 }

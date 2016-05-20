@@ -1,8 +1,10 @@
 package acavailhez.html.builder
 
 import acavailhez.html.utils.HtmlUtils
+import groovy.transform.CompileStatic
 
 // append string directly
+@CompileStatic
 class EscapedHtmlBuilder {
 
     private StringBuilder stringBuilder

@@ -3,15 +3,18 @@ package acavailhez.html
 import acavailhez.html.builder.EscapedHtmlBuilder
 import acavailhez.html.builder.HtmlBuilder
 import acavailhez.html.builder.RawHtmlBuilder
+import acavailhez.html.internal.HtmlEngine
 import acavailhez.html.scope.HtmlScope
 import acavailhez.html.traits.AttemptTrait
 import acavailhez.html.traits.CaptureTrait
 import acavailhez.html.traits.Html5Trait
 import acavailhez.html.traits.ShortcutTrait
 import acavailhez.html.utils.HtmlUtils
+import groovy.transform.CompileStatic
 
 // Render a piece of html
-abstract class Html implements
+@CompileStatic
+abstract class Html extends HtmlEngine implements
         Html5Trait,
         ShortcutTrait,
         AttemptTrait,
@@ -96,30 +99,32 @@ abstract class Html implements
 
         scope.prepareForNewScope()
 
-        html << "<${tag}"
-        if (attrs) {
-            List<String> keys = attrs.keySet().collect { it.toString() }
-            Collections.sort(keys)
-            for (Object keyO : keys) {
-                String key = keyO.toString()
-                Object value = attrs.get(key)
-                if (value) {
-                    if (value instanceof Closure) {
-                        html << " $key=\""
-                        (value as Closure)()
-                        html << '"'
-                    } else {
-                        String escaped = HtmlUtils.escapeHtmlAttribute(value)
-                        html << " $key=\"$escaped\""
-                    }
-                }
-            }
-        }
-        html << '>'
-        if (body) {
-            body()
-            html << "</${tag}>"
-        }
+       writeTag(html, tag, attrs, body)
+
+//        html << "<${tag}"
+//        if (attrs) {
+//            List<String> keys = attrs.keySet().collect { it.toString() }
+//            Collections.sort(keys)
+//            for (Object keyO : keys) {
+//                String key = keyO.toString()
+//                Object value = attrs.get(key)
+//                if (value) {
+//                    if (value instanceof Closure) {
+//                        html << " $key=\""
+//                        (value as Closure)()
+//                        html << '"'
+//                    } else {
+//                        String escaped = HtmlUtils.escapeHtmlAttribute(value)
+//                        html << " $key=\"$escaped\""
+//                    }
+//                }
+//            }
+//        }
+//        html << '>'
+//        if (body) {
+//            body()
+//            html << "</${tag}>"
+//        }
 
         scope.commitToPreviousScope()
     }

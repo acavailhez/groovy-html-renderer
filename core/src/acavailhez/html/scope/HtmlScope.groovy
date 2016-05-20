@@ -1,8 +1,10 @@
 package acavailhez.html.scope
 
 import acavailhez.html.utils.OptGet
+import groovy.transform.CompileStatic
 
 // Scoped state of the html
+@CompileStatic
 class HtmlScope implements OptGet {
 
     private List<Map<String, Object>> stack = new LinkedList<>()

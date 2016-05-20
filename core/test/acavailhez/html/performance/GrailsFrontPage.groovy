@@ -1,7 +1,9 @@
 package acavailhez.html.performance
 
 import acavailhez.html.HtmlPage
+import groovy.transform.CompileStatic
 
+@CompileStatic
 class GrailsFrontPage extends HtmlPage {
 
 

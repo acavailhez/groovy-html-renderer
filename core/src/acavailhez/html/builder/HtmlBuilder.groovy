@@ -1,7 +1,9 @@
 package acavailhez.html.builder
 
 import acavailhez.html.scope.HtmlScopable
+import groovy.transform.CompileStatic
 
+@CompileStatic
 class HtmlBuilder implements HtmlScopable {
 
     private final Stack<StringBuilder> stringBuilderStack = new Stack<>()

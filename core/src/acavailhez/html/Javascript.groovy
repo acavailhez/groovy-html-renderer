@@ -2,10 +2,13 @@ package acavailhez.html
 
 import acavailhez.html.builder.RawHtmlBuilder
 import acavailhez.html.scope.HtmlScopable
+import groovy.transform.CompileStatic
 
 // Contains javascript statements written during the building of the html
 // Those get disconnected from the DOM and can be processed separately
 // Typically defered to just before the </body>
+
+@CompileStatic
 public class Javascript implements HtmlScopable {
 
     // scoped statements

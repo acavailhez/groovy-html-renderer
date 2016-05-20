@@ -1,4 +1,7 @@
 package acavailhez.html.utils
+
+import groovy.transform.CompileStatic
+
 // Keeps a local copy of a map and adds extra methods
 // Two ways to create from an existing map:
 // HtmlAttributes.copy() will copy the content of the argument
@@ -8,6 +11,7 @@ package acavailhez.html.utils
 // - opt(key, String, "default") will get the [key] value or default if not set
 // - get(key, String) will get the [key] value and raise a IllegalArgumentException if not present
 // - addToClass(String) will append new classes to the existing one (or create one)
+@CompileStatic
 class HtmlAttributes extends OptGetMap {
 
     private HtmlAttributes(Map<String, Object> map) {

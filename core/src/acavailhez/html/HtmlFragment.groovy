@@ -1,11 +1,14 @@
 package acavailhez.html
 
 import acavailhez.html.traits.HtmlFragmentTrait
+import groovy.transform.CompileStatic
 
 // Piece of html,
 // Can be rendered in different circumstances
 // Typically asynchronously:
 // the main HTML is rendered and calls back to render this fragment
+
+@CompileStatic
 abstract class HtmlFragment extends Html implements HtmlFragmentTrait{
 
     // Write javascript in context, it will be defered

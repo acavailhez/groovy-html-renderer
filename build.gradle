@@ -94,7 +94,7 @@ project(':core') {
     archivesBaseName = 'groovy-html-renderer'
 
     dependencies {
-        compile 'org.codehaus.groovy:groovy-all:2.4.4'
+        compile 'org.codehaus.groovy:groovy-all:2.4.6'
         compile 'log4j:log4j:1.2.17'
         compile 'org.apache.commons:commons-lang3:3.0'
         compile 'org.jsoup:jsoup:1.8.3' // for html prettyfier

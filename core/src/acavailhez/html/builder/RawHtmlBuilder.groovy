@@ -2,13 +2,13 @@ package acavailhez.html.builder
 // append string directly
 class RawHtmlBuilder {
 
-    private  StringBuilder stringBuilder
+    private StringBuilder stringBuilder
 
     public RawHtmlBuilder() {
         // Nothing to do
     }
 
-    void setStringBuilder(StringBuilder stringBuilder){
+    void setStringBuilder(StringBuilder stringBuilder) {
         this.stringBuilder = stringBuilder
     }
 
@@ -18,6 +18,11 @@ class RawHtmlBuilder {
         }
         stringBuilder << s.toString()
         return this
+    }
+
+    // unprotected (but faster) append
+    public void append(String string) {
+        stringBuilder.append(string)
     }
 
     @Override
