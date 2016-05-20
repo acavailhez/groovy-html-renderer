@@ -7,12 +7,12 @@ Handling css and javascript for pages
 You define a pack of resources and then inject it into your page:
 
 ```
- HtmlResourcesPack pack = new HtmlResourcesPack()
+HtmlResourcesPack pack = new HtmlResourcesPack()
 pack.add('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css')
 pack.add('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js')
     .withDisposition(HtmlResourceDisposition.FOOT)
 
-public class SimplePage extends HtmlPage{
+public class SimplePage extends HtmlPage {
 
     protected String title() {
         return "Lee Sedol beaten by Alpha go"
@@ -58,3 +58,8 @@ pack.add('https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.m
 will render it before the `</body>` tag. 
 
 By default the disposition is `HEAD`
+
+### TODO
+
+- bundles
+- minify
