@@ -99,8 +99,11 @@ abstract class Html extends HtmlEngine implements
 
         scope.prepareForNewScope()
 
-        writeTag(html, tag, attrs, body)
-
+        openTag(html.stringBuilder, tag, attrs)
+        if (body != null) {
+            body.call();
+            closeTag(html.stringBuilder, tag)
+        }
         scope.commitToPreviousScope()
     }
 

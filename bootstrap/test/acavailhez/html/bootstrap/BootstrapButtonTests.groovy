@@ -31,7 +31,7 @@ public class BootstrapButtonTests extends AbstractTests {
             }
         }).getRawHtml()
 
-        assert renderEquals(html, '<button class="btn btn-default" id="abc" type="button">Click me</button>')
+        assert renderEquals(html, '<button id="abc" class="btn btn-default" type="button">Click me</button>')
     }
 
     @Test

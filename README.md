@@ -116,11 +116,12 @@ Let's have a look at the best and worst case scenarios, we compare against 1000 
 
 | Velocity | groovy-html-renderer |
 |---|---|
-| 0.074ms | 0.495 ms | 
+| 0.086ms | 0.254 ms | 
 
-In this run, a small snippet with a for-loop, `groovy-html-renderer` performs 7x slower than the highly optimized `velocity` 
+In this run, a small snippet with a for-loop, `groovy-html-renderer` performs 3x slower than the highly optimized `velocity` 
  
 *Rendering the grails homepage - 1000 runs* 
+
 | Velocity | groovy-html-renderer |
 |---|---|
 | 0.037ms | 1.262 ms | 

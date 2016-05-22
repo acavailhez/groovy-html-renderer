@@ -19,6 +19,6 @@ public class BootstrapAlertTests extends AbstractTests {
             }
         }).getRawHtml()
 
-        assert renderEquals(html, '<div class="alert alert-success" role="alert">Yeah</div>')
+        assert renderEquals(html, '<div role="alert" class="alert alert-success">Yeah</div>')
     }
 }

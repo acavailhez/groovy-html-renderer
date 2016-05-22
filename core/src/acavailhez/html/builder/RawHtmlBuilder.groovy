@@ -25,6 +25,10 @@ class RawHtmlBuilder {
         stringBuilder.append(string)
     }
 
+    public StringBuilder getStringBuilder(){
+        return stringBuilder
+    }
+
     @Override
     public String toString() {
         return stringBuilder.toString()

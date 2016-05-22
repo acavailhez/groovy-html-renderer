@@ -2,8 +2,10 @@ package acavailhez.html.bootstrap
 
 import acavailhez.html.traits.Html5Trait
 import acavailhez.html.utils.HtmlAttributes
+import groovy.transform.CompileStatic
 
 // http://v4-alpha.getbootstrap.com/components/alerts/
+@CompileStatic
 trait Bootstrap4AlertTrait extends Html5Trait {
 
     public void alert(Map map, Closure body) {

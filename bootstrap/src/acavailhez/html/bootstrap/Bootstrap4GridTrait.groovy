@@ -2,10 +2,12 @@ package acavailhez.html.bootstrap
 
 import acavailhez.html.traits.Html5Trait
 import acavailhez.html.utils.HtmlAttributes
+import groovy.transform.CompileStatic
 import org.apache.log4j.Logger
 
 // http://v4-alpha.getbootstrap.com/layout/grid/
 // Will manage the rows automatically
+@CompileStatic
 trait Bootstrap4GridTrait extends Html5Trait {
 
     private static final Logger log = Logger.getLogger(Bootstrap4GridTrait)

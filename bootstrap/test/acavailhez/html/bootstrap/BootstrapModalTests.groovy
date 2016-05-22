@@ -24,7 +24,7 @@ public class BootstrapModalTests extends AbstractTests {
   <div class="modal-dialog">
    <div class="modal-content">
     <div class="modal-header">
-     <button class="close" data-dismiss="modal" type="button">
+     <button type="button" class="close" data-dismiss="modal">
       <span aria-hidden="true">&times;</span>
      </button>
     </div>
@@ -48,11 +48,11 @@ public class BootstrapModalTests extends AbstractTests {
         }).getRawHtml()
 
         assert renderEquals(html, '''
- <div class="modal fade" id="my-modal" role="dialog" tabindex="2">
+ <div tabindex="2" id="my-modal" class="modal fade" role="dialog">
   <div class="modal-dialog">
    <div class="modal-content">
     <div class="modal-header">
-     <button class="close" data-dismiss="modal" type="button">
+     <button type="button" class="close" data-dismiss="modal">
       <span aria-hidden="true">&times;</span>
      </button>
      <h4 class="modal-title">A nice title</h4>
@@ -84,14 +84,15 @@ public class BootstrapModalTests extends AbstractTests {
  <div class="modal-dialog">
    <div class="modal-content">
      <div class="modal-header">
-       <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+       <span aria-hidden="true">&times;</span></button>
        <h4 class="modal-title">Modal title</h4>
      </div>
      <div class="modal-body">
        <p>One fine body&hellip;</p>
      </div>
      <div class="modal-footer">
-       <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+       <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
        <button class="btn btn-primary" type="button">Save changes</button>
      </div>
    </div>
@@ -109,6 +110,6 @@ public class BootstrapModalTests extends AbstractTests {
             }
         }).getRawHtml()
 
-        assert renderEquals(html, '<a class="btn btn-primary" data-target="#my-modal" data-toggle="modal" type="button">Open modal</a>')
+        assert renderEquals(html, '<a data-toggle="modal" data-target="#my-modal" class="btn btn-primary" type="button">Open modal</a>')
     }
 }

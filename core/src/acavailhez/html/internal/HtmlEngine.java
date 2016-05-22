@@ -1,8 +1,6 @@
 package acavailhez.html.internal;
 
-import acavailhez.html.builder.RawHtmlBuilder;
 import acavailhez.html.utils.HtmlUtils;
-import groovy.lang.Closure;
 
 import java.util.Map;
 import java.util.Set;
@@ -10,9 +8,7 @@ import java.util.Set;
 // Everything heavy is coded in java for performances
 public class HtmlEngine {
 
-    // Generate a <tag attr="value">CONTENT</tag>
-    protected static void writeTag(RawHtmlBuilder html, String tagName, Map<Object, Object> attrs, Closure body) {
-
+    public static void openTag(StringBuilder html, String tagName, Map attrs) {
         html.append("<");
         html.append(tagName);
         if (attrs != null) {
@@ -31,11 +27,11 @@ public class HtmlEngine {
             }
         }
         html.append(">");
-        if (body != null) {
-            body.call();
-            html.append("</");
-            html.append(tagName);
-            html.append(">");
-        }
+    }
+
+    public static void closeTag(StringBuilder html, String tagName) {
+        html.append("</");
+        html.append(tagName);
+        html.append(">");
     }
 }

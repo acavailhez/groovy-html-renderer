@@ -1,10 +1,13 @@
 package acavailhez.html.bootstrap
 
+import acavailhez.html.internal.HtmlEngine
 import acavailhez.html.traits.Html5Trait
 import acavailhez.html.utils.HtmlAttributes
+import groovy.transform.CompileStatic
 
 // shortcuts for bootstrap 4 modals
 // http://v4-alpha.getbootstrap.com/components/modal/
+@CompileStatic
 trait Bootstrap4ModalTrait extends Html5Trait {
 
     // shortcut
@@ -44,35 +47,40 @@ trait Bootstrap4ModalTrait extends Html5Trait {
         attrs.put('role', 'dialog')
         attrs.put('tabindex', attrs.opt('tabindex', Integer, -1))
 
-        div(attrs) {
-            div(class: 'modal-dialog') {
-                div(class: 'modal-content') {
-                    div(class: 'modal-header') {
-                        if (header) {
-                            header()
-                        } else {
-                            // default header
-                            button(type: 'button', class: 'close', 'data-dismiss': 'modal', 'aria-label': close) {
-                                html << '<span aria-hidden="true">&times;</span>'
-                            }
-                            if (title && !title.isEmpty()) {
-                                h4(class: 'modal-title') {
-                                    escape << title
-                                }
-                            }
-                        }
-                    }
-                    div(class: 'modal-body') {
-                        body()
-                    }
-                    if (footer) {
-                        div(class: 'modal-footer') {
-                            footer()
-                        }
+        // speed up and go around groovy trait bug (https://issues.apache.org/jira/browse/GROOVY-7843)
+        HtmlEngine.openTag(html.stringBuilder, 'div', attrs)
+        HtmlEngine.openTag(html.stringBuilder, 'div', [class: 'modal-dialog'])
+        HtmlEngine.openTag(html.stringBuilder, 'div', [class: 'modal-content'])
+
+        div(class: 'modal-header') {
+            if (header) {
+                header()
+            } else {
+                // default header
+                button(type: 'button', class: 'close', 'data-dismiss': 'modal', 'aria-label': close) {
+                    html << '<span aria-hidden="true">&times;</span>'
+                }
+                if (title && !title.isEmpty()) {
+                    h4(class: 'modal-title') {
+                        escape << title
                     }
                 }
+
             }
         }
+
+        div(class: 'modal-body') {
+            body()
+        }
+
+        if (footer) {
+            div(class: 'modal-footer') {
+                footer()
+            }
+        }
+        HtmlEngine.closeTag(html.stringBuilder, 'div')
+        HtmlEngine.closeTag(html.stringBuilder, 'div')
+        HtmlEngine.closeTag(html.stringBuilder, 'div')
     }
 
     // when applied to <a>, will open a modal

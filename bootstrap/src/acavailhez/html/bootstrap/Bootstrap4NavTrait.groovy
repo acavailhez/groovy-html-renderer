@@ -2,10 +2,12 @@ package acavailhez.html.bootstrap
 
 import acavailhez.html.traits.Html5Trait
 import acavailhez.html.utils.HtmlAttributes
+import groovy.transform.CompileStatic
 
 // shortcuts for bootstrap 4 navs
 // http://v4-alpha.getbootstrap.com/components/navs
 // http://v4-alpha.getbootstrap.com/components/navbar
+@CompileStatic
 trait Bootstrap4NavTrait extends Html5Trait {
 
     void navbar(Closure body) {
