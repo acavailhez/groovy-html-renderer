@@ -1,7 +1,7 @@
-import Bootstrap4Size
+import acavailhez.html.bootstrap.Bootstrap4Color
 import org.apache.commons.lang3.StringUtils
 
-void col(int cols, Bootstrap4Size size) {
+void col(int cols, Bootstrap4Color size) {
     print """public void col${StringUtils.capitalize(size.name().toLowerCase())}${cols}(Closure body) {
          bootstrapCol([:], ${cols}, Bootstrap4Size.${size.name()}, body)
     }\n\n"""
@@ -12,7 +12,7 @@ void col(int cols, Bootstrap4Size size) {
 }
 
 
-Bootstrap4Size.values().each { Bootstrap4Size size ->
+Bootstrap4Color.values().each { Bootstrap4Color size ->
     for (int cols = 1; cols <= 12; cols++) {
         col(cols, size)
     }

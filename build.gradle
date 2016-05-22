@@ -103,6 +103,7 @@ project(':core') {
         testCompile project(':bootstrap')
         testCompile 'org.apache.velocity:velocity:1.7' // for perf comparison
         testCompile 'org.apache.velocity:velocity-tools:2.0'
+
     }
 }
 
@@ -132,6 +133,7 @@ project(':scripts') {
 
     dependencies {
         compile project(':core')
+        compile project(':bootstrap')
         compile 'org.jodd:jodd:3.4.1'
         compile 'org.jodd:jodd-http:3.7'
 

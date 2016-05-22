@@ -4,7 +4,7 @@ import acavailhez.html.HtmlPage
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class GrailsFrontPage extends HtmlPage {
+class GrailsHomepage extends HtmlPage {
 
 
     @Override

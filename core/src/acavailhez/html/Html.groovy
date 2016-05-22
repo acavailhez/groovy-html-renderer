@@ -99,32 +99,7 @@ abstract class Html extends HtmlEngine implements
 
         scope.prepareForNewScope()
 
-       writeTag(html, tag, attrs, body)
-
-//        html << "<${tag}"
-//        if (attrs) {
-//            List<String> keys = attrs.keySet().collect { it.toString() }
-//            Collections.sort(keys)
-//            for (Object keyO : keys) {
-//                String key = keyO.toString()
-//                Object value = attrs.get(key)
-//                if (value) {
-//                    if (value instanceof Closure) {
-//                        html << " $key=\""
-//                        (value as Closure)()
-//                        html << '"'
-//                    } else {
-//                        String escaped = HtmlUtils.escapeHtmlAttribute(value)
-//                        html << " $key=\"$escaped\""
-//                    }
-//                }
-//            }
-//        }
-//        html << '>'
-//        if (body) {
-//            body()
-//            html << "</${tag}>"
-//        }
+        writeTag(html, tag, attrs, body)
 
         scope.commitToPreviousScope()
     }
