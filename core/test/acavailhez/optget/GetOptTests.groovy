@@ -56,5 +56,6 @@ public class GetOptTests extends AbstractTests {
         Assert.assertEquals(Bootstrap4Color.DANGER, CastUtils.cast(Bootstrap4Color.DANGER, Bootstrap4Color.class))
         Assert.assertEquals(Bootstrap4Color.DANGER, CastUtils.cast('DANGER', Bootstrap4Color.class))
         Assert.assertEquals(Bootstrap4Color.DANGER, CastUtils.cast('danger', Bootstrap4Color.class))
+
     }
 }

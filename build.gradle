@@ -98,6 +98,7 @@ project(':core') {
         compile 'log4j:log4j:1.2.17'
         compile 'org.apache.commons:commons-lang3:3.0'
         compile 'org.jsoup:jsoup:1.8.3' // for html prettyfier
+        compile 'org.apache.commons:commons-lang3:3.4'
 
         testCompile project(':tests')
         testCompile project(':bootstrap')

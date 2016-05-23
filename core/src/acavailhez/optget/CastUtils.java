@@ -49,8 +49,8 @@ public class CastUtils {
         if (unknown instanceof Map) {
             return new OptGetMap((Map) unknown);
         }
-        // this will throw a cast exception
-        return (OptGet) unknown;
+        // Wrap the object directly, accessing its fields
+        return new OptGetWrapper(unknown);
     }
 
     public static Integer castToInteger(Object unknown) {
