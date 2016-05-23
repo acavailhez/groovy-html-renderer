@@ -1,6 +1,4 @@
-package acavailhez.html.utils;
-
-import java.util.Map;
+package acavailhez.optget;
 
 public interface OptGet {
 
@@ -19,35 +17,7 @@ public interface OptGet {
         if (nonCast == null) {
             return defaultValue;
         }
-        if (classToCast == String.class) {
-            return (T) nonCast.toString();
-        } else if (classToCast == Integer.class) {
-            if (nonCast instanceof Integer) {
-                return (T) nonCast;
-            } else if (nonCast instanceof String) {
-                return (T) Integer.valueOf((String) nonCast);
-            }
-        } else if (classToCast == Long.class) {
-            if (nonCast instanceof Long) {
-                return (T) nonCast;
-            } else if (nonCast instanceof String) {
-                return (T) Long.valueOf((String) nonCast);
-            }
-        } else if (classToCast.isEnum()) {
-            // try to find the correct enum, ignore case
-            for (Object enumValue : classToCast.getEnumConstants()) {
-                if (enumValue.toString().toLowerCase().equals(nonCast.toString().toLowerCase())) {
-                    return (T) enumValue;
-                }
-            }
-        } else if (OptGet.class.isAssignableFrom(classToCast)) {
-            if (nonCast instanceof OptGet) {
-                return (T) nonCast;
-            } else if (nonCast instanceof Map) {
-                return (T) new OptGetMap((Map) nonCast);
-            }
-        }
-        return (T) nonCast;
+        return CastUtils.cast(nonCast, classToCast);
 
     }
 

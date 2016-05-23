@@ -1,6 +1,8 @@
-package acavailhez.html.utils
+package acavailhez.optget
 
+import acavailhez.html.bootstrap.Bootstrap4Color
 import acavailhez.html.tests.AbstractTests
+import org.junit.Assert
 import org.junit.Test
 
 public class GetOptTests extends AbstractTests {
@@ -39,5 +41,20 @@ public class GetOptTests extends AbstractTests {
 
         // default
         assert map.opt('z', String, "test") == "test"
+    }
+
+    @Test
+    public void cast() {
+
+        Assert.assertEquals("test", CastUtils.cast("test", String.class))
+        Assert.assertEquals("1", CastUtils.cast(1, String.class))
+
+        Assert.assertEquals(1, CastUtils.cast(1, Integer.class))
+        Assert.assertEquals(1, CastUtils.cast("1", Integer.class))
+        Assert.assertEquals(1, CastUtils.cast(1L, Integer.class))
+
+        Assert.assertEquals(Bootstrap4Color.DANGER, CastUtils.cast(Bootstrap4Color.DANGER, Bootstrap4Color.class))
+        Assert.assertEquals(Bootstrap4Color.DANGER, CastUtils.cast('DANGER', Bootstrap4Color.class))
+        Assert.assertEquals(Bootstrap4Color.DANGER, CastUtils.cast('danger', Bootstrap4Color.class))
     }
 }

@@ -1,6 +1,6 @@
 package acavailhez.html.scope;
 
-import acavailhez.html.utils.OptGet;
+import acavailhez.optget.OptGet;
 
 import java.util.HashMap;
 import java.util.LinkedList;
