@@ -19,6 +19,11 @@ class HtmlToGroovyConverter {
         return convertHtmlStringToGroovyCode(response.bodyText(), baseUri)
     }
 
+    public static String convertHtmlFileToGroovyCode(String path) {
+        return convertHtmlStringToGroovyCode(new File(path).text)
+    }
+
+
     public static String convertHtmlStringToGroovyCode(String html, String baseUri = '') {
 
         Document doc = HtmlUtils.getHtmlDocumentFromSource(html, baseUri)
