@@ -47,15 +47,11 @@ public class Javascript implements HtmlScopable {
     // typically before </body>
     public void renderForHtml(RawHtmlBuilder html) {
         if (scopedStatements.size() > 0) {
-            html << '<script>function _$defer(f){if(typeof $ !== \'undefined\'){$(document).ready(f)}else{f()}}</script>'
             for (List<String> statements : scopedStatements) {
                 html << '<script>'
-                html << '_$defer(function(){'
                 for (String statement : statements) {
                     html << statement
                 }
-                html << '});'
-
                 html << '</script>'
             }
         }

@@ -67,6 +67,36 @@ public class AttemptTests extends AbstractTests {
     }
 
     @Test
+    public void testErrorDoNotKeepDefers() throws Exception {
+        HtmlFragment fragment = (new HtmlFragment() {
+
+            protected void build() {
+                div {
+                    escape << "text"
+                    attempt {
+                        defer {
+                            div(class: 'modal') {
+                                escape << 'deferred'
+                            }
+                        }
+                        div {
+                            escape << 'text'
+                            throw new Exception("oups")
+                        }
+                    }
+                }
+            }
+
+        }).withStyle(HtmlStyle.PRETTY)
+
+        assert renderEquals(fragment.getRawHtml(), '''
+  <div>text</div>
+''')
+        assert renderEquals(fragment.getRawDeferredHtml(), "")
+        assert renderEquals(fragment.getRawJavascript(), "")
+    }
+
+    @Test
     public void testErrorWithCatch() throws Exception {
         String html = (new Html() {
             @Override
