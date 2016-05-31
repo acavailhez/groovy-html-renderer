@@ -13,9 +13,15 @@ public class CastUtils {
             return (T) castToInteger(unknown);
         } else if (Long.class.isAssignableFrom(target)) {
             return (T) castToLong(unknown);
+        } else if (Float.class.isAssignableFrom(target)) {
+            return (T) castToFloat(unknown);
+        } else if (Double.class.isAssignableFrom(target)) {
+            return (T) castToDouble(unknown);
         } else if (Short.class.isAssignableFrom(target)) {
             return (T) castToShort(unknown);
-        } else if (target.isEnum()) {
+        } else if (Byte.class.isAssignableFrom(target)) {
+            return (T) castToByte(unknown);
+        }else if (target.isEnum()) {
             return castToEnum(unknown, target);
         } else if (OptGet.class.isAssignableFrom(target)) {
             return (T) castToOptGet(unknown);
@@ -81,6 +87,36 @@ public class CastUtils {
             return ((Number) unknown).shortValue();
         }
         return (Short) unknown;
+    }
+
+    public static Float castToFloat(Object unknown) {
+        if (unknown instanceof String) {
+            return Float.valueOf((String) unknown);
+        }
+        if (unknown instanceof Number) {
+            return ((Number) unknown).floatValue();
+        }
+        return (Float) unknown;
+    }
+
+    public static Double castToDouble(Object unknown) {
+        if (unknown instanceof String) {
+            return Double.valueOf((String) unknown);
+        }
+        if (unknown instanceof Number) {
+            return ((Number) unknown).doubleValue();
+        }
+        return (Double) unknown;
+    }
+
+    public static Byte castToByte(Object unknown) {
+        if (unknown instanceof String) {
+            return Byte.valueOf((String) unknown);
+        }
+        if (unknown instanceof Number) {
+            return ((Number) unknown).byteValue();
+        }
+        return (Byte) unknown;
     }
 
 }
