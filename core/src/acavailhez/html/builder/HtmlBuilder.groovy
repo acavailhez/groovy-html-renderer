@@ -1,19 +1,17 @@
 package acavailhez.html.builder
 
-import acavailhez.html.scope.HtmlScopable
+import acavailhez.html.scope.HtmlScopeListener
 import groovy.transform.CompileStatic
 
 @CompileStatic
-class HtmlBuilder implements HtmlScopable {
+class HtmlBuilder extends HtmlScopeListener<StringBuilder> {
 
-    private final Stack<StringBuilder> stringBuilderStack = new Stack<>()
     private final RawHtmlBuilder html = new RawHtmlBuilder()
     private final EscapedHtmlBuilder escape = new EscapedHtmlBuilder()
 
-    private StringBuilder currentStringBuilder
-
     public HtmlBuilder() {
-        // Nothing to do
+        html.stringBuilder = getCurrentScope()
+        escape.stringBuilder = getCurrentScope()
     }
 
     public RawHtmlBuilder getHtml() {
@@ -25,44 +23,27 @@ class HtmlBuilder implements HtmlScopable {
     }
 
     @Override
-    void prepareForNewScope() {
-        if (currentStringBuilder != null) {
-            stringBuilderStack.push(currentStringBuilder)
-        }
-        currentStringBuilder = new StringBuilder()
-        html.setStringBuilder(currentStringBuilder)
-        escape.setStringBuilder(currentStringBuilder)
+    protected StringBuilder create() {
+        StringBuilder stringBuilder = new StringBuilder()
+        return stringBuilder
     }
 
     @Override
-    void commitToPreviousScope() {
-        if (!stringBuilderStack.isEmpty()) {
-            StringBuilder previousStringBuilder = stringBuilderStack.pop()
-            previousStringBuilder.append(currentStringBuilder)
-            currentStringBuilder = previousStringBuilder
-            html.setStringBuilder(currentStringBuilder)
-            escape.setStringBuilder(currentStringBuilder)
-        }
-        else{
-            // We got to the root, nothing to do
-        }
+    protected StringBuilder merge(StringBuilder toMergeInto, StringBuilder objectToMerge) {
+        return toMergeInto.append(objectToMerge)
     }
 
     @Override
-    void rollbackCurrentScope() {
-        if (!stringBuilderStack.isEmpty()) {
-            StringBuilder previousStringBuilder = stringBuilderStack.pop()
-            currentStringBuilder = previousStringBuilder
-            html.setStringBuilder(currentStringBuilder)
-            escape.setStringBuilder(currentStringBuilder)
+    protected void afterScopeChanged(StringBuilder previousScope, StringBuilder newScope) {
+        if (html) {
+            html.stringBuilder = newScope
         }
-        else{
-            // drop current
-            currentStringBuilder = new StringBuilder()
+        if (escape) {
+            escape.stringBuilder = newScope
         }
     }
 
     public String getRawHtml() {
-        return currentStringBuilder.toString()
+        return getCurrentScope().toString()
     }
 }

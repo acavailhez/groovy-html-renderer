@@ -45,14 +45,14 @@ public class SimpleTests extends AbstractTests {
             @Override
             public void build() {
                 div(attr: "outter") {
-                    div(attr: "inner") {
+                    span(attr: "inner") {
                         escape << 'embed'
                     }
                 }
             }
         }).getRawHtml()
 
-        assert html == '<div attr="outter"><div attr="inner">embed</div></div>'
+        assert html == '<div attr="outter"><span attr="inner">embed</span></div>'
     }
 
     @Test

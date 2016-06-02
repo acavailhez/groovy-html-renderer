@@ -1,6 +1,5 @@
 package acavailhez.html.traits
 
-import acavailhez.html.scope.HtmlScope
 import groovy.transform.CompileStatic
 
 @CompileStatic
@@ -10,11 +9,10 @@ trait CaptureTrait extends HtmlTrait {
     // Instead you get the html in a String
     // This loses all other state (such as defers or javascript)
     String capture(Closure capturable) {
-        HtmlScope scope = getScope()
-        scope.prepareForNewScope()
+        prepareForNewScope()
         capturable()
         String html = getRootHtmlBuilder().html.toString()
-        scope.rollbackCurrentScope()
+        rollbackCurrentScope()
         return html
     }
 

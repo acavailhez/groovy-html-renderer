@@ -1,6 +1,5 @@
 package acavailhez.html.traits
 
-import acavailhez.html.scope.HtmlScope
 import groovy.transform.CompileStatic
 
 @CompileStatic
@@ -8,20 +7,23 @@ trait AttemptTrait extends HtmlTrait {
 
     // Attempt to execute the code, if fails, rollsback and execute the fallback
     void attempt(Closure main, Closure fallback) {
-        HtmlScope scope = getScope()
-        scope.prepareForNewScope()
+        prepareForNewScope()
         try {
             main()
-            scope.commitToPreviousScope()
+            commitToPreviousScope()
         }
         catch (Throwable e) {
-            scope.rollbackCurrentScope()
-            scope.prepareForNewScope()
-            // This might throw
+            rollbackCurrentScope()
             if (fallback) {
-                fallback(e)
+                prepareForNewScope()
+                try {
+                    // This might throw
+                    fallback(e)
+                }
+                finally {
+                    commitToPreviousScope()
+                }
             }
-            scope.commitToPreviousScope()
         }
     }
 

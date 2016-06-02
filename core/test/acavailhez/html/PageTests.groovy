@@ -120,9 +120,8 @@ public class PageTests extends AbstractTests {
  </head>
  <body>
   <div>text</div>
-  <script>function _$defer(f){if(typeof $ !== 'undefined'){$(document).ready(f)}else{f()}}</script>
   <script>
-   _$defer(function(){var i=0;});
+   var i=0;
   </script>
  </body>
 </html>

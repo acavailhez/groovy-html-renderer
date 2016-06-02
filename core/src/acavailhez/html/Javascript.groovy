@@ -1,7 +1,7 @@
 package acavailhez.html
 
 import acavailhez.html.builder.RawHtmlBuilder
-import acavailhez.html.scope.HtmlScopable
+import acavailhez.html.scope.HtmlScopeListener
 import groovy.transform.CompileStatic
 
 // Contains javascript statements written during the building of the html
@@ -9,11 +9,18 @@ import groovy.transform.CompileStatic
 // Typically defered to just before the </body>
 
 @CompileStatic
-public class Javascript implements HtmlScopable {
+public class Javascript extends HtmlScopeListener<List<String>> {
 
-    // scoped statements
-    List<List<String>> scopedStatements = new LinkedList<>()
-    private List<String> currentScopedStatements
+    @Override
+    protected List<String> create() {
+        return new LinkedList<String>();
+    }
+
+    @Override
+    protected List<String> merge(List<String> toMergeInto, List<String> objectToMerge) {
+        toMergeInto.addAll(objectToMerge)
+        return toMergeInto
+    }
 
     public void leftShift(def s) {
         if (s == null) {
@@ -21,39 +28,16 @@ public class Javascript implements HtmlScopable {
         }
         String javascriptStatement = s.toString()
         javascriptStatement = javascriptStatement.trim()
-
-        currentScopedStatements.add(javascriptStatement)
-    }
-
-    @Override
-    void prepareForNewScope() {
-        currentScopedStatements = new LinkedList<>()
-    }
-
-    @Override
-    void commitToPreviousScope() {
-        if (currentScopedStatements.size() > 0) {
-            scopedStatements.add(currentScopedStatements)
-        }
-        currentScopedStatements = new LinkedList<>()
-    }
-
-    @Override
-    void rollbackCurrentScope() {
-        currentScopedStatements = new LinkedList<>()
+        getCurrentScope().add(javascriptStatement)
     }
 
     // Render to be included in html,
     // typically before </body>
     public void renderForHtml(RawHtmlBuilder html) {
-        if (scopedStatements.size() > 0) {
-            for (List<String> statements : scopedStatements) {
-                html << '<script>'
-                for (String statement : statements) {
-                    html << statement
-                }
-                html << '</script>'
-            }
+        for (String statement : getCurrentScope()) {
+            html << '<script>'
+            html << statement
+            html << '</script>'
         }
     }
 
@@ -61,14 +45,26 @@ public class Javascript implements HtmlScopable {
     // scopes the different statements
     public String getRawJavascript() {
         StringBuilder js = new StringBuilder()
-        for (List<String> statements : scopedStatements) {
+        for (String statement : getCurrentScope()) {
             js << 'try{'
-            for (String statement : statements) {
-                js << statement
-            }
+            js << statement
             js << '}catch(e){console.log(e)}'
         }
         return js.toString()
     }
 
+    @Override
+    void rollbackCurrentScope() {
+        super.rollbackCurrentScope()
+    }
+
+    @Override
+    void prepareForNewScope() {
+        super.prepareForNewScope()
+    }
+
+    @Override
+    void commitToPreviousScope() {
+        super.commitToPreviousScope()
+    }
 }

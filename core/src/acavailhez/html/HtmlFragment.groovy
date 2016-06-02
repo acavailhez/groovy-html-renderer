@@ -1,5 +1,6 @@
 package acavailhez.html
 
+import acavailhez.html.builder.HtmlBuilder
 import acavailhez.html.traits.HtmlFragmentTrait
 import groovy.transform.CompileStatic
 
@@ -9,22 +10,30 @@ import groovy.transform.CompileStatic
 // the main HTML is rendered and calls back to render this fragment
 
 @CompileStatic
-abstract class HtmlFragment extends Html implements HtmlFragmentTrait{
+abstract class HtmlFragment extends Html implements HtmlFragmentTrait {
 
     // Write javascript in context, it will be defered
     protected Javascript js
-    String deferredHtml = ''
+    private HtmlBuilder defer
 
     public HtmlFragment() {
         js = new Javascript()
-        scope.addScopable(js)
+        subscribeToScopeChanges(js)
+        defer = new HtmlBuilder()
+        subscribeToScopeChanges(defer)
     }
 
     public void defer(Closure toDefer) {
-        scope.prepareForNewScope()
-        toDefer()
-        deferredHtml += rootHtmlBuilder.html.toString()
-        scope.rollbackCurrentScope()
+        prepareForNewScope()
+        try {
+            toDefer()
+            defer.html << rootHtmlBuilder.html.toString()
+            defer.commitToPreviousScope()
+            defer.prepareForNewScope()
+        }
+        finally {
+            rollbackCurrentScope()
+        }
     }
 
     public String getRawJavascript() {
@@ -32,17 +41,17 @@ abstract class HtmlFragment extends Html implements HtmlFragmentTrait{
     }
 
     public String getRawDeferredHtml() {
-        return deferredHtml
+        return defer.getRawHtml()
     }
 
     // insert a fragment into another
-    protected insert(HtmlFragment fragment, HtmlRenderMode mode){
-        if(mode != HtmlRenderMode.IMMEDIATE){
+    protected insert(HtmlFragment fragment, HtmlRenderMode mode) {
+        if (mode != HtmlRenderMode.IMMEDIATE) {
             throw new Exception("mode not supported")
         }
         fragment.render()
         html << fragment.getRawHtml()
-        deferredHtml += fragment.getRawDeferredHtml()
+        defer.html << fragment.getRawDeferredHtml()
         js << fragment.getRawJavascript()
     }
 

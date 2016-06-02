@@ -79,6 +79,10 @@ public class AttemptTests extends AbstractTests {
                                 escape << 'deferred'
                             }
                         }
+                        js << 'executeModal();'
+                        div{
+                            escape << 'text'
+                        }
                         div {
                             escape << 'text'
                             throw new Exception("oups")
@@ -92,8 +96,8 @@ public class AttemptTests extends AbstractTests {
         assert renderEquals(fragment.getRawHtml(), '''
   <div>text</div>
 ''')
-        assert renderEquals(fragment.getRawDeferredHtml(), "")
         assert renderEquals(fragment.getRawJavascript(), "")
+        assert renderEquals(fragment.getRawDeferredHtml(), "")
     }
 
     @Test
