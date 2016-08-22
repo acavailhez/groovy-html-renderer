@@ -1,7 +1,7 @@
 package acavailhez.html.demo
 
 import acavailhez.html.HtmlPage
-import Bootstrap4NavTrait
+import acavailhez.html.bootstrap.Bootstrap4NavTrait
 
 class Frontpage extends HtmlPage implements Bootstrap4NavTrait {
 
@@ -23,13 +23,6 @@ class Frontpage extends HtmlPage implements Bootstrap4NavTrait {
 
     @Override
     protected void body() {
-        navbar {
-            brand("html-groovy-renderer")
-            ulNav {
-                liANav([href: '#']) {
-                    escape << 'Simple'
-                }
-            }
-        }
+        h1("Hello")
     }
 }

@@ -142,24 +142,21 @@ project(':scripts') {
     }
 }
 
-project(':jetty') {
-
-    apply plugin: 'jetty'
+project(':spark') {
 
     dependencies {
         compile project(':core')
-        compile 'org.eclipse.jetty:jetty-server:9.3.6.v20151106'
+        compile 'com.sparkjava:spark-core:2.5'
 
         testCompile project(':tests')
     }
 }
 
-project(':jetty-demo') {
-
-    apply plugin: 'jetty'
+project(':spark-demo') {
 
     dependencies {
-        compile project(':jetty')
+        compile project(':spark')
+        compile project(':bootstrap')
 
         testCompile project(':tests')
     }
