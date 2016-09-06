@@ -1,5 +1,6 @@
 package acavailhez.html.bootstrap
 
+import acavailhez.html.traits.CaptureTrait
 import acavailhez.html.traits.Html5Trait
 import acavailhez.html.utils.HtmlAttributes
 import groovy.transform.CompileStatic
@@ -8,7 +9,7 @@ import groovy.transform.CompileStatic
 // http://v4-alpha.getbootstrap.com/components/navs
 // http://v4-alpha.getbootstrap.com/components/navbar
 @CompileStatic
-trait Bootstrap4NavTrait extends Html5Trait {
+trait Bootstrap4NavTrait implements Html5Trait, CaptureTrait {
 
     void navbar(Closure body) {
         navbar([:], body)
@@ -44,9 +45,6 @@ trait Bootstrap4NavTrait extends Html5Trait {
         if (scope.get('navbar')) {
             attrs.addToClass('navbar-nav')
         }
-        if (scope.get('tabs')) {
-            attrs.put('role','tablist')
-        }
         ul(attrs, body)
     }
 
@@ -55,7 +53,7 @@ trait Bootstrap4NavTrait extends Html5Trait {
     }
 
     void ulTabs(Map map, Closure body) {
-        scope.put('tabs',true)
+        scope.put('tabs', true)
         ulNav(map, body)
     }
 
@@ -64,33 +62,64 @@ trait Bootstrap4NavTrait extends Html5Trait {
         HtmlAttributes attrs = HtmlAttributes.wrap(map)
         li([class: 'nav-item']) {
             attrs.addToClass('nav-link')
-            if (scope.get('tabs')) {
-                attrs.put('data-toggle','tab')
-                attrs.put('role','tab')
-            }
             a(attrs) {
                 body()
             }
         }
     }
 
-    void tabs(Closure body){
-        tabs([:],body)
+    void tabs(Closure body) {
+        tabs([:], body)
     }
 
-    void tabs(Map map,Closure body){
-        HtmlAttributes attrs = HtmlAttributes.wrap(map)
-        div(attrs.addToClass('tab-content'),body)
-    }
+    void tabs(Map map, Closure body) {
+        List<Map> allTabs = []
+        scope.put('tabs', allTabs)
+        scope.put('navbar', true)
 
-    void tab(Map map,Closure body){
-        HtmlAttributes attrs = HtmlAttributes.wrap(map)
-        attrs.addToClass('tab-pane')
-        if(attrs.get('active',Boolean)){
-            attrs.remove('active')
-            attrs.addToClass('active')
+        // Let the user tell us what the tabs are named and contain
+        capture(body)
+
+        // Write the header
+        ulNav(role: 'tab-list') {
+            for (Map tab : allTabs) {
+                String id = tab.id
+                liANav(role: 'tab', 'data-toggle': 'tab', href: '#' + id) {
+                    escape << tab.title
+                }
+            }
         }
-        attrs.put('role','tabpanel')
-        div(attrs,body)
+
+        // Write the content
+        div(class: 'tab-content') {
+            for (Map tab : allTabs) {
+                String id = tab.id
+                div(class: 'tab-pane', id: id, role: 'tabpanel') {
+                    html << tab.html
+                }
+            }
+        }
+    }
+
+    void tab(String title, Closure body) {
+        tab(title, [:], body)
+    }
+
+    void tab(String title, Map map, Closure body) {
+        HtmlAttributes attrs = HtmlAttributes.wrap(map)
+        List<Map> tabs = scope.opt('tabs', List)
+        if (tabs == null) {
+            throw new IllegalStateException("tab() used without being within a tabs{}, this cannot work, please consult the documentation of BootstrapNavTrait")
+        }
+        String id = attrs.opt('id', String)
+        if (!id) {
+            id = title.trim().replaceAll(" ", "-").replaceAll("[^a-zA-Z-]", "").toLowerCase();
+        }
+        String tabHtml = capture(body)
+        tabs.add([
+                title: title,
+                id   : id,
+                html : tabHtml
+        ])
     }
 }
