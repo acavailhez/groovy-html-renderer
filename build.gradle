@@ -19,6 +19,7 @@ allprojects {
         main {
             java { srcDirs = [] } // everything compiled with groovy
             groovy { srcDirs = ["src"] }
+            resources { srcDirs = ["resources"] }
         }
         test {
             java { srcDirs = ["test"] }
